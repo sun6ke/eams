@@ -1,0 +1,35 @@
+<div id="wizard">
+
+  <h2>First Step</h2>
+  <div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+  </div>
+
+  <h2>Second Step</h2>
+  <div>
+    <p>Donec mi sapien, hendrerit nec egestas a, rutrum vitae dolor. </p>
+  </div>
+
+  <h2>Third Step</h2>
+  <div>
+    <p>Morbi ornare tellus at elit ultrices id dignissim lorem elementum. </p>
+  </div>
+
+  <h2>Forth Step</h2>
+  <div>
+    <p>Quisque at sem turpis, id sagittis diam. </p>
+  </div>
+
+</div>
+
+<script>
+  $(function() {
+
+    $("#wizard").steps({
+      headerTag: "h2",
+      bodyTag: "div",
+      transitionEffect: "slideLeft"
+    });
+
+  });
+</script>

@@ -1,0 +1,59 @@
+<div class="form-group selectized">
+  <label for="select-remote">Select:</label>
+  <div>Current Value: <span id="ajax-value"></span></div>
+  <select id="select-remote" class="select-ajax" placeholder="Pick a repository..."></select>
+</div>
+<script>
+  $(function () {
+    var $wrapper = $('.selectized');
+
+    // show current input values
+    $('select.select-ajax', $wrapper).each(function() {
+      var $input = $(this);
+      var $value = $('#ajax-value');
+      var update = function(e) { $value.text(JSON.stringify($input.val())); }
+
+      $(this).on('change', update);
+      update();
+    });
+
+    $('#select-remote').selectize({
+      valueField: 'url',
+      labelField: 'name',
+      searchField: 'name',
+      options: [],
+      create: false,
+      render: {
+        option: function(item, escape) {
+          return '<div>' +
+            '<dl>' +
+            '<dt><span><i class="fa fa-paperclip"></i> ' + escape(item.name) + '</span>' +
+            '<span> by ' + escape(item.username) + '</span>' +
+            '</dt>' +
+            '<dd><span>' + escape(item.description) + '</span></dd>' +
+            '</dl>' +
+            '</div>';
+        }
+      },
+      score: function(search) {
+        var score = this.getScoreFunction(search);
+        return function(item) {
+          return score(item) * (1 + Math.min(item.watchers / 100, 1));
+        };
+      },
+      load: function(query, callback) {
+        if (!query.length) return callback();
+        $.ajax({
+          url: 'https://api.github.com/legacy/repos/search/' + encodeURIComponent(query),
+          type: 'GET',
+          error: function() {
+            callback();
+          },
+          success: function(res) {
+            callback(res.repositories.slice(0, 10));
+          }
+        });
+      }
+    });
+  })
+</script>

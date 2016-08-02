@@ -1,0 +1,33 @@
+<div id="prefetch">
+  <input class="typeahead" type="text" placeholder="cities">
+</div>
+
+<script>
+  $(function () {
+    var cities = new Bloodhound({
+      // 因为city是json对象，不是一个字符串，所以取它的name属性作为被搜索项
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name"),
+      // 将查询条件根据空格分开
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      // 给被查询数据(datum)city设置唯一的id
+      identify: function (datum) {
+        return datum.id;
+      },
+      prefetch: {
+        //  预抓取的数据
+        url: 'cities.json',
+        // 关闭cache，这样就不会使用localStorage来存储
+        cache: false
+      }
+    });
+
+    $('#prefetch .typeahead').typeahead(null, {
+      // dataset的名字
+      name: 'cities',
+      // 因为返回的数据(datum)是json对象，所以用他的name属性作为显示在input输入框的值
+      display: 'name',
+      // 数据源，Bloodhound(cities)
+      source: cities
+    });
+  });
+</script>

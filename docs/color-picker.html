@@ -1,0 +1,91 @@
+---
+layout: default
+title: Bootstrap Color Picker
+---
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Bootstrap Color Picker</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://mjolnic.com/bootstrap-colorpicker/">Bootstrap Color Picker</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <form action="bootstrap-selector.html" id="colorpicker-form">
+
+      <div class="form-group">
+        <label class="control-label">Hex Mode</label>
+
+        {% include colorpicker/example1.html %}
+        {% highlight html %}
+        {% include colorpicker/example1.html %}
+        {% endhighlight %}
+
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Rgba Mode</label>
+
+        {% include colorpicker/example2.html %}
+        {% highlight html %}
+        {% include colorpicker/example2.html %}
+        {% endhighlight %}
+
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Component Mode</label>
+
+        {% include colorpicker/example3.html %}
+        {% highlight html %}
+        {% include colorpicker/example3.html %}
+        {% endhighlight %}
+
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">changeColor Event Example</label>
+        <br/>
+        {% include colorpicker/example4.html %}
+        {% highlight html %}
+        {% include colorpicker/example4.html %}
+        {% endhighlight %}
+      </div>
+
+    </form>
+
+
+  </div>
+</div>
+
+
+<script>
+  $(function () {
+
+    //
+    // Bootstrap colorpicker
+    //------------------------------
+    $('#cp1').colorpicker({
+      format: 'hex'
+    });
+    $('#cp2').colorpicker({
+      format: 'rgba'
+    });
+    $('#cp3').colorpicker();
+    var bodyStyle = $('body')[0].style;
+    $('#cp4').colorpicker().on('changeColor', function (ev) {
+      bodyStyle.backgroundColor = ev.color.toHex();
+    });
+
+  })
+</script>

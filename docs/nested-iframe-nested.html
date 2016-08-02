@@ -1,0 +1,38 @@
+---
+layout: default
+title: 嵌套iframe自适应高度 - 嵌套页面
+---
+
+<h2>这个是嵌套在iframe里的页面</h2>
+<p>
+  当这个页面内容增加导致的高度增加后，会同时增加父页面的高度
+</p>
+<p>
+  而父页面的高度增加后，也会增加home页面的高度
+</p>
+<p>
+  自适应高度的好处是不会出现滚动条
+</p>
+<div class="row">
+  <div class="col-sm-12">
+    <button type="button" class="btn btn-primary">点击追加内容</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12" id="append-content">
+
+  </div>
+</div>
+
+<script>
+  $(function() {
+    $('button').click(function() {
+      var c = [];
+      for(var i = 0; i < 50; i++) {
+        c.push('Morbi ornare tellus at elit ultrices id dignissim lorem elementum');
+      }
+      $('#append-content').append('<p>' + c.join() + '</p>');
+    });
+  });
+</script>

@@ -1,0 +1,96 @@
+{
+  "weekdays": [{ "title": "星期一"},{ "title": "星期二"},{ "title": "星期三"},{ "title": "星期四"},{ "title": "星期五"},{ "title": "星期六"},{ "title": "星期日"}],
+
+  "units": [
+    {
+      "title": "1",
+      "startTime": 800,
+      "endTime": 840
+    }, {
+      "title": "2",
+      "startTime": 850,
+      "endTime": 930
+    }, {
+      "title": "3",
+      "startTime": 1000,
+      "endTime": 1040
+    }, {
+      "title": "4",
+      "startTime": 1050,
+      "endTime": 1130
+    }, {
+      "title": "5",
+      "startTime": 1330,
+      "endTime": 1410
+    }, {
+      "title": "6",
+      "startTime": 1420,
+      "endTime": 1500
+    }, {
+      "title": "7",
+      "startTime": 1530,
+      "endTime": 1610
+    }, {
+      "title": "8",
+      "startTime": 1620,
+      "endTime": 1700
+    }, {
+      "title": "9",
+      "startTime": 1800,
+      "endTime": 1840
+    }, {
+      "title": "10",
+      "startTime": 1850,
+      "endTime": 1930
+    }, {
+      "title": "11",
+      "startTime": 1950,
+      "endTime": 2030
+    }],
+
+  "activities": [
+    {
+      "id": 1,
+      "weekdayIndex": 1,
+      "startTime": 800,
+      "endTime": 930,
+      "weeks": [1,2,3,4,5,6,7,8,9,10,11],
+      "content": "微积分 1号楼202"
+    }, {
+      "id": 2,
+      "weekdayIndex": 3,
+      "startTime": 1000,
+      "endTime": 1140,
+      "weeks": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
+      "content": "大学英语II 1号楼202"
+    }, {
+      "id": 3,
+      "weekdayIndex": 2,
+      "startTime": 1330,
+      "endTime": 1500,
+      "weeks": [3,4,5,6,7,8],
+      "content": "计算机与基础 1号楼202"
+    }, {
+      "id": 4,
+      "weekdayIndex": 5,
+      "startTime": 1530,
+      "endTime": 1700,
+      "weeks": [1,2,3,4,5,6,7,8,9,10],
+      "content": "大学体育 操场"
+    }, {
+      "id": 5,
+      "weekdayIndex": 4,
+      "startTime": 1800,
+      "endTime": 2030,
+      "weeks": [1,2,3,4,5,6,7,8],
+      "content": "马克思导论 1号楼203"
+    }, {
+      "id": 6,
+      "weekdayIndex": 1,
+      "startTime": 800,
+      "endTime": 930,
+      "weeks": [1,2,3,4,5,6,7,8,9,10,11],
+      "content": "sssssd"
+    }
+  ]
+}

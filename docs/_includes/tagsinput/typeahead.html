@@ -1,0 +1,36 @@
+<select id="typeahead" data-role="tagsinput" placeholder="请输入美国各州的名字"></select>
+<script>
+  var cities = new Bloodhound({
+    // 因为city是json对象，不是一个字符串，所以取它的name属性作为被搜索项
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+    // 将查询条件根据空格分开
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    // 给被查询数据(datum)city设置唯一的id
+    identify: function(datum) {
+      return datum.id;
+    },
+    remote: {
+      // 查询条件会追加在请求url上，比如 cities.json?q=California
+      url: '../typeahead-examples/cities.json?q=%QUERY%',
+      wildcard: '%QUERY%'
+    }
+  });
+  cities.initialize();
+
+  $('#typeahead').tagsinput({
+    // option 使用 city.id
+    itemValue: 'id',
+    // 显示在tag上的文字 使用 city.name，也可以是个function
+    itemText: 'name',
+
+    // typeahead.js的参数
+    typeaheadjs: {
+      name: 'cities',
+      source: cities,
+      // 因为返回的是json object，所以使用name属性typeahead下拉框的内容
+      display: 'name'
+    },
+    // 只能从typeahead返回的结果里选，不能随便输入
+    freeInput: false
+  });
+</script>

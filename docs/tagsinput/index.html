@@ -1,0 +1,69 @@
+---
+layout: default
+title: Tags Input
+---
+
+<div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Tabs</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://timschlechter.github.io/bootstrap-tagsinput/examples/index.html">Bootstrap Tags
+          Input</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Simple Input</h3>
+
+    {% include tagsinput/input.html %}
+    <br/>
+    {% highlight html %}
+    {% include tagsinput/input.html %}
+    {% endhighlight %}
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Multiple Select</h3>
+
+    {% include tagsinput/multiple-select.html %}
+    <br/>
+    {% highlight html %}
+    {% include tagsinput/multiple-select.html %}
+    {% endhighlight %}
+
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3>With typeahead.js <small>typeahead.js的文档在 <a href="../typehead-examples">这里</a></small></h3>
+
+    <p>
+      这里的typeaheadjs的就是 <a target="_blank" href="https://github.com/twitter/typeahead.js/blob/master/doc/jquery_typeahead.md#datasets">typeahead dataset参数</a>
+    </p>
+    <p>
+      这个例子使用typeahead来做查询，这里的select不是多选的因此只能选一个，如果要多选只需添加 <code>multiple</code>就行了
+    </p>
+
+    <p>
+      这里使用的是typeahead remote查询，返回的数据总是一样的，在实际开发过程中需要后端自己实现查询逻辑
+    </p>
+
+    {% include tagsinput/typeahead.html %}
+    <br/>
+    {% highlight html %}
+    {% include tagsinput/typeahead.html %}
+    {% endhighlight %}
+
+  </div>
+</div>

@@ -1,0 +1,90 @@
+/*
+Twitter Typeahead css file. References
+
+https://github.com/bassjobsen/typeahead.js-bootstrap-css/blob/master/typeaheadjs.less
+https://github.com/hyspace/typeahead.js-bootstrap3.less/blob/master/typeahead.less
+
+*/
+
+
+.form-group {
+  .twitter-typeahead {
+    width: 100%;
+  }
+}
+
+.form-inline {
+  .form-group {
+    .twitter-typeahead {
+      width: auto;
+      vertical-align: middle;
+    }
+  }
+}
+
+.twitter-typeahead {
+
+  color: @input-color;
+
+  .tt-hint {
+
+    color: @gray-light;
+  }
+
+  .tt-input {
+
+  }
+
+  .tt-menu {
+
+    &:extend(.dropdown-menu);
+
+    &.tt-empty {
+
+    }
+
+    &.tt-open {
+
+    }
+
+    .tt-dataset {
+
+      .tt-suggestion {
+
+        display:      block;
+        width:        100%;
+        height:       @input-height-base; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
+        padding:      @padding-base-vertical @padding-base-horizontal;
+        font-size:    @font-size-base;
+        line-height:  @line-height-base;
+
+        &:hover,
+        &.tt-cursor {
+          cursor:           pointer;
+          color:            #fff;
+          background-color: @brand-info;
+        }
+
+      }
+
+      .tt-selectable {
+
+        .tt-highlight {
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+/*
+suggestion滚动的样例
+#scrollable-dropdown-menu .tt-menu {
+  max-height: 150px;
+  overflow-y: auto;
+}
+*/

@@ -1,0 +1,57 @@
+---
+layout: time-table-default
+title: Time line
+---
+<div class="schedule-arrange-index">
+
+  <div class="center-div">
+    <div class="row" style="padding-top: 35px;padding-bottom: 15px">
+      <label class="control-label col-sm-2" for="semester" style="padding-top: 7px">选择学期</label>
+      <div class="col-sm-10">
+        <select class="selectize selectized" name="semesterAssoc" id="semester">
+          <option value="37" selected="selected">2019-2020-春</option>
+          <option value="38">2018-2019-春</option>
+          <option value="39">2018-2019-春</option>
+          <option value="40">2017-2018-春</option>
+          <option value="41">2016-2017-春</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="schedule-state">
+      <div class="content">
+        <h3><i class="fa fa-tachometer" style="color: #22b585"></i>&nbsp;当前排课状态</h3>
+        <div class="state">
+          <div class="row periods">
+            <div class="col col-sm-3 text-center arrange-complete">603</div>
+            <div class="col col-sm-3 text-center arrange-uncomplete">92</div>
+            <div class="col col-sm-3 text-center arrange-uncomplete">92</div>
+            <div class="col col-sm-3 text-center arrange-no">92</div>
+          </div>
+          <div class="row">
+            <div class="col col-sm-3 text-center">已排满课时</div>
+            <div class="col col-sm-3 text-center">未排满课时</div>
+            <div class="col col-sm-3 text-center">任务未安排</div>
+            <div class="col col-sm-3 text-center">任务不安排</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="refresh-collision">
+        <i class="fa fa-refresh fa-spin"></i>
+      </div>
+      <div class="collision">
+        <div class="col col-sm-4"><i class="fa fa-exclamation-circle arrange-uncomplete"></i>&nbsp;&nbsp;<span class="arrange-uncomplete">13</span>&nbsp;教师冲突</div>
+        <div class="col col-sm-4"><i class="fa fa-exclamation-circle arrange-uncomplete"></i>&nbsp;&nbsp;<span class="arrange-uncomplete">13</span>&nbsp;班级冲突</div>
+        <div class="col col-sm-4"><i class="fa fa-exclamation-circle arrange-no"></i>&nbsp;&nbsp;<span>0</span>&nbsp;教室冲突</div>
+      </div>
+      <div class="footer" onclick="window.location='/time-table/time-table'">进入排课</div>
+    </div>
+  </div>
+
+</div>
+<script>
+  $(function() {
+    $(".selectize").selectize({});
+  });
+</script>

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "01",
+    "parentId": null,
+    "title": "Component Menu",
+    "href": "#"
+  },
+  {
+    "id": "01.01",
+    "parentId": "01",
+    "title": "Design Kit Menu",
+    "href": "#"
+  },
+  {
+    "id": "01.01.01",
+    "parentId": "01.01",
+    "title": "UI Element",
+    "href": "#"
+  },
+  {
+    "id": "01.01.02",
+    "parentId": "01.01",
+    "title": "Form",
+    "href": "schedule-table/"
+  },
+  {
+    "id": "01.01.03",
+    "parentId": "01.01",
+    "title": "Form",
+    "href": "form/"
+  }
+]

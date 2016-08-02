@@ -1,0 +1,479 @@
+@sidebar-menu-dark-color: #252D3B;
+
+//
+// 导航栏下方的区域
+// ----------------------------------------
+#e-content-area {
+
+  display: table;
+  width: 100%;
+  min-height: 1800px;
+  height: 100%;
+
+}
+
+//
+// 左侧菜单栏
+// ----------------------------------------
+#e-sidebar {
+
+  //left:         0px;
+  //transition:   width 0.1s;
+
+  display:      table-cell;
+  vertical-align: top;
+  height:       auto;
+  position:     relative;
+  top:          -47px;
+  width:        250px;
+  z-index:      1000;
+
+}
+
+//
+// Logo
+// ----------------------------------------
+#e-logo {
+  left:                   19px;
+  position:               relative;
+  top:                    -29px;
+  max-width:              191px;
+
+  h1 {
+    font-size:            30px;
+    font-weight:          200;
+    letter-spacing:       -1px;
+    text-decoration:      inherit;
+    text-transform:       uppercase;
+    color:                #fff;
+
+    span {
+      background:         none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
+      background:         url('@{img-path}/opacity-20.png') repeat ~"\9"; // IE8
+      border-radius:      3px;
+      font-size:          11px;
+      margin-left:        0;
+      padding:            0 5px;
+      position:           relative;
+      top:                -3px;
+    }
+
+  }
+
+}
+
+#e-sidebar-menu-toggle {
+  color:              rgba(255, 255, 255, 0.8);
+  color:              #FFFFFF\9; // IE8
+  background:         none repeat scroll 0 0 rgba(0, 0, 0, 0.3);
+  background:         url('@{img-path}/opacity-30.png') repeat ~"\9"; // IE8
+  border-radius:      3px;
+  cursor:             pointer;
+  display:            block;
+  height:             30px;
+  line-height:        30px;
+  position:           absolute;
+  right:              10px;
+  text-align:         center;
+  top:                -10px;
+  width:              30px;
+  font-size:          14px;
+
+  &:hover {
+    background-color: @sidebar-menu-dark-color;
+  }
+
+}
+
+//
+// 菜单搜索按钮
+#e-sidebar-menu-search {
+
+  position: relative;
+  margin-top: -18px;
+  padding: 0 10px;
+  border-radius: 4px;
+  visibility: visible;
+
+  // 搜索图标的位置
+  .fa-search {
+    position: absolute;
+    top: 13px;
+    left: 31px;
+  }
+
+  input[type=search] {
+    border:           medium none;
+    color:            #FFFFFF;
+    background:       none repeat scroll 0 0 rgba(0, 0, 0, 0.1);
+    background:       url('@{img-path}/opacity-10.png') repeat ~"\9"; // IE8
+    border-radius:    4px;
+
+    padding:          10px 15px 10px 50px;
+    width:            100%;
+    outline:          none;
+  }
+
+}
+
+#e-sidebar-menu {
+
+  a,
+  i,
+  span {
+    color : #fff !important;
+  }
+
+  // 所有菜单超链接标题高度
+  a {
+    line-height: 25px !important;
+  }
+
+  // 一、二、三级菜单padding都是0
+  ul {
+    padding:              0px;
+  }
+
+  // 所有li都没有list style
+  li {
+    list-style:           none !important;
+  }
+
+  // 一级菜单
+  > ul {
+
+    // 左右边距10px，背景色0.1透明度白，圆角3px
+    margin:               10px;
+    box-shadow:           0 1px 0 rgba(0, 0, 0, 0.1);
+    background:           none repeat scroll 0 0 rgba(0, 0, 0, 0.1);
+    background:           url('@{img-path}/opacity-30.png') repeat ~"\9"; // IE8
+    border-radius:        3px;
+
+    > li {
+      width:              250px\9; // IE8
+    }
+
+    // 标题超链接
+    > li > a {
+
+      font-size:          12px;
+      border-left:        0px solid !important;
+      display:            inline-block;
+      float:              none;
+
+      text-decoration:    none;
+      padding:            5px 10px 5px 0 !important;
+      width:              100%;
+      text-transform:     uppercase !important;
+
+      span {
+        display:          inline-block;
+        float:            none;
+        left:             10px;
+        position:         relative;
+        background:       none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
+        background:       url('@{img-path}/opacity-20.png') repeat ~"\9"; // IE8
+        border-radius:    20px;
+        height:           22px;
+        line-height:      20px;
+        padding:          0 11px;
+
+        // 解决菜单名超长的问题
+        max-width:        180px;
+        text-overflow:    ellipsis;
+        word-break:       break-all;
+        overflow:         hidden;
+        white-space:      nowrap;
+
+        &.e-sidebar-menu-abbr {
+          display: none;
+        }
+
+      }
+
+      i {
+        position:         relative;
+        top:              5px;
+        left:             0px;
+        width:            18px;
+        font-size:        20px;
+        font-style:       normal;
+        line-height:      15px;
+      }
+
+    }
+
+    // 二级菜单
+    ul {
+
+      // 二级、三级菜单超链接标题的样式
+      a {
+        position:         relative;
+        display:          block;
+        line-height:      25px;
+        padding:          10px 10px 10px 30px;
+        text-decoration:  none;
+        text-transform:   capitalize;
+        width:            250px\9;  // IE8
+
+        &:hover {
+          background-color:     rgba(0, 0, 0, 0.2);
+          background:           url('@{img-path}/opacity-20.png') repeat ~"\9"; // IE8
+          color:                white!important;
+          text-shadow:          none;
+          border-left:          2px solid #ffffff;
+          padding-left:         28px;
+          position:             relative;
+
+          // 左侧小三角图标
+          &:after {
+            border-bottom:      6px solid #ffffff;
+            border-left:        8px solid transparent;
+            border-right:       8px solid transparent;
+            border-bottom:      0\9; // IE8
+            border-left:        0\9; // IE8
+            border-right:       0\9; // IE8
+            width:              0;
+            height:             0;
+            position:           absolute;
+            top:                19px;
+            left:               -6px;
+            content:            "";
+            display:            block;
+            rotation:           90deg;
+            transform:          rotate(90deg);
+          }
+
+          i {
+            left:               11px;
+          }
+        }
+
+        // 图标
+        i {
+
+          position:       absolute;
+          top:            17px;
+          left:           13px;
+
+          font-size:      18px;
+          font-style:     normal;
+          line-height:    15px;
+          width:          20px;
+
+        }
+
+        // 文字
+        span {
+          left:           10px;
+          position:       relative;
+          display:        inline-block;
+
+          // 解决菜单名超长的问题
+          width:          150px;
+          word-break:     break-all;
+          word-wrap:      break-word;
+
+        }
+
+      }
+
+      // 二级菜单展开和折叠的背景图片位置
+      a {
+        &[aria-expanded=true] {
+          background: url('@{img-path}/menu-expand.png') no-repeat right 13px center;
+          background-image: url('@{img-path}/menu-expand.png') ~"\9"; // IE8
+          background-repeat: no-repeat ~"\9"; // IE8
+          background-position: right center ~"\9"; // IE8
+        }
+
+        &[aria-expanded=false] {
+          background: url('@{img-path}/menu-fold.png') no-repeat right 13px center;
+          background-image: url('@{img-path}/menu-fold.png') ~"\9"; // IE8
+          background-repeat: no-repeat ~"\9"; // IE8
+          background-position: right center ~"\9"; // IE8
+        }
+      }
+
+      // 三级菜单
+      ul {
+
+        // 三级菜单超链接标题背景色稍深
+        a {
+          background:         none repeat scroll 0 0 rgba(0, 0, 0, 0.3);
+          background:         url('@{img-path}/opacity-30.png') repeat ~"\9"; // IE8
+          // 三级菜单的文字会和二级菜单的文字对不齐，这里做一下hack
+          span {
+            margin-left: 4px;
+          }
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+//
+// 左侧sidebar折叠
+// -------------------------------------------
+
+body.e-sidebar-collapse {
+
+  header {
+    margin-left:          50px !important;
+  }
+
+  #e-logo {
+    display: none;
+  }
+
+  #e-sidebar {
+
+    width :                 50px;
+    //transition:             width 0.1s;
+
+    li {
+      text-align:           right;
+    }
+
+    span {
+      display:              none;
+    }
+
+    a {
+      background-image:     none !important;
+    }
+
+    ul {
+      margin: 0px;
+    }
+
+    #e-sidebar-menu-search {
+
+      display:          block;
+      width:            50px;
+      //left:             190px;
+      top:              63px;
+      padding:          0px;
+
+      // 搜索图标的位置
+      .fa-search {
+        top:            13px;
+        left:           20px;
+      }
+
+      input[type=search] {
+
+        cursor:               pointer;
+        background:           none repeat scroll 0 0 rgba(0, 0, 0, 0.3);
+
+        padding:              10px 0px 10px 49px;
+        width:                50px;
+        transition:           width 0.1s;
+
+        &:hover {
+          background-color:   @sidebar-menu-dark-color;
+        }
+
+        &:focus {
+
+          width :             200px;
+          cursor:             auto;
+          color :             @sidebar-menu-dark-color;
+          padding:            9px 0px 9px 45px;
+          border:             1px solid #ddd;
+          background-color:   #ffffff;
+          transition:         width 0.1s;
+
+        }
+
+      }
+
+    }
+
+    #e-sidebar-menu {
+
+      top:        63px;
+      position:   relative;
+      width:      50px;
+
+      i:last-child {
+        left: 5px;
+      }
+
+      span.e-sidebar-menu-abbr {
+        left:             0px !important;
+      }
+
+      > ul > li {
+
+        width:            50px\9; // IE8
+
+        a {
+          height:         41px;
+          width:          50px;
+          padding:        5px 0px !important;
+
+          span {
+            padding:      0px;
+          }
+
+        }
+
+        > a {
+          text-align: left;
+
+          > i {
+            margin-left:  0px;
+            left:         -3px !important;
+          }
+
+          span.e-sidebar-menu-abbr {
+            display:    inline-block !important;
+            left:       6px !important;
+            font-size:  20px;
+            background: none !important;
+          }
+
+        }
+
+      }
+
+      > ul ul {
+
+        i {
+          position:       relative;
+          left:           -16px;
+          top:            2px;
+          text-align:     left;
+        }
+
+        a {
+
+          padding:        10px 10px 10px 0px;
+
+          &:hover {
+            background:           url('@{img-path}/opacity-20.png') repeat ~"\9"; // IE8
+            padding-left: 0px;
+            border-left:  0px;
+
+            &:after {
+              content:    none;
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+

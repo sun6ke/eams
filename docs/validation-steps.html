@@ -1,0 +1,597 @@
+---
+layout: default
+title: jQuery Validation With Steps
+---
+
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10">
+    <section>
+      <h2>jQuery Validation
+        <small>with Steps</small>
+      </h2>
+      <p>
+        Doc:
+        <a target="_blank" href="http://jqueryvalidation.org/documentation/">jQuery-validation</a>,
+        <a target="_blank" href="https://github.com/rstaib/jquery-steps/wiki">jQuery Steps</a>
+      </p>
+
+      <p>
+        本页面测试原生和第三方控件在校验时是否行为正确
+      </p>
+    </section>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10">
+    <h3>Basic Form
+      <small>with Basic Wizard</small>
+    </h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10">
+
+    <form action="form.html" id="contact-form">
+
+      <h3>原生控件</h3>
+      <fieldset title="Native Controls">
+
+        <div class="form-group">
+          <label class="control-label" for="name">Text</label>
+          <input type="text" class="form-control" name="name" id="name">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="message">Textarea</label>
+          <textarea class="form-control" name="message" id="message" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="select-bs">Select</label>
+          <select class="form-control" name="select-bs" id="select-bs">
+            <option value="">...</option>
+            <option value="1">Option A</option>
+            <option value="2">Option B</option>
+            <option value="3">Option C</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="multiple-select-bs">Multiple Select</label>
+          <select class="form-control" name="multiple-select-bs" id="multiple-select-bs" multiple>
+            <option value="1">Option A</option>
+            <option value="2">Option B</option>
+            <option value="3">Option C</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Checkbox</label>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="" name="cb-option">
+              Option one is this and that&mdash;be sure to include why it's great
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="" name="cb-option">
+              Option two is disabled
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Checkbox inline</label>
+
+          <div class="checkbox">
+            <label class="checkbox-inline">
+              <input type="checkbox" value="" name="cb-option-inline">
+              Option one
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="" name="cb-option-inline">
+              Option two
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Radio</label>
+
+          <div class="radio">
+            <label>
+              <input type="radio" value="" name="rd-option">
+              Option one is this and that&mdash;be sure to include why it's great
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" value="" name="rd-option">
+              Option two is disabled
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Radio inline</label>
+
+          <div class="radio">
+            <label class="radio-inline">
+              <input type="radio" value="" name="rd-option-inline">
+              Option one
+            </label>
+            <label class="radio-inline">
+              <input type="radio" value="" name="rd-option-inline">
+              Option two
+            </label>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <h3>Twitter Typeahead</h3>
+      <fieldset title="Typeahead">
+
+        <div class="form-group">
+          <label for="states" class="control-label">Typeahead</label>
+          <input type="text" class="form-control" name="states" id="states" placeholder="States of USA"/>
+        </div>
+
+      </fieldset>
+
+      <h3>Bootstrap Datetimepicker</h3>
+      <fieldset title="Datetime Picker">
+
+        <div class="form-group">
+          <label class="control-label" for="date">Datetimepicker</label>
+
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-calendar"></i>
+            </div>
+            <input type="text" class="form-control" name="date" id="date">
+          </div>
+        </div>
+
+      </fieldset>
+
+      <h3>JQuery Masked Input</h3>
+      <fieldset title="Masked Input">
+
+        <div class="form-group">
+          <label class="control-label">Masked Input</label>
+
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-phone-square"></i>
+            </div>
+            <input type="text" class="form-control" name="phone" id="phone">
+            <span class="input-group-addon ">eg.(021) 751-2789</span>
+          </div>
+        </div>
+      </fieldset>
+
+      <h3>Bootstrap Select</h3>
+      <fieldset title="Bootstrap Select">
+
+        <div class="form-group">
+          <label class="control-label" for="select">Bootstrap-Select</label>
+          <select class="form-control selectpicker" name="select" id="select">
+            <option value="">...</option>
+            <option value="1">Option A</option>
+            <option value="2">Option B</option>
+            <option value="3">Option C</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="multiple-select">Bootstrap-Select(multiple)</label>
+          <select class="form-control selectpicker" name="multiple-select" id="multiple-select" multiple>
+            <option value="1">Option A</option>
+            <option value="2">Option B</option>
+            <option value="3">Option C</option>
+          </select>
+        </div>
+
+      </fieldset>
+
+    </form>
+
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10">
+
+    {% highlight html %}
+    {% include validation-steps/example-1.html %}
+    {% endhighlight %}
+
+  </div>
+</div>
+
+
+<hr/>
+
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10">
+    <h3>Horizontal Form
+      <small>with Vertical Wizard</small>
+    </h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10">
+
+    <form action="form.html" id="contact-form1" class="form-horizontal ">
+
+      <h3>原生控件</h3>
+      <fieldset title="Native Controls">
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="name1">Text</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="name" id="name1">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="message1">Textarea</label>
+
+          <div class="col-sm-10">
+            <textarea class="form-control" name="message" id="message1" rows="3"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">Checkbox</label>
+
+          <div class="col-sm-10">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="" name="cb-option">
+                Option one is this and that&mdash;be sure to include why it's great
+              </label>
+            </div>
+            <div class="checkbox disabled">
+              <label>
+                <input type="checkbox" value="" disabled name="cb-option">
+                Option two is disabled
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">Checkbox inline</label>
+
+          <div class="col-sm-10">
+            <div>
+              <label class="checkbox-inline">
+                <input type="checkbox" value="" name="cb-option-inline">
+                Option one
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" value="" name="cb-option-inline">
+                Option two
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">Radio</label>
+
+          <div class="col-sm-10">
+            <div class="radio">
+              <label>
+                <input type="radio" value="" name="rd-option">
+                Option one is this and that&mdash;be sure to include why it's great
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" value="" name="rd-option">
+                Option two is disabled
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">Radio inline</label>
+
+          <div class="col-sm-10">
+            <div>
+              <label class="radio-inline">
+                <input type="radio" value="" name="rd-option-inline">
+                Option one
+              </label>
+              <label class="radio-inline">
+                <input type="radio" value="" name="rd-option-inline">
+                Option two
+              </label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <h3>Twitter Typeahead</h3>
+      <fieldset title="Typeahead">
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Typeahead</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="states" id="states1" placeholder="States of USA"/>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <h3>Bootstrap Datetimepicker</h3>
+      <fieldset title="Datetime Picker">
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="date">Datetimepicker</label>
+
+          <div class="col-sm-10">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+              </div>
+              <input type="text" class="form-control" name="date" id="date1">
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <h3>JQuery Masked Input</h3>
+      <fieldset title="Masked Input">
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">Masked Input</label>
+
+          <div class="col-sm-10">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-phone-square"></i>
+              </div>
+              <input type="text" class="form-control" name="phone" id="phone1">
+              <span class="input-group-addon ">eg.(021) 751-2789</span>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <h3>Bootstrap Select</h3>
+      <fieldset title="Bootstrap Select">
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="select1">Bootstrap-Select</label>
+
+          <div class="col-sm-10">
+            <select name="select" class="form-control selectpicker" id="select1" data-style="btn-info">
+              <option value="">...</option>
+              <option value="1">Option A</option>
+              <option value="2">Option B</option>
+              <option value="3">Option C</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="multiple-select1">Bootstrap-Select(multiple)</label>
+
+          <div class="col-sm-10">
+            <select name="multiple-select" id="multiple-select1" multiple class="form-control selectpicker"
+                    data-max-options="2">
+              <option value="1">Option A</option>
+              <option value="2">Option B</option>
+              <option value="3">Option C</option>
+            </select>
+          </div>
+        </div>
+
+      </fieldset>
+
+    </form>
+
+  </div>
+</div>
+
+
+<script>
+  $(function () {
+
+    var $form = $("#contact-form");
+
+    $form.steps({
+      headerTag: "h3",
+      bodyTag: "fieldset",
+      transitionEffect: "slideLeft",
+      onStepChanging: function (event, currentIndex, newIndex) {
+        // Allways allow previous action even if the current form is not valid!
+        if (currentIndex > newIndex) {
+          return true;
+        }
+        $form.validate().settings.ignore = "fieldset:not(.current) *";
+        return $form.valid();
+      },
+      onFinishing: function (event, currendIndex) {
+        $form.validate().settings.ignore = "fieldset:not(.current) *";
+        return $form.valid();
+      },
+      onFinished: function () {
+        $form.submit();
+      }
+    });
+
+    var $form1 = $("#contact-form1");
+    $form1.steps({
+      headerTag: "h3",
+      bodyTag: "fieldset",
+      transitionEffect: "slideLeft",
+      stepsOrientation: "vertical",
+      onStepChanging: function (event, currentIndex, newIndex) {
+        // Allways allow previous action even if the current form is not valid!
+        if (currentIndex > newIndex) {
+          return true;
+        }
+        $form1.validate().settings.ignore = "fieldset:not(.current) *";
+        return $form1.valid();
+      },
+      onFinishing: function (event, currendIndex) {
+        $form1.validate().settings.ignore = "fieldset:not(.current) *";
+        return $form1.valid();
+      },
+      onFinished: function () {
+        $form1.submit();
+      }
+    });
+
+    $('.selectpicker').selectpicker();
+
+    $.validator.setDefaults({});
+
+    $('#date').datetimepicker({
+      debug: true
+    });
+    $("#phone").mask("(999) 999-9999");
+
+    $('#date1').datetimepicker();
+    $("#phone1").mask("(999) 999-9999");
+
+    $form.validate({
+      debug: true,
+      rules: {
+        name: {
+          minlength: 2,
+          required: true
+        },
+        subject: {
+          minlength: 2,
+          required: true
+        },
+        message: {
+          minlength: 2,
+          required: true
+        },
+        'cb-option': 'required',
+        'cb-option-inline': 'required',
+        'rd-option': 'required',
+        'rd-option-inline': 'required',
+        'select': 'required',
+        'multiple-select': 'required',
+        'date': 'required',
+        'phone': 'required',
+        'select-bs': 'required',
+        'multiple-select-bs': 'required',
+        'states': 'required'
+      }
+
+    });
+
+    $form1.validate({
+      debug: true,
+      rules: {
+        name: {
+          minlength: 2,
+          required: true
+        },
+        subject: {
+          minlength: 2,
+          required: true
+        },
+        message: {
+          minlength: 2,
+          required: true
+        },
+        'cb-option': 'required',
+        'cb-option-inline': 'required',
+        'rd-option': 'required',
+        'rd-option-inline': 'required',
+        'select': 'required',
+        'multiple-select': 'required',
+        'date': 'required',
+        'phone': 'required',
+        'select-bs': 'required',
+        'multiple-select-bs': 'required',
+        'states': 'required'
+      }
+    });
+
+
+    // typeahead
+    var substringMatcher = function (strs) {
+      return function findMatches(q, cb) {
+        var matches, substringRegex;
+
+        // an array that will be populated with substring matches
+        matches = [];
+
+        // regex used to determine if a string contains the substring `q`
+        substrRegex = new RegExp(q, 'i');
+
+        // iterate through the pool of strings and for any string that
+        // contains the substring `q`, add it to the `matches` array
+        $.each(strs, function (i, str) {
+          if (substrRegex.test(str)) {
+            matches.push(str);
+          }
+        });
+
+        cb(matches);
+      };
+    };
+
+    var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+      'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+      'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+      'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+      'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+      'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+      'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+      'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+      'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+    ];
+
+    $('#states').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1,
+        description: false,
+        legend: false
+      },
+      {
+        name: 'states',
+        source: substringMatcher(states)
+      });
+
+    $('#states1').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1,
+        description: false,
+        legend: false
+      },
+      {
+        name: 'states',
+        source: substringMatcher(states)
+      });
+
+  })
+
+</script>

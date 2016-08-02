@@ -1,0 +1,245 @@
+//
+// 顶部导航栏
+// ----------------------------------------
+header.e-header {
+
+  margin-bottom: 0px !important;
+  margin-top: 10px !important;
+  min-height: 65px !important;
+  position: relative !important;
+  color: #fff;
+
+  nav {
+    margin-bottom: 0px !important;
+  }
+
+  .nav > li > a {
+
+    color: #F5F5F5 !important;
+
+    &,
+    &:hover,
+    &:focus {
+      background-color: transparent !important;
+    }
+
+  }
+
+  .e-navbar-nav-3 {
+
+    margin-right: 0px;
+
+    .dropdown-menu {
+
+      .e-navbar-dropdown-menu(inherit);
+
+      .e-dropdown-menu-triangle(80%);
+
+      > li > a > span {
+        margin-left : 5px;
+      }
+    }
+
+    // 图标大小和位置微调
+    .fa-cogs {
+      font-size: 13px;
+    }
+    .fa-sliders {
+      font-size: 15px;
+    }
+
+    // 切换背景下拉菜单
+    .e-theme-list {
+
+      > li {
+        margin: 0 17px !important;
+        width: 125px;
+      }
+
+      div {
+        display: inline-block;
+        float: left;
+      }
+    }
+
+  }
+
+}
+
+//
+// 标签页切换
+// --------------------------------------------------
+#e-home-tab-count {
+
+  .fa-bookmark-o {
+    font-size: 21px;
+    padding-right: 10px;
+  }
+
+}
+
+#e-home-tab-close-current {
+
+  padding: 0 20px;
+  display: none;
+
+}
+
+#e-home-tab-close-all {
+  display:    inline-block;
+  font-size:  14px !important;
+  position:   relative;
+  left:       130px;
+  top:        -3px;
+  //padding:    10px;
+}
+
+#e-home-tab-area {
+
+  position:         fixed;
+  right:            0px;
+  top:              0px;
+  width:            250px;
+  height:           100%;
+  background:       none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
+  background:       url('@{img-path}/opacity-80.png') repeat ~"\9"; // IE8
+
+  z-index:          1000;
+  color:            #f5f5f5 !important;
+  overflow-y:       auto;
+
+  .e-home-tab-area-fixed-header {
+
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    background:       none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
+    background:       url('@{img-path}/opacity-70.png') repeat ~"\9"; // IE8
+
+    a {
+      font-size:      25px;
+      padding:        10px 10px 0px 10px;
+      color:          #f5f5f5 !important;
+    }
+
+  }
+
+  #e-home-tab-list {
+
+    width:          250px;
+    padding:        30px 0px 0px 0px;
+
+    li {
+      margin:           10px;
+      list-style-type:  none;
+
+      a {
+        padding:          8px 10px 10px 10px;
+        display:          inline-block;
+        border-radius:    4px;
+        background-color: #5A5A5A;
+        position:         relative;
+        color:            #f5f5f5 !important;
+        width:            204px;
+
+        &.active {
+          border:         4px solid #fff;
+          padding:        4px 6px 6px 6px;
+
+          i {
+            top: 8px;
+          }
+
+        }
+
+        i {
+          position: absolute;
+          top: 12px;
+          width: 20px;
+          font-size: 18px;
+          font-style: normal;
+          line-height: 15px;
+        }
+
+        span {
+          position: relative;
+          display: inline-block;
+          width: 150px;
+          word-break: break-all;
+          word-wrap: break-word;
+        }
+
+      }
+
+      a.e-tab-close-icon {
+
+        width: 20px;
+        padding: 10px 0 0 3px;
+        background: none;
+
+        i {
+          position: static;
+        }
+
+      }
+    }
+
+  }
+
+}
+//
+// --------------------------------------------------
+//　modal样式
+//
+.identityAndBizTypeSwitcher {
+  p {
+    text-align: center;
+    a {
+      text-align: center;
+      width: 200px;
+    }
+  }
+}
+
+//
+// 更换theme的小图标
+// --------------------------------------------------
+#e-theme-button-bg1 {
+  .e-theme-bg-button('small-bg1.jpg')
+}
+
+#e-theme-button-bg2 {
+  .e-theme-bg-button('small-bg2.jpg')
+}
+
+#e-theme-button-bg3 {
+  .e-theme-bg-button('small-bg3.jpg')
+}
+
+#e-theme-button-bg4 {
+  .e-theme-bg-button('small-bg4.jpg')
+}
+
+#e-theme-button-bg5 {
+  .e-theme-bg-button('small-bg5.jpg')
+}
+
+#e-theme-button-bg6 {
+  .e-theme-bg-button('small-bg6.jpg')
+}
+
+#e-theme-button-bg7 {
+  .e-theme-bg-button('small-bg7.jpg')
+}
+
+#e-theme-button-bg8 {
+  .e-theme-bg-button('small-bg8.jpg')
+}
+
+#e-theme-button-bg9 {
+  .e-theme-bg-button('small-bg9.jpg')
+}
+
+#e-theme-button-bg10 {
+  .e-theme-bg-button('small-bg10.jpg')
+}

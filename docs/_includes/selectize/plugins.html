@@ -1,0 +1,46 @@
+<div class="form-group selectized">
+  <label for="select-plugin">Select:</label>
+  <div>Current Value: <span id="select-value"></span></div>
+  <select id="select-plugin" class="select-plugin" multiple placeholder="Pick a item..."></select>
+</div>
+<script>
+  $(function () {
+    var $wrapper = $('.selectized');
+
+    // show current input values
+    $('select.select-plugin', $wrapper).each(function() {
+      var $input = $(this);
+      var $value = $('#select-value');
+      var update = function(e) { $value.text(JSON.stringify($input.val())); }
+
+      $(this).on('change', update);
+      update();
+    });
+
+    $('#select-plugin').selectize({
+      plugins: ['remove_button','drag_drop'],
+      persist: false,
+      valueField: 'id',
+      labelField: 'name',
+      options: [
+        {id:1, name:'aaa'},
+        {id:2, name:'bbb'},
+        {id:3, name:'ccc'}
+      ],
+      render: {
+        item: function(data, escape) {
+          return '<div>' + escape(data.name) + '</div>';
+        }
+      },
+      create: function(input) {
+        return {
+          id: 0,
+          name: input
+        };
+      },
+      onDelete: function(values) {
+        return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
+      }
+    });
+  })
+</script>

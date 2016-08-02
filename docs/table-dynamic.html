@@ -1,0 +1,103 @@
+---
+layout: default
+title: Dynamic Table
+---
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Dynamic Table</h2>
+
+      <p>
+        Doc: <a target="_blank" href="http://supwisdom.github.io/bootstrap-semi-auto-table/">Bootstrap Semi-Auto
+        Table</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+
+<table id="table">
+  <thead>
+  <tr>
+    <th></th>
+    <th><a href="#" data-sort-by="A">Column A</a></th>
+    <th><a href="#" data-sort-by="B">Column B</a></th>
+    <th><a href="#" data-sort-by="C">Column C</a></th>
+    <th>Column D</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><input type="checkbox" name="row.id" value="1"/></td>
+    <td>a</td>
+    <td>b</td>
+    <td>c</td>
+    <td>d</td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" name="row.id" value="2"/></td>
+    <td>a</td>
+    <td>b</td>
+    <td>c</td>
+    <td>d</td>
+  </tr>
+  </tbody>
+</table>
+
+<script>
+  $(function () {
+    var $table = $("#table");
+    $table.semiAutoTable({
+colOrderArrangable: false,
+colResizable:false,
+rowOption: { showSelectAll: false },
+      columnOption: {
+        showColumnSelect: true,
+        stickyColumns: [1],
+        hideColumns: [2,4]
+      },
+      sortOption: {
+        'A': 'asc',
+        'B': 'desc'
+      },
+      menus: [
+        {
+          title: 'Menu1',
+          tooltip: 'tooltip',
+          callback: function () {
+            console.log(JSON.stringify($table.semiAutoTable('getSelectedRows')));
+          }
+        },
+        {
+          title: 'Menu2',
+          callback: function () {
+            console.log(JSON.stringify($table.semiAutoTable('getSelectedRows')));
+          }
+        },
+      ],
+      pageOption: {
+        currentPage: 11,
+        totalPages: 20,
+        totalRows: 202
+      }
+    }).on('pageChange', function (event, pageObject) {
+
+      console.log(JSON.stringify(pageObject));
+      $(this).semiAutoTable('updatePaginator', pageObject);
+
+    }).on('sortChange', function (event, sortObject) {
+
+      console.log(JSON.stringify(sortObject));
+      var $this = $(this);
+      $this.semiAutoTable('updateSortBy', sortObject);
+
+    });
+  });
+</script>
+
+
+
+
+

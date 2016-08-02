@@ -1,0 +1,94 @@
+<form action="#" id="stepy-form" class="form-horizontal">
+
+  <fieldset title="Fieldset 1">
+
+    <legend>Legend 1</legend>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="name1">Your Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="name" id="name1">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="message1">Your Message</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" name="message" id="message1" rows="3"></textarea>
+      </div>
+    </div>
+
+  </fieldset>
+
+  <fieldset title="Fieldset 2">
+
+    <legend>Legend 2</legend>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="select1">
+        Select
+      </label>
+      <div class="col-sm-10">
+        <select name="select1" class="form-control" id="select1" data-style="btn-info">
+          <option value="">...</option>
+          <option value="1">Option A</option>
+          <option value="2">Option B</option>
+          <option value="3">Option C</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="multiple-select1">
+        Multiple Select
+      </label>
+      <div class="col-sm-10">
+        <select name="multiple-select1" id="multiple-select1" multiple class="form-control" data-max-options="2">
+          <option value="1">Option A</option>
+          <option value="2">Option B</option>
+          <option value="3">Option C</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2">Checkbox</label>
+      <div class="col-sm-10">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="" name="cb-option">
+            Option one is this and that&mdash;be sure to include why it's great
+          </label>
+        </div>
+        <div class="checkbox disabled">
+          <label>
+            <input type="checkbox" value="" disabled name="cb-option">
+            Option two is disabled
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group pull-right">
+      <button type="reset" class="btn btn-default finish">Cancel</button>
+      <button type="submit" class="btn btn-primary finish">Submit</button>
+    </div>
+
+  </fieldset>
+
+</form>
+
+<script>
+  $(function() {
+
+    $('#stepy-form').stepy({
+      transition: 'hide',
+      validate: true,
+      block: true,
+      finishButton: false,
+      description: false,
+      legend: false
+    });
+
+  });
+</script>

@@ -1,0 +1,95 @@
+---
+layout: default
+title: Bootstrap Select
+---
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Bootstrap Select</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://silviomoreto.github.io/bootstrap-select/">Bootstrap Select</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <div>
+
+      <div class="form-group">
+        <label class="control-label">
+          Select
+        </label>
+
+        {% include bootstrap-select/example1.html %}
+
+        <div class="help-block">
+          给selector添加<code>.selectpicker</code>启用bootstrap-select
+        </div>
+
+        {% highlight html %}
+        {% include bootstrap-select/example1.html %}
+        {% endhighlight %}
+
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">
+          Multiple Select
+        </label>
+        {% include bootstrap-select/example2.html %}
+
+        {% highlight html %}
+        {% include bootstrap-select/example2.html %}
+        {% endhighlight %}
+
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">
+          Select With Style
+        </label>
+
+        {% include bootstrap-select/example3.html %}
+
+        <div class="help-block">
+          添加<code>data-style="btn-primary"</code>
+        </div>
+
+        {% highlight html %}
+        {% include bootstrap-select/example3.html %}
+        {% endhighlight %}
+
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">
+          Multiple Select With Limit
+        </label>
+
+        {% include bootstrap-select/example4.html %}
+
+        <div class="help-block">
+          添加<code>data-max-options="2"</code>
+        </div>
+
+        {% highlight html %}
+        {% include bootstrap-select/example4.html %}
+        {% endhighlight %}
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>
+

@@ -1,0 +1,170 @@
+---
+layout: default
+title: Bootstrap Datetimepicker
+---
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Bootstrap Datetimepicker</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://eonasdan.github.io/bootstrap-datetimepicker/">Bootstrap Datetimepicker</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <form action="bootstrap-selector.html" id="contact-form">
+
+      <fieldset>
+
+        <div class="form-group">
+          <label class="control-label" for="datepicker1">Date(默认)</label>
+
+          <div class="input-group date">
+            <div class="input-group-addon">
+              <i class="fa fa-calendar"></i>
+            </div>
+            <input type="text" class="form-control" name="datepicker1" id="datepicker1">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="datepicker2">Date & Time</label>
+
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-calendar"></i>
+            </div>
+            <input type="text" class="form-control" name="datepicker2" id="datepicker2">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="datepicker3">Time</label>
+
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-clock-o"></i>
+            </div>
+            <input type="text" class="form-control" name="datepicker3" id="datepicker3">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="datepicker4">Date range</label>
+
+          <div class="input-group">
+            <div class="input-group-addon">
+              开始日期
+            </div>
+            <input type="text" class="form-control" name="datepicker4" id="datepicker4">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label sr-only" for="datepicker5">Date range end</label>
+
+          <div class="input-group">
+            <div class="input-group-addon">
+              结束日期
+            </div>
+            <input type="text" class="form-control" name="datepicker5" id="datepicker5">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="datepicker6">Time range</label>
+
+          <div class="input-group">
+            <div class="input-group-addon">
+              开始时间
+            </div>
+            <input type="text" class="form-control" name="datepicker6" id="datepicker6">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label sr-only" for="datepicker7">Time range end</label>
+
+          <div class="input-group">
+            <div class="input-group-addon">
+              结束时间
+            </div>
+            <input type="text" class="form-control" name="datepicker7" id="datepicker7">
+          </div>
+        </div>
+
+      </fieldset>
+
+    </form>
+
+  </div>
+</div>
+
+
+<script>
+  $(function () {
+
+    //
+    // Bootstrap datepicker
+    //------------------------------
+    $('#datepicker1').datetimepicker({});
+    $('#datepicker2').datetimepicker({
+      format: 'YYYY-MM-DD HH:mm'
+    });
+    $('#datepicker3').datetimepicker({
+      format: 'HH:mm'
+    });
+
+    $('#datepicker4').datetimepicker({
+      format: 'YYYY-MM-DD'
+    });
+    $('#datepicker5').datetimepicker({
+      format: 'YYYY-MM-DD'
+    });
+    $("#datepicker4").on("dp.change", function (e) {
+      if (e.date == null) {
+        $('#datepicker5').data("DateTimePicker").minDate(false);
+      } else {
+        $('#datepicker5').data("DateTimePicker").minDate(e.date);
+      }
+    });
+    $("#datepicker5").on("dp.change", function (e) {
+      if (e.date == null) {
+        $('#datepicker4').data("DateTimePicker").maxDate(false);
+      } else {
+        $('#datepicker4').data("DateTimePicker").maxDate(e.date);
+      }
+    });
+
+    $('#datepicker6').datetimepicker({
+      format: 'HH:mm'
+    });
+    $('#datepicker7').datetimepicker({
+      format: 'HH:mm'
+    });
+    $("#datepicker6").on("dp.change", function (e) {
+      if (e.date == null) {
+        $('#datepicker7').data("DateTimePicker").minDate(false);
+      } else {
+        $('#datepicker7').data("DateTimePicker").minDate(e.date);
+      }
+    });
+    $("#datepicker7").on("dp.change", function (e) {
+      if (e.date == null) {
+        $('#datepicker6').data("DateTimePicker").maxDate(false);
+      } else {
+        $('#datepicker6').data("DateTimePicker").maxDate(e.date);
+      }
+    });
+
+  })
+</script>

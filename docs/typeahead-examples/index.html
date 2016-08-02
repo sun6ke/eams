@@ -1,0 +1,79 @@
+---
+layout: default
+title: Twitter Typeahead
+---
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Twitter Typeahead</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://twitter.github.io/typeahead.js/">Twitter Typeahead examples</a>,
+        <a target="_blank" href="https://github.com/twitter/typeahead.js/blob/master/doc/jquery_typeahead.md">Typeahead doc</a>,
+        <a target="_blank" href="https://github.com/twitter/typeahead.js/blob/master/doc/bloodhound.md">Bloodhound doc</a>
+      </p>
+
+    </section>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <h3>local</h3>
+
+    <p>
+      被搜索数据(datum)一开始初始化在本地，不到去查询
+    </p>
+
+    {% include typeahead-examples/local.html %}
+    <br/>
+    {% highlight html %}
+    {% include typeahead-examples/local.html %}
+    {% endhighlight %}
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <h3>prefetch</h3>
+
+    <p>
+      这个例子使用prefetch预先加载了一部分数据，可以降低网络请求次数
+    </p>
+
+    {% include typeahead-examples/prefetch.html %}
+    <br/>
+    {% highlight html %}
+    {% include typeahead-examples/prefetch.html %}
+    {% endhighlight %}
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <h3>remote</h3>
+
+    <p>
+      当local和prefetch返回的数据(datum)小于 <code>sufficient</code>(默认5)时，会调用到remote
+    </p>
+
+    <p>
+      这个例子里remote返回的数据总是一样的，在实际开发过程中需要后端自己实现查询逻辑
+    </p>
+
+    {% include typeahead-examples/remote.html %}
+    <br/>
+    {% highlight html %}
+    {% include typeahead-examples/remote.html %}
+    {% endhighlight %}
+
+  </div>
+</div>

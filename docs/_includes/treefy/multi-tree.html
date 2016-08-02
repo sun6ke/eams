@@ -1,0 +1,50 @@
+<table class="table" id="table1">
+    <thead>
+    <tr>
+        <th></th><th>Column A</th><th>Column B</th><th>Column C</th><th>Column D</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-node="treetable-01">
+        <td><input type="checkbox" name="row.id"/></td>
+        <td>Node</td><td>01</td><td>c</td><td>info</td>
+    </tr>
+    <tr data-node="treetable-01.01" data-pnode="treetable-parent-01">
+        <td><input type="checkbox" name="row.id"/></td>
+        <td>Node</td><td>01.01</td><td>c</td><td>info</td>
+    </tr>
+    <tr data-node="treetable-01.01.02" data-pnode="treetable-parent-01.01">
+      <td><input type="checkbox" name="row.id"/></td>
+      <td>Node</td><td>01.01.02</td><td>c</td><td>info</td>
+    </tr>
+    <tr data-node="treetable-01.01.03" data-pnode="treetable-parent-01.01">
+      <td><input type="checkbox" name="row.id"/></td>
+      <td>Node</td><td>01.01.01</td><td>c</td><td>info</td>
+    </tr>
+    <tr data-node="treetable-01.02.01" data-pnode="treetable-parent-01.02">
+      <td><input type="checkbox" name="row.id"/></td>
+      <td>Node</td><td>01.02.01</td><td>c</td><td>info</td>
+    </tr>
+    <tr data-node="treetable-01.02" data-pnode="treetable-parent-01">
+        <td><input type="checkbox" name="row.id"/></td>
+        <td>Node</td><td>01.02</td><td>c</td><td>info</td>
+    </tr>
+    <tr data-node="treetable-02">
+      <td><input type="checkbox" name="row.id"/></td>
+      <td>Node</td><td>02</td><td>c</td><td>info</td>
+    </tr>
+    <tr data-node="treetable-01.01.04" data-pnode="treetable-parent-01.01">
+      <td><input type="checkbox" name="row.id"/></td>
+      <td>Node</td><td>01.01.04</td><td>c</td><td>info</td>
+    </tr>
+    </tbody>
+</table>
+
+<script>
+    $(function() {
+        $("#table1").semiAutoTable({
+          pageOption: false
+        });
+        $("#table1").treeFy();
+    });
+</script>

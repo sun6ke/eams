@@ -1,0 +1,292 @@
+---
+---
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Eams UI</title>
+
+  <!-- eams-ui -->
+  <link href="dist/css/eams-ui.css" rel="stylesheet">
+  <link href="dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <link href="dist/css/eams-ui-home.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="dist/js/html5shiv.min.js"></script>
+  <script src="dist/js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="e-home e-home-bg1">
+
+<!-- 顶部导航栏 -->
+<header class="e-header">
+
+  <nav role="navigation" class="navbar navbar-static-top">
+
+    <div class="container-fluid">
+
+      <ul id="e-top-menu" class="nav navbar-nav e-navbar-nav-1">
+      </ul>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse">
+
+        <ul class="nav navbar-nav navbar-right e-navbar-nav-3">
+
+          <li>
+            <a id="role-change" href="#" data-toggle="modal" data-target="#bizType">
+              管理员
+            </a>
+          </li>
+
+          <li>
+            <a id="e-home-tab-count" href="#e-home-tab-area" data-toggle="collapse" aria-expanded="false"
+               aria-controls="e-home-tab-area">
+              <i class="fa fa-bookmark-o"></i>
+
+              <div class="e-corner-mark-red"></div>
+            </a>
+          </li>
+
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+              <img alt="" class="img-circle e-avatar" src="http://api.randomuser.me/portraits/thumb/men/10.jpg">Hi, Dave
+              Mattew <b class="caret"></b>
+            </a>
+            <ul role="menu" class="dropdown-menu">
+              <li>
+                <a href="profile/" data-open="tab-view">
+                  <i class="fa fa-user"></i>
+                  <span>My Profile</span>
+                </a>
+              </li>
+              <li>
+                <a href="account-setting/" data-open="tab-view">
+                  <i class="fa fa-cog"></i>
+                  <span>Account Setting</span>
+                </a>
+              </li>
+              <li>
+                <a href="help/" data-open="tab-view">
+                  <i class="fa fa-life-ring"></i>
+                  <span>Help</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#" role="button" aria-expanded="false">
+              <i class="fa fa-sliders"></i>&nbsp;&nbsp;Setting
+            </a>
+            <ul role="menu" class="dropdown-menu e-theme-list">
+              <li>
+                <div id="e-theme-button-bg1"></div>
+                <div id="e-theme-button-bg2"></div>
+                <div id="e-theme-button-bg3"></div>
+                <div id="e-theme-button-bg4"></div>
+                <div id="e-theme-button-bg5"></div>
+                <div id="e-theme-button-bg6"></div>
+                <div id="e-theme-button-bg7"></div>
+                <div id="e-theme-button-bg8"></div>
+                <div id="e-theme-button-bg9"></div>
+                <div id="e-theme-button-bg10"></div>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+
+      </div>
+      <!-- /.navbar-collapse -->
+
+    </div>
+
+  </nav>
+
+</header>
+
+
+<div id="e-content-area">
+
+  <!-- sidebar -->
+
+  <!-- /.sidebar -->
+
+  <!-- operation area -->
+  <div id="e-op-area">
+
+    <div class="container-fluid">
+
+      <!-- page header -->
+      <div class="row e-page-header">
+
+        <div class="col-sm-3">
+
+          <h2>
+            <span>Home</span>
+          </h2>
+
+          <div class="e-page-header-divider"></div>
+
+        </div>
+
+        <div class="col-sm-6 col-sm-offset-3">
+
+          <button id="e-home-tab-close-current" type="button" class="close" data-toggle="tooltip" title="关闭">&times;
+          </button>
+
+        </div>
+
+      </div>
+      <!-- /.page header -->
+
+      <div class="embed-responsive e-op-area-iframe-container">
+
+        <iframe class="embed-responsive-item" id="e-home-iframe" name="e-home-iframe" src="welcome/"></iframe>
+
+      </div>
+
+    </div>
+    <!-- /.page iframe -->
+
+    <footer class="e-home-footer">
+      <div>上海树维信息科技有限公司 版权所有 <i class="fa fa-copyright"></i> 2015</div>
+    </footer>
+
+  </div>
+  <!-- /.operation area -->
+
+</div>
+
+<!-- tab list -->
+<div id="e-home-tab-area" class="collapse width">
+
+  <div class="e-home-tab-area-fixed-header">
+    <a href="#e-home-tab-area" data-toggle="collapse" aria-expanded="false" aria-controls="e-home-tab-area">
+      <i class="fa fa-angle-double-right"></i>
+    </a>
+
+    <a href="#" id="e-home-tab-close-all">
+      全部关闭
+    </a>
+  </div>
+
+  <ul id="e-home-tab-list">
+
+    <li>
+      <a href="welcome/" id="e-home-tab-home" target="e-home-iframe" class="active">
+        <span>首页</span>
+      </a>
+    </li>
+
+    <!--
+    <li>
+      <a href="#" target="e-home-iframe">
+        <i class="fa fa-file-text-o"></i>
+        <span>Blog List</span>
+      </a>
+      <a href="#" class="pull-right e-tab-close-icon">
+        <i class="fa fa-times-circle"></i>
+      </a>
+    </li>
+    -->
+
+  </ul>
+
+</div>
+<!-- ./tab list -->
+
+<!-- modal -->
+<div class="modal fade identityAndBizTypeSwitcher" id="bizType" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center">切换身份或业务类型</h4>
+      </div>
+      <div class="modal-body biz-type-button">
+        <p class="no-bizType">
+          <a class="btn btn-default btn-lg">学生</a>
+        </p>
+        <p class="no-bizType">
+          <a class="btn btn-default btn-lg">教师</a>
+        </p>
+        <p class="has-bizType">
+          <a class="btn btn-default btn-lg">管理员</a>
+        </p>
+        <p class="biz-type">
+          <a class="btn btn-default btn-lg">本科教学</a>
+        </p>
+        <p class="biz-type">
+          <a class="btn btn-default btn-lg">研究生教学</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ./modal -->
+<form id="id-bizType-form" action="/menu" method="GET">
+  <input id="identity" name="identityId" type="hidden" value="2"/>
+  <input id="bizTypeId" name="bizTypeId" type="hidden" value="1"/>
+</form>
+
+<script src="dist/js/eams-ui.js"></script>
+<script src="dist/js/eams-ui-home.js"></script>
+<script>
+  $(function() {
+
+    $.getJSON('menu.json', function(results) {
+
+      $("#e-top-menu").navigation('generateMenus', results, null);
+
+    });
+
+    $(".biz-type").hide();
+
+    var $no_bizType = $("#bizType").find(".no-bizType");
+    $("#role-change").click(function() {
+      if ($("#bizType").is(":hidden")) {
+        $(".biz-type").hide();
+        $no_bizType.show();
+      }
+    });
+
+    $("p").click(function(e) {
+
+      FormUtil.get({
+        form: $("#test")
+      });
+
+      if ($(this).hasClass("has-bizType")) {
+        if ($(".biz-type").is(":hidden")) {
+          $(".biz-type").slideDown();
+          $no_bizType.slideUp();
+        } else {
+          $(".biz-type").slideUp();
+          $no_bizType.slideDown();
+        }
+      } else {
+
+        //拉菜单
+        $("#bizType").modal('hide');
+        $("#bizType p").removeClass('selected');
+        $(this).addClass('selected');
+        if ($(this).hasClass("no-bizType")) {
+          $("#role-change").text($(event.target).text());
+        } else {
+          $(".has-bizType").addClass('selected');
+          $("#role-change").text($(".has-bizType a").text() + ":" + $(event.target).text());
+        }
+      }
+    });
+  });
+</script>
+</body>
+</html>

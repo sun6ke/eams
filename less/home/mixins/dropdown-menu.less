@@ -1,0 +1,21 @@
+//
+// 下拉菜单上面的小三角
+// --------------------------------------------------
+.e-dropdown-menu-triangle(@left-position) {
+
+  &:after {
+    border-color:   #FFFFFF rgba(0, 0, 0, 0);
+    border-style:   solid;
+    border-width:   0 13px 13px;
+    border-width:   0\9; // IE8
+    content:        "";
+    display:        block;
+    margin-left:    -15px;
+    position:       absolute;
+    top:            -10px;
+    width:          0;
+    z-index:        1;
+    left:           @left-position;
+  }
+
+}

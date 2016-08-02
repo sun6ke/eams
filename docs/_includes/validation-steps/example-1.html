@@ -1,0 +1,25 @@
+<script>
+  // 对form表单的steps初始化必须放在第一个执行，否则会影响到其他控件的渲染
+  var $form = $("#contact-form");
+
+  $form.steps({
+    headerTag: "h3",
+    bodyTag: "fieldset",
+    transitionEffect: "slideLeft",
+    onStepChanging: function (event, currentIndex, newIndex) {
+      // Allways allow previous action even if the current form is not valid!
+      if (currentIndex > newIndex) {
+        return true;
+      }
+      $form.validate().settings.ignore = "fieldset:not(.current) *";
+      return $form.valid();
+    },
+    onFinishing: function (event, currendIndex) {
+      $form.validate().settings.ignore = "fieldset:not(.current) *";
+      return $form.valid();
+    },
+    onFinished: function () {
+      $form.submit();
+    }
+  });
+</script>

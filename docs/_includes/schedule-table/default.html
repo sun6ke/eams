@@ -1,0 +1,71 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><span><i class="fa fa-calendar"></i> </span>我的课表</h3>
+  </div>
+  <table class="table table-bordered table-center-text" id="table"></table>
+</div>
+
+<div>
+  <input id="activity" style="width:65%;" value='{"id": 7,"weekdayIndex": 5,"startTime": 800,"endTime": 930,"weeks": [1,2,3,4,5,6,7,8,9,10,11],"content": "sssssd"}'/>
+  <button type="button" class="btn btn-primary" id="add">添加Activity</button><br/>
+  <input id="activityId" value="7"/> <button type="button" class="btn btn-primary" id="del">通过id删除Activity</button><br/>
+  <label>行号:</label><input id="columnid" value="5"/>
+  <label>列号:</label><input id="rowid" value="1" placeholder="row id"/> <button type="button" class="btn btn-primary" id="del2">通过行列号删除</button>
+  <br/>
+  <button type="button" class="btn btn-primary" id="invert">倒置</button>
+  <button type="button" class="btn btn-primary" id="getActivities">Activities的JSON数组</button>
+</div>
+<script>
+  $(function() {
+    var $table = $("#table");
+
+    $.getJSON("table.json", function(result) {
+      $table.scheduleTable({
+        weekdays: result.weekdays,
+        units: result.units,
+        activities:result.activities,
+        disabled:[
+          {
+            columnid:2,
+            rowid:2
+          }
+        ],
+        restUnits: [
+          {title: "午休", afterUnit:4}
+        ],
+        clickCallback: function (e) {
+          var $target = $(e.target);
+          $table.scheduleTable('toogleHighlight', $target.data('columnid'), $target.data('rowid'));
+        },
+        hoverCallback: function(e) {
+          var $target = $(e.target);
+          $target.tooltip({
+            placement: 'right',
+            title: $target.text(),
+            container: 'table'
+          });
+        }
+      });
+    });
+
+    $("#invert").click(function(){
+      $table.scheduleTable('invert');
+    });
+
+    $("#add").click(function(){
+      $table.scheduleTable('addActivity', JSON.parse($("#activity").val()));
+    });
+
+    $("#del").click(function(){
+      $table.scheduleTable('removeActivity', parseInt($("#activityId").val()));
+    });
+
+    $("#del2").click(function(){
+      $table.scheduleTable('removeActivities', parseInt($("#columnid").val()), parseInt($("#rowid").val()));
+    });
+
+    $("#getActivities").click(function(){
+      alert($table.scheduleTable('getActivities'));
+    });
+  });
+</script>

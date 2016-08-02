@@ -1,0 +1,21 @@
+<form action="#">
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-money"></i>
+      </div>
+      <input type="text" class="form-control" id="money">
+      <span class="input-group-addon ">eg.20.000.000</span>
+    </div>
+  </div>
+</form>
+
+<script>
+  $(function () {
+
+    $("#money").mask("99.999.9999", {
+      placeholder: "*"
+    });
+
+  })
+</script>

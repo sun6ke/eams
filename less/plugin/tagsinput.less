@@ -1,0 +1,31 @@
+.bootstrap-tagsinput {
+  input {
+    position: relative \9; // IE8 IE9 hack
+    top: 5px \9; // IE8 hack
+  }
+  input.tt-hint {
+    top: 6px !important \9; // IE8 IE9 hack
+  }
+}
+
+form {
+
+  &,
+  &.form-horizontal {
+
+    .form-group {
+
+      .bootstrap-tagsinput {
+
+        display: block;
+
+        .twitter-typeahead {
+          width: auto;
+        }
+
+      }
+    }
+  }
+
+}
+

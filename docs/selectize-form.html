@@ -1,0 +1,203 @@
+---
+layout: default
+title: Selectize Form
+---
+
+<div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Selectize Form</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://brianreavis.github.io/selectize.js/">selectize.js</a>
+      </p>
+
+      <p>
+        本页面测试Selectize.js在各种Form表单下显示是否正常
+      </p>
+    </section>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>In Basic Form</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <form action="#" id="contact-form1">
+      <div class="form-group">
+        <label class="control-label" for="select-single1">Beast:</label>
+        <select id="select-single1" class="form-control select-single" name="select-single1" data-placeholder="Select a person...">
+          <option value="">None</option>
+          <option value="4">Thomas Edison</option>
+          <option value="1">Nikola</option>
+          <option value="3">Nikola Tesla</option>
+          <option value="5">Arnold Schwarzenegger</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="select-plugin1">Select:</label>
+        <select id="select-plugin1" name="select-plugin1" class="form-control select-plugin" multiple placeholder="Pick a item..."></select>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="select-remote1">Select Ajax:</label>
+        <select id="select-remote1" name="select-remote1" class="form-control select-ajax" placeholder="Pick a repository..."></select>
+      </div>
+
+      <div class="form-group pull-right">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-default">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<hr/>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>In Horizontal Form</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+
+    <form class="form-horizontal" id="contact-form2">
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="select-single2">Beast:</label>
+        <div class="col-sm-10">
+          <select id="select-single2" class="form-control select-single" name="select-single2" data-placeholder="Select a person...">
+            <option value="">None</option>
+            <option value="4">Thomas Edison</option>
+            <option value="1">Nikola</option>
+            <option value="3">Nikola Tesla</option>
+            <option value="5">Arnold Schwarzenegger</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="select-plugin2">Select:</label>
+        <div class="col-sm-10">
+          <select id="select-plugin2" name="select-plugin2" class="form-control select-plugin" multiple placeholder="Pick a item..."></select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="select-remote2">Select Ajax:</label>
+        <div class="col-sm-10">
+          <select id="select-remote2" name="select-remote2" class="form-control select-ajax" placeholder="Pick a repository..."></select>
+        </div>
+      </div>
+
+      <div class="form-group pull-right">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-default">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<script>
+  $(function () {
+    $('.select-single').selectize({allowEmptyOption: true});
+
+    $('.select-plugin').selectize({
+      plugins: ['remove_button', 'drag_drop'],
+      persist: false,
+      valueField: 'id',
+      labelField: 'name',
+      options: [
+        {id: 1, name: 'aaa'},
+        {id: 2, name: 'bbb'},
+        {id: 3, name: 'ccc'}
+      ],
+      render: {
+        item: function (data, escape) {
+          return '<div>' + escape(data.name) + '</div>';
+        }
+      },
+      create: function (input) {
+        return {
+          id: 0,
+          name: input
+        };
+      },
+      onDelete: function (values) {
+        return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
+      }
+    });
+
+    $('.select-ajax').selectize({
+      valueField: 'url',
+      labelField: 'name',
+      searchField: 'name',
+      options: [],
+      create: false,
+      render: {
+        option: function (item, escape) {
+          return '<div>' +
+            '<dl>' +
+            '<dt><span><i class="fa fa-paperclip"></i> ' + escape(item.name) + '</span>' +
+            '<span> by ' + escape(item.username) + '</span>' +
+            '</dt>' +
+            '<dd><span>' + escape(item.description) + '</span></dd>' +
+            '</dl>' +
+            '</div>';
+        }
+      },
+      score: function (search) {
+        var score = this.getScoreFunction(search);
+        return function (item) {
+          return score(item) * (1 + Math.min(item.watchers / 100, 1));
+        };
+      },
+      load: function (query, callback) {
+        if (!query.length) return callback();
+        $.ajax({
+          url: 'https://api.github.com/legacy/repos/search/' + encodeURIComponent(query),
+          type: 'GET',
+          error: function () {
+            callback();
+          },
+          success: function (res) {
+            callback(res.repositories.slice(0, 10));
+          }
+        });
+      }
+    });
+
+    //校验
+    $('#contact-form1').validate({
+      rules: {
+        name: {
+          minlength: 2,
+          required: true
+        },
+        'select-single1': 'required',
+        'select-plugin1':'required',
+        'select-remote1': 'required',
+        'select-bs': 'required'
+      }
+    });
+
+    //校验
+    $('#contact-form2').validate({
+      debug: true,
+      rules: {
+        'select-single2': 'required',
+        'select-plugin2':'required',
+        'select-remote2': 'required',
+        'select-bs': 'required'
+      }
+    });
+  })
+</script>

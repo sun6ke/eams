@@ -1,0 +1,33 @@
+//
+// Buttons
+// --------------------------------------------------
+.btn-default {
+
+  &:hover,
+  &:focus,
+  &.focus,
+  &:active,
+  &.active,
+  .open > .dropdown-toggle& {
+    color:              @btn-hover-color !important;
+    background-color:   @btn-default-bg !important;
+    border-color:       @btn-default-border !important;
+  }
+
+}
+
+.btn-link {
+  border-color: #c7d5e0;
+
+  &,
+  &:active,
+  &.active,
+  &:hover,
+  &:focus,
+  &[disabled],
+  fieldset[disabled] & {
+    background-color:   @btn-default-bg !important;
+    border-color:       @btn-default-border !important;
+  }
+
+}

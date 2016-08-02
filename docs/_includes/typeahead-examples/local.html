@@ -1,0 +1,37 @@
+<div id="local">
+  <input class="typeahead" type="text" placeholder="cities">
+</div>
+
+<script>
+  $(function () {
+    var cities = new Bloodhound({
+      // 因为city是json对象，所以取它的name属性作为被搜索项
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name"),
+      // 将查询条件根据空格分开
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      // 给被查询数据(datum)city设置唯一的id
+      identify: function (datum) {
+        return datum.id;
+      },
+      local: [
+        { "id": "Alabama", "name": "Alabama" },
+        { "id": "Alaska", "name": "Alaska" },
+        { "id": "Arizona", "name": "Arizona" },
+        { "id": "Arkansas", "name": "Arkansas" },
+        { "id": "California", "name": "California" },
+        { "id": "Colorado", "name": "Colorado" },
+        { "id": "Connecticut", "name": "Connecticut" },
+        { "id": "Delaware", "name": "Delaware" }
+      ]
+    });
+
+    $('#local .typeahead').typeahead(null, {
+      // dataset的名字
+      name: 'cities',
+      // 因为返回的数据(datum)是json对象，所以用他的name属性作为显示在input输入框的值
+      display: 'name',
+      // 数据源，Bloodhound(cities)
+      source: cities
+    });
+  })
+</script>

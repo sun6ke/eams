@@ -1,0 +1,12 @@
+<a href="#" class="btn btn-info" id="cp4">Change background color</a>
+
+<script>
+  $(function () {
+
+    var bodyStyle = $('body')[0].style;
+    $('#cp4').colorpicker().on('changeColor', function (ev) {
+      bodyStyle.backgroundColor = ev.color.toHex();
+    });
+
+  })
+</script>

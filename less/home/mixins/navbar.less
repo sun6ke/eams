@@ -1,0 +1,75 @@
+//
+// 主题切换按钮
+// --------------------------------------------------
+.e-theme-bg-button(@img) {
+  background:     url("@{img-path}/@{img}") repeat scroll 0 0 / cover rgba(0, 0, 0, 0);
+  background:     url("@{img-path}/@{img}") repeat scroll 0 0 ~"\9"; // IE8
+  border:         4px solid #FFFFFF;
+  border-radius:  50%;
+  height:         25px;
+  width:          25px;
+  cursor:         pointer;
+}
+
+//
+// navbar下拉框
+// --------------------------------------------------
+.e-navbar-dropdown-menu(@menu-width) {
+
+  margin:         11px 0px 0px 9px !important;
+  position:       absolute;
+  top:            53px;
+  border-radius:  0px 0px 4px 4px !important;
+  box-shadow:     none !important;
+
+  color:          @e-navbar-dropdown-menu-color;
+
+  > li {
+
+    width: @menu-width;
+
+    > a {
+      color:      @e-navbar-dropdown-menu-color;
+
+      &:hover,
+      &:focus {
+        color:            #39B3D7 !important;
+        text-decoration:  none;
+        background-color: transparent !important;
+      }
+
+    }
+
+  }
+
+  b {
+    color:          @header-b-default-color;
+    background:     none repeat scroll 0 0 @header-b-default-bg;
+
+    border-radius:  3px;
+    font-size:      @font-size-small;
+    font-weight:    normal;
+    margin-top:     0;
+    padding:        2px 4px;
+    position:       absolute;
+    right:          10px;
+  }
+
+  > li > .e-navbar-dropdown-footer {
+
+    color:          @header-b-default-color;
+    background:     none repeat scroll 0 0 @header-b-default-bg;
+
+    bottom:         2px;
+    font-size:      @font-size-base;
+    left:           0;
+    padding:        6px;
+    position:       relative;
+    text-align:     center;
+    cursor:         pointer;
+
+  }
+
+
+}
+

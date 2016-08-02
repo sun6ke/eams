@@ -1,0 +1,23 @@
+<form action="#">
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <input type="text" class="form-control" id="date">
+      <span class="input-group-addon ">99/99/9999</span>
+    </div>
+  </div>
+</form>
+
+<script>
+  $(function () {
+
+    $("#date").mask("99/99/9999", {
+      completed: function () {
+        alert("Your birthday was: " + this.val());
+      }
+    });
+
+  })
+</script>

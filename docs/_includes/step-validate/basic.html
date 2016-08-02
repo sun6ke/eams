@@ -1,0 +1,107 @@
+<form action="#" id="contact-form">
+
+  <h3>第一步</h3>
+  <fieldset title="第一步">
+
+    <div class="form-group">
+      <label class="control-label" for="code">代码</label>
+      <input type="text" class="form-control" name="code" id="code" required="required"/>
+    </div>
+  </fieldset>
+
+  <h3>第二步</h3>
+  <fieldset title="第二步">
+
+    <div class="form-group">
+      <label class="control-label" for="name">名字</label>
+      <input type="text" class="form-control" name="name" id="name" required="required"/>
+    </div>
+  </fieldset>
+</form>
+<!--<div class="form-group">-->
+  <!--<button type="submit" id="submit" class="btn btn-primary">Submit</button>-->
+  <!--<button type="reset" class="btn btn-default">Cancel</button>-->
+<!--</div>-->
+<script>
+  $(function() {
+    var $form = $('#contact-form');
+
+    $form.steps({
+      headerTag: "h3",
+      bodyTag: "fieldset",
+      transitionEffect: "slideLeft",
+      enableCancelButton:true,
+      unbindFinishedWhenFinished: true,
+
+      // 这两个参数关闭了上一步, 下一步
+      enableAllSteps:true,
+      enablePagination:false,
+
+      onStepChanging: function (event, currentIndex, newIndex) {
+        var $newStep = $(event.target).find('.steps li').eq(newIndex);
+        if ($newStep.hasClass('error')) {
+          $form.valid();
+          var errorList = $form.validate().errorList;
+          var result = true;
+          $.each(errorList, function() {
+            var $parent = $(this.element).parents("fieldset");
+            if ($parent.length > 0) {
+              var invalidateIndex = $form.steps('getIndex', $parent);
+              if (invalidateIndex == currentIndex) {
+                result = false;
+                return false;
+              }
+            }
+          });
+        } else {
+          var originIgnoreSetting = $form.validate().settings.ignore;
+          $form.validate().settings.ignore = "fieldset:not(.current) *";
+          var result = $form.valid();
+          $form.validate().settings.ignore = originIgnoreSetting;
+        }
+        return result;
+      },
+      onFinishing: function(event, currentIndex) {
+        $form.valid();
+
+        var isValidate = true;
+        var errorList = $form.validate().errorList;
+        $.each(errorList, function() {
+          var $parent = $(this.element).parents("fieldset");
+          $parent.valid();
+
+          if ($parent.length > 0) {
+            var invalidateIndex = $form.steps('getIndex', $parent);
+            var $invalidateStep = $(event.target).find('.steps li').eq(invalidateIndex);
+            if (invalidateIndex != currentIndex && $invalidateStep.hasClass("error")) {
+              return;
+            }
+            if (invalidateIndex == currentIndex) {
+              isValidate = false;
+            }
+            $invalidateStep.addClass("error");
+          }
+        });
+        return isValidate;
+      },
+      labels: {
+        cancel: /*[[#{action.cancel}]]*/ '取消',
+        next: /*[[#{msg.next}]]*/ '下一步',
+        previous: /*[[#{msg.previous}]]*/ '上一步',
+        finish: /*[[#{action.submit}]]*/ '提交'
+      }
+    });
+
+    $("#submit").click(function(e) {
+//      $form.unbind('submit');
+//      $form.submit(function(){
+//        return false;
+//      });
+      $form.steps('finish');
+      if(!$form.valid()) {
+        return;
+      }
+    });
+
+  });
+</script>

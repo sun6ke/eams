@@ -1,0 +1,31 @@
+html {
+  tap-highlight-color:    rgba(0, 0, 0, 0);
+  font-smoothing:         antialiased;
+  -webkit-font-smoothing: antialiased;
+  height:                 100%;
+}
+//
+// Body
+// ----------------------------------------
+body {
+  min-height:       100%;
+  width:            100%;
+  color:            @body-color !important;
+  z-index:          -2;
+  overflow-x:       hidden !important;
+  background-color: #FFFFFF;
+  overflow:         visible;
+  //padding:          30px 0px;
+}
+
+//
+// Anchor
+// ----------------------------------------
+a {
+  &:hover,
+  &:active,
+  &:focus {
+    //去掉在某些浏览器下，anchor会有虚线框的问题
+    outline: 0px !important;
+  }
+}

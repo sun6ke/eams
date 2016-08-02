@@ -1,0 +1,15 @@
+<button id="btn-notify-default" class="btn btn-default" type="button">Notice</button>
+
+<script>
+  $(function() {
+
+    $('#btn-notify-default').click(function() {
+      new PNotify({
+        title: 'New Thing',
+        text: 'Just to let you know, something happened.',
+        type: 'notice'
+      });
+    });
+
+  });
+</script>
