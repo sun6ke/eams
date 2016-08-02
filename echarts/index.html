@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>ECharts</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>ECharts</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://echarts.baidu.com/index.html">ECharts</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Category</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div id="main" style="height:400px"></div>
+<script type="text/javascript">
+  $(function () {
+    // 基于准备好的dom，初始化echarts图表
+    var myChart = echarts.init(document.getElementById('main'));
+
+    var option = {
+      tooltip: {
+        show: true
+      },
+      legend: {
+        data: ['销量']
+      },
+      xAxis: [
+        {
+          type: 'category',
+          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+        }
+      ],
+      yAxis: [
+        {
+          type: 'value'
+        }
+      ],
+      series: [
+        {
+          "name": "销量",
+          "type": "bar",
+          "data": [5, 20, 40, 10, 10, 20]
+        }
+      ]
+    };
+
+    // 为echarts对象加载数据
+    myChart.setOption(option);
+  });
+</script>
+
+    <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"main"</span> <span class="na">style=</span><span class="s">"height:400px"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 基于准备好的dom，初始化echarts图表</span>
+    <span class="kd">var</span> <span class="nx">myChart</span> <span class="o">=</span> <span class="nx">echarts</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'main'</span><span class="p">));</span>
+
+    <span class="kd">var</span> <span class="nx">option</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">tooltip</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">show</span><span class="p">:</span> <span class="kc">true</span>
+      <span class="p">},</span>
+      <span class="na">legend</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">data</span><span class="p">:</span> <span class="p">[</span><span class="s1">'销量'</span><span class="p">]</span>
+      <span class="p">},</span>
+      <span class="na">xAxis</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="na">type</span><span class="p">:</span> <span class="s1">'category'</span><span class="p">,</span>
+          <span class="na">data</span><span class="p">:</span> <span class="p">[</span><span class="s2">"衬衫"</span><span class="p">,</span> <span class="s2">"羊毛衫"</span><span class="p">,</span> <span class="s2">"雪纺衫"</span><span class="p">,</span> <span class="s2">"裤子"</span><span class="p">,</span> <span class="s2">"高跟鞋"</span><span class="p">,</span> <span class="s2">"袜子"</span><span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="na">yAxis</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="na">type</span><span class="p">:</span> <span class="s1">'value'</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="na">series</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"销量"</span><span class="p">,</span>
+          <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"bar"</span><span class="p">,</span>
+          <span class="s2">"data"</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">};</span>
+
+    <span class="c1">// 为echarts对象加载数据</span>
+    <span class="nx">myChart</span><span class="p">.</span><span class="nx">setOption</span><span class="p">(</span><span class="nx">option</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+  </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>
+

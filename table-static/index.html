@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Table Static</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Table</h2>
+    </section>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Non-Responsive tables</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://getbootstrap.com/css/#tables">Tables</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <table class="table table-bordered table-striped table-hover table-condensed">
+      <thead>
+      <tr>
+        <th>Code</th>
+        <th>Company</th>
+        <th>Price</th>
+        <th>Change</th>
+        <th>Change %</th>
+        <th>Open</th>
+        <th>High</th>
+        <th>Low</th>
+        <th>Volume</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="active">
+        <td>AAC</td>
+        <td>AUSTRALIAN AGRICULTURAL COMPANY LIMITED.</td>
+        <td>$1.38</td>
+        <td>-0.01</td>
+        <td>-0.36%</td>
+        <td>$1.39</td>
+        <td>$1.39</td>
+        <td>$1.38</td>
+        <td>9,395</td>
+      </tr>
+      <tr class="info">
+        <td>AAD</td>
+        <td>ARDENT LEISURE GROUP</td>
+        <td>$1.15</td>
+        <td>+0.02</td>
+        <td>1.32%</td>
+        <td>$1.14</td>
+        <td>$1.15</td>
+        <td>$1.13</td>
+        <td>56,431</td>
+      </tr>
+      <tr class="success">
+        <td>AAX</td>
+        <td>AUSENCO LIMITED</td>
+        <td>$4.00</td>
+        <td>-0.04</td>
+        <td>-0.99%</td>
+        <td>$4.01</td>
+        <td>$4.05</td>
+        <td>$4.00</td>
+        <td>90,641</td>
+      </tr>
+      <tr class="danger">
+        <td>ABC</td>
+        <td>ADELAIDE BRIGHTON LIMITED</td>
+        <td>$3.00</td>
+        <td>+0.06</td>
+        <td>2.04%</td>
+        <td>$2.98</td>
+        <td>$3.00</td>
+        <td>$2.96</td>
+        <td>862,518</td>
+      </tr>
+      <tr class="warning">
+        <td>ABP</td>
+        <td>ABACUS PROPERTY GROUP</td>
+        <td>$1.91</td>
+        <td>0.00</td>
+        <td>0.00%</td>
+        <td>$1.92</td>
+        <td>$1.93</td>
+        <td>$1.90</td>
+        <td>595,701</td>
+      </tr>
+      <tr>
+        <td class="active">ABY</td>
+        <td class="warning">ADITYA BIRLA MINERALS LIMITED</td>
+        <td class="info">$0.77</td>
+        <td class="danger">+0.02</td>
+        <td class="success">2.00%</td>
+        <td>$0.76</td>
+        <td>$0.77</td>
+        <td>$0.76</td>
+        <td>54,567</td>
+      </tr>
+      <tr>
+        <td>ACR</td>
+        <td>ACRUX LIMITED</td>
+        <td>$3.71</td>
+        <td>+0.01</td>
+        <td>0.14%</td>
+        <td>$3.70</td>
+        <td>$3.72</td>
+        <td>$3.68</td>
+        <td>191,373</td>
+      </tr>
+      <tr>
+        <td>ADU</td>
+        <td>ADAMUS RESOURCES LIMITED</td>
+        <td>$0.72</td>
+        <td>0.00</td>
+        <td>0.00%</td>
+        <td>$0.73</td>
+        <td>$0.74</td>
+        <td>$0.72</td>
+        <td>8,602,291</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<hr/>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Responsive tables</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://getbootstrap.com/css/#tables-responsive">Responsive tables</a>
+      </p>
+
+      <p>
+        在 <code>table</code> 外层包一个<code>.table-responsive</code>元素即可做到在小屏幕时，<code>table</code>出现横向滚动条
+      </p>
+    </section>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped table-hover table-condensed">
+        <thead>
+        <tr>
+          <th>Code</th>
+          <th>Company</th>
+          <th>Price</th>
+          <th>Change</th>
+          <th>Change %</th>
+          <th>Open</th>
+          <th>High</th>
+          <th>Low</th>
+          <th>Volume</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr class="active">
+          <td>AAC</td>
+          <td>AUSTRALIAN AGRICULTURAL COMPANY LIMITED.</td>
+          <td>$1.38</td>
+          <td>-0.01</td>
+          <td>-0.36%</td>
+          <td>$1.39</td>
+          <td>$1.39</td>
+          <td>$1.38</td>
+          <td>9,395</td>
+        </tr>
+        <tr class="info">
+          <td>AAD</td>
+          <td>ARDENT LEISURE GROUP</td>
+          <td>$1.15</td>
+          <td>+0.02</td>
+          <td>1.32%</td>
+          <td>$1.14</td>
+          <td>$1.15</td>
+          <td>$1.13</td>
+          <td>56,431</td>
+        </tr>
+        <tr class="success">
+          <td>AAX</td>
+          <td>AUSENCO LIMITED</td>
+          <td>$4.00</td>
+          <td>-0.04</td>
+          <td>-0.99%</td>
+          <td>$4.01</td>
+          <td>$4.05</td>
+          <td>$4.00</td>
+          <td>90,641</td>
+        </tr>
+        <tr class="danger">
+          <td>ABC</td>
+          <td>ADELAIDE BRIGHTON LIMITED</td>
+          <td>$3.00</td>
+          <td>+0.06</td>
+          <td>2.04%</td>
+          <td>$2.98</td>
+          <td>$3.00</td>
+          <td>$2.96</td>
+          <td>862,518</td>
+        </tr>
+        <tr class="warning">
+          <td>ABP</td>
+          <td>ABACUS PROPERTY GROUP</td>
+          <td>$1.91</td>
+          <td>0.00</td>
+          <td>0.00%</td>
+          <td>$1.92</td>
+          <td>$1.93</td>
+          <td>$1.90</td>
+          <td>595,701</td>
+        </tr>
+        <tr>
+          <td class="active">ABY</td>
+          <td class="warning">ADITYA BIRLA MINERALS LIMITED</td>
+          <td class="info">$0.77</td>
+          <td class="danger">+0.02</td>
+          <td class="success">2.00%</td>
+          <td>$0.76</td>
+          <td>$0.77</td>
+          <td>$0.76</td>
+          <td>54,567</td>
+        </tr>
+        <tr>
+          <td>ACR</td>
+          <td>ACRUX LIMITED</td>
+          <td>$3.71</td>
+          <td>+0.01</td>
+          <td>0.14%</td>
+          <td>$3.70</td>
+          <td>$3.72</td>
+          <td>$3.68</td>
+          <td>191,373</td>
+        </tr>
+        <tr>
+          <td>ADU</td>
+          <td>ADAMUS RESOURCES LIMITED</td>
+          <td>$0.72</td>
+          <td>0.00</td>
+          <td>0.00%</td>
+          <td>$0.73</td>
+          <td>$0.74</td>
+          <td>$0.72</td>
+          <td>8,602,291</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+
+</div>
+
+</body>
+
+</html>
+

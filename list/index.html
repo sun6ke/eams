@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>list</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="index-bar" style="padding-bottom: 10px">
+  <button type="button" class="btn btn-default" id="back">返回</button>
+</div>
+<table id="table" style="min-width: 1200px; width: 1200px">
+  <thead>
+  <tr>
+    <th></th>
+    <th><a href="#" data-sort-by="A">课程代码</a></th>
+    <th><a href="#" data-sort-by="B">课程名称</a></th>
+    <th><a href="#" data-sort-by="C">英文名</a></th>
+    <th><a href="#" data-sort-by="D">开课院系</a></th>
+    <th><a href="#" data-sort-by="E">学历层次</a></th>
+    <th><a href="#" data-sort-by="F">学分</a></th>
+    <th>审核状态</th>
+    <th><a href="#" data-sort-by="G">更新时间</a></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><input type="checkbox" name="row.id" value="1"/></td>
+    <td>0001210</td>
+    <td>新闻写作技巧</td>
+    <td>writting</td>
+    <td>教研科</td>
+    <td>本科</td>
+    <td>2.0</td>
+    <td>审核通过</td>
+    <td>2014-07-22 17:26</td>
+  </tr>
+  <tr>
+    <td><input type="checkbox" name="row.id" value="2"/></td>
+    <td>0001210</td>
+    <td>新闻写作技巧</td>
+    <td>writting</td>
+    <td>教研科</td>
+    <td>本科</td>
+    <td>3.0</td>
+    <td>审核通过</td>
+    <td>2014-07-22 17:26</td>
+  </tr>
+  </tbody>
+</table>
+
+<script>
+  $(function () {
+    var $table = $("#table");
+    $table.semiAutoTable({
+      colOrderArrangable: true,
+      colResizable: true,
+      columnOption: {
+        showColumnSelect: true
+      },
+      sortOption: {
+        'A': 'asc',
+        'B': 'desc'
+      },
+      menus: [
+        {
+          title: '上传',
+          tooltip: 'tooltip',
+          callback: function () {
+            FormUtil.get({
+              form : $("<form></form>"),
+              url : "/add?id=1&b=2&c=3",
+              params: {"id": $table.semiAutoTable('getSelectedRows')},
+              target: "e-home-iframe-1"
+            });
+          }
+        },
+        {
+          title: '下载',
+          callback: function () {
+            console.log(JSON.stringify($table.semiAutoTable('getSelectedRows')));
+          }
+        },
+        {
+          title: '删除'
+        }
+      ],
+      pageOption: {
+        currentPage: 11,
+        totalPages: 20,
+        totalRows: 202
+      }
+    }).on('pageChange', function (event, pageObject) {
+
+      console.log(JSON.stringify(pageObject));
+      $(this).semiAutoTable('updatePaginator', pageObject);
+
+    }).on('sortChange', function (event, sortObject) {
+
+      console.log(JSON.stringify(sortObject));
+      var $this = $(this);
+      $this.semiAutoTable('updateSortBy', sortObject);
+
+    });
+
+  });
+</script>
+
+</div>
+
+</body>
+
+</html>
+

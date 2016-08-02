@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Time line</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+  <div class="col-sm-12">
+    <h2>Timeline Example</h2>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <ul class="timeline">
+
+  <li>
+    <span class="timeline-tag">2014年5月1日</span>
+  </li>
+  <li>
+    <i class="fa fa-envelope-o timeline-icon"></i>
+
+    <div class="timeline-content">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et dui id justo rhoncus consequat. Aliquam
+      porttitor, arcu quis ornare ultricies, augue neque fringilla turpis, nec cursus arcu enim nec ante. Duis lacus
+      velit, ultricies nec condimentum at, ultrices id eros. Nullam elementum turpis ut est porttitor porttitor.
+      Mauris eu nunc id neque tempor venenatis. Nulla eu placerat orci, quis gravida
+    </div>
+  </li>
+
+  <li>
+    <span class="timeline-tag">2014年5月2日</span>
+  </li>
+  <li>
+    <i class="fa fa-user timeline-icon"></i>
+
+    <div class="timeline-content">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et dui id justo rhoncus consequat. Aliquam
+      porttitor, arcu quis ornare ultricies, augue neque fringilla turpis, nec cursus arcu enim nec ante. Duis lacus
+      velit, ultricies nec condimentum at, ultrices id eros. Nullam elementum turpis ut est porttitor porttitor.
+      Mauris eu nunc id neque tempor venenatis. Nulla eu placerat orci, quis gravida
+    </div>
+  </li>
+  <li>
+    <i class="fa fa-user timeline-icon"></i>
+
+    <div class="timeline-content">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et dui id justo rhoncus consequat. Aliquam
+      porttitor, arcu quis ornare ultricies, augue neque fringilla turpis, nec cursus arcu enim nec ante. Duis lacus
+      velit, ultricies nec condimentum at, ultrices id eros. Nullam elementum turpis ut est porttitor porttitor.
+      Mauris eu nunc id neque tempor venenatis. Nulla eu placerat orci, quis gravida
+    </div>
+  </li>
+
+  <li>
+    <span class="timeline-tag">2014年5月3日</span>
+  </li>
+  <li>
+    <i class="fa fa-user timeline-icon"></i>
+
+    <div class="timeline-content">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et dui id justo rhoncus consequat. Aliquam
+      porttitor, arcu quis ornare ultricies, augue neque fringilla turpis, nec cursus arcu enim nec ante. Duis lacus
+      velit, ultricies nec condimentum at, ultrices id eros. Nullam elementum turpis ut est porttitor porttitor.
+      Mauris eu nunc id neque tempor venenatis. Nulla eu placerat orci, quis gravida
+    </div>
+  </li>
+
+  <li>
+    <i class="fa fa-clock-o timeline-icon"></i>
+  </li>
+</ul>
+
+
+  </div>
+</div>
+
+<hr/>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"timeline"</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;li&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"timeline-tag"</span><span class="nt">&gt;</span>2014年5月1日<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;</span>
+    <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"fa fa-envelope-o timeline-icon"</span><span class="nt">&gt;&lt;/i&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"timeline-content"</span><span class="nt">&gt;</span>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et dui id justo rhoncus consequat. Aliquam
+      porttitor, arcu quis ornare ultricies, augue neque fringilla turpis, nec cursus arcu enim nec ante. Duis lacus
+      velit, ultricies nec condimentum at, ultrices id eros. Nullam elementum turpis ut est porttitor porttitor.
+      Mauris eu nunc id neque tempor venenatis. Nulla eu placerat orci, quis gravida
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+
+  <span class="nt">&lt;li&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"timeline-tag"</span><span class="nt">&gt;</span>2014年5月2日<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;</span>
+    <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"fa fa-user timeline-icon"</span><span class="nt">&gt;&lt;/i&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"timeline-content"</span><span class="nt">&gt;</span>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et dui id justo rhoncus consequat. Aliquam
+      porttitor, arcu quis ornare ultricies, augue neque fringilla turpis, nec cursus arcu enim nec ante. Duis lacus
+      velit, ultricies nec condimentum at, ultrices id eros. Nullam elementum turpis ut est porttitor porttitor.
+      Mauris eu nunc id neque tempor venenatis. Nulla eu placerat orci, quis gravida
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;</span>
+    <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"fa fa-user timeline-icon"</span><span class="nt">&gt;&lt;/i&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"timeline-content"</span><span class="nt">&gt;</span>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et dui id justo rhoncus consequat. Aliquam
+      porttitor, arcu quis ornare ultricies, augue neque fringilla turpis, nec cursus arcu enim nec ante. Duis lacus
+      velit, ultricies nec condimentum at, ultrices id eros. Nullam elementum turpis ut est porttitor porttitor.
+      Mauris eu nunc id neque tempor venenatis. Nulla eu placerat orci, quis gravida
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+
+  <span class="nt">&lt;li&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"timeline-tag"</span><span class="nt">&gt;</span>2014年5月3日<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li&gt;</span>
+    <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"fa fa-user timeline-icon"</span><span class="nt">&gt;&lt;/i&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"timeline-content"</span><span class="nt">&gt;</span>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et dui id justo rhoncus consequat. Aliquam
+      porttitor, arcu quis ornare ultricies, augue neque fringilla turpis, nec cursus arcu enim nec ante. Duis lacus
+      velit, ultricies nec condimentum at, ultrices id eros. Nullam elementum turpis ut est porttitor porttitor.
+      Mauris eu nunc id neque tempor venenatis. Nulla eu placerat orci, quis gravida
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+
+  <span class="nt">&lt;li&gt;</span>
+    <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"fa fa-clock-o timeline-icon"</span><span class="nt">&gt;&lt;/i&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span></code></pre></div>
+
+  </div>
+</div>
+
+</div>
+
+</body>
+
+</html>
+

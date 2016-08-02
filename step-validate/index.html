@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Step Validate</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>jQuery Steps Validate</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="https://github.com/rstaib/jquery-steps/wiki">jQuery Steps</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Basic</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <form action="#" id="contact-form">
+
+  <h3>第一步</h3>
+  <fieldset title="第一步">
+
+    <div class="form-group">
+      <label class="control-label" for="code">代码</label>
+      <input type="text" class="form-control" name="code" id="code" required="required"/>
+    </div>
+  </fieldset>
+
+  <h3>第二步</h3>
+  <fieldset title="第二步">
+
+    <div class="form-group">
+      <label class="control-label" for="name">名字</label>
+      <input type="text" class="form-control" name="name" id="name" required="required"/>
+    </div>
+  </fieldset>
+</form>
+<!--<div class="form-group">-->
+  <!--<button type="submit" id="submit" class="btn btn-primary">Submit</button>-->
+  <!--<button type="reset" class="btn btn-default">Cancel</button>-->
+<!--</div>-->
+<script>
+  $(function() {
+    var $form = $('#contact-form');
+
+    $form.steps({
+      headerTag: "h3",
+      bodyTag: "fieldset",
+      transitionEffect: "slideLeft",
+      enableCancelButton:true,
+      unbindFinishedWhenFinished: true,
+
+      // 这两个参数关闭了上一步, 下一步
+      enableAllSteps:true,
+      enablePagination:false,
+
+      onStepChanging: function (event, currentIndex, newIndex) {
+        var $newStep = $(event.target).find('.steps li').eq(newIndex);
+        if ($newStep.hasClass('error')) {
+          $form.valid();
+          var errorList = $form.validate().errorList;
+          var result = true;
+          $.each(errorList, function() {
+            var $parent = $(this.element).parents("fieldset");
+            if ($parent.length > 0) {
+              var invalidateIndex = $form.steps('getIndex', $parent);
+              if (invalidateIndex == currentIndex) {
+                result = false;
+                return false;
+              }
+            }
+          });
+        } else {
+          var originIgnoreSetting = $form.validate().settings.ignore;
+          $form.validate().settings.ignore = "fieldset:not(.current) *";
+          var result = $form.valid();
+          $form.validate().settings.ignore = originIgnoreSetting;
+        }
+        return result;
+      },
+      onFinishing: function(event, currentIndex) {
+        $form.valid();
+
+        var isValidate = true;
+        var errorList = $form.validate().errorList;
+        $.each(errorList, function() {
+          var $parent = $(this.element).parents("fieldset");
+          $parent.valid();
+
+          if ($parent.length > 0) {
+            var invalidateIndex = $form.steps('getIndex', $parent);
+            var $invalidateStep = $(event.target).find('.steps li').eq(invalidateIndex);
+            if (invalidateIndex != currentIndex && $invalidateStep.hasClass("error")) {
+              return;
+            }
+            if (invalidateIndex == currentIndex) {
+              isValidate = false;
+            }
+            $invalidateStep.addClass("error");
+          }
+        });
+        return isValidate;
+      },
+      labels: {
+        cancel: /*[[#{action.cancel}]]*/ '取消',
+        next: /*[[#{msg.next}]]*/ '下一步',
+        previous: /*[[#{msg.previous}]]*/ '上一步',
+        finish: /*[[#{action.submit}]]*/ '提交'
+      }
+    });
+
+    $("#submit").click(function(e) {
+//      $form.unbind('submit');
+//      $form.submit(function(){
+//        return false;
+//      });
+      $form.steps('finish');
+      if(!$form.valid()) {
+        return;
+      }
+    });
+
+  });
+</script>
+
+    <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"#"</span> <span class="na">id=</span><span class="s">"contact-form"</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;h3&gt;</span>第一步<span class="nt">&lt;/h3&gt;</span>
+  <span class="nt">&lt;fieldset</span> <span class="na">title=</span><span class="s">"第一步"</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"control-label"</span> <span class="na">for=</span><span class="s">"code"</span><span class="nt">&gt;</span>代码<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">name=</span><span class="s">"code"</span> <span class="na">id=</span><span class="s">"code"</span> <span class="na">required=</span><span class="s">"required"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/fieldset&gt;</span>
+
+  <span class="nt">&lt;h3&gt;</span>第二步<span class="nt">&lt;/h3&gt;</span>
+  <span class="nt">&lt;fieldset</span> <span class="na">title=</span><span class="s">"第二步"</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"control-label"</span> <span class="na">for=</span><span class="s">"name"</span><span class="nt">&gt;</span>名字<span class="nt">&lt;/label&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">name=</span><span class="s">"name"</span> <span class="na">id=</span><span class="s">"name"</span> <span class="na">required=</span><span class="s">"required"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/fieldset&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+<span class="c">&lt;!--&lt;div class="form-group"&gt;--&gt;</span>
+  <span class="c">&lt;!--&lt;button type="submit" id="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;--&gt;</span>
+  <span class="c">&lt;!--&lt;button type="reset" class="btn btn-default"&gt;Cancel&lt;/button&gt;--&gt;</span>
+<span class="c">&lt;!--&lt;/div&gt;--&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">$form</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#contact-form'</span><span class="p">);</span>
+
+    <span class="nx">$form</span><span class="p">.</span><span class="nx">steps</span><span class="p">({</span>
+      <span class="na">headerTag</span><span class="p">:</span> <span class="s2">"h3"</span><span class="p">,</span>
+      <span class="na">bodyTag</span><span class="p">:</span> <span class="s2">"fieldset"</span><span class="p">,</span>
+      <span class="na">transitionEffect</span><span class="p">:</span> <span class="s2">"slideLeft"</span><span class="p">,</span>
+      <span class="na">enableCancelButton</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+      <span class="na">unbindFinishedWhenFinished</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+
+      <span class="c1">// 这两个参数关闭了上一步, 下一步</span>
+      <span class="na">enableAllSteps</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+      <span class="na">enablePagination</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
+
+      <span class="na">onStepChanging</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">currentIndex</span><span class="p">,</span> <span class="nx">newIndex</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">$newStep</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.steps li'</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="nx">newIndex</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">$newStep</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">'error'</span><span class="p">))</span> <span class="p">{</span>
+          <span class="nx">$form</span><span class="p">.</span><span class="nx">valid</span><span class="p">();</span>
+          <span class="kd">var</span> <span class="nx">errorList</span> <span class="o">=</span> <span class="nx">$form</span><span class="p">.</span><span class="nx">validate</span><span class="p">().</span><span class="nx">errorList</span><span class="p">;</span>
+          <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+          <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">errorList</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">$parent</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">).</span><span class="nx">parents</span><span class="p">(</span><span class="s2">"fieldset"</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">$parent</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+              <span class="kd">var</span> <span class="nx">invalidateIndex</span> <span class="o">=</span> <span class="nx">$form</span><span class="p">.</span><span class="nx">steps</span><span class="p">(</span><span class="s1">'getIndex'</span><span class="p">,</span> <span class="nx">$parent</span><span class="p">);</span>
+              <span class="k">if</span> <span class="p">(</span><span class="nx">invalidateIndex</span> <span class="o">==</span> <span class="nx">currentIndex</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">result</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+              <span class="p">}</span>
+            <span class="p">}</span>
+          <span class="p">});</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="kd">var</span> <span class="nx">originIgnoreSetting</span> <span class="o">=</span> <span class="nx">$form</span><span class="p">.</span><span class="nx">validate</span><span class="p">().</span><span class="nx">settings</span><span class="p">.</span><span class="nx">ignore</span><span class="p">;</span>
+          <span class="nx">$form</span><span class="p">.</span><span class="nx">validate</span><span class="p">().</span><span class="nx">settings</span><span class="p">.</span><span class="nx">ignore</span> <span class="o">=</span> <span class="s2">"fieldset:not(.current) *"</span><span class="p">;</span>
+          <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">$form</span><span class="p">.</span><span class="nx">valid</span><span class="p">();</span>
+          <span class="nx">$form</span><span class="p">.</span><span class="nx">validate</span><span class="p">().</span><span class="nx">settings</span><span class="p">.</span><span class="nx">ignore</span> <span class="o">=</span> <span class="nx">originIgnoreSetting</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+      <span class="p">},</span>
+      <span class="na">onFinishing</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">currentIndex</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$form</span><span class="p">.</span><span class="nx">valid</span><span class="p">();</span>
+
+        <span class="kd">var</span> <span class="nx">isValidate</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">errorList</span> <span class="o">=</span> <span class="nx">$form</span><span class="p">.</span><span class="nx">validate</span><span class="p">().</span><span class="nx">errorList</span><span class="p">;</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">errorList</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+          <span class="kd">var</span> <span class="nx">$parent</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">).</span><span class="nx">parents</span><span class="p">(</span><span class="s2">"fieldset"</span><span class="p">);</span>
+          <span class="nx">$parent</span><span class="p">.</span><span class="nx">valid</span><span class="p">();</span>
+
+          <span class="k">if</span> <span class="p">(</span><span class="nx">$parent</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">invalidateIndex</span> <span class="o">=</span> <span class="nx">$form</span><span class="p">.</span><span class="nx">steps</span><span class="p">(</span><span class="s1">'getIndex'</span><span class="p">,</span> <span class="nx">$parent</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">$invalidateStep</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">'.steps li'</span><span class="p">).</span><span class="nx">eq</span><span class="p">(</span><span class="nx">invalidateIndex</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">invalidateIndex</span> <span class="o">!=</span> <span class="nx">currentIndex</span> <span class="o">&amp;&amp;</span> <span class="nx">$invalidateStep</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="s2">"error"</span><span class="p">))</span> <span class="p">{</span>
+              <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">invalidateIndex</span> <span class="o">==</span> <span class="nx">currentIndex</span><span class="p">)</span> <span class="p">{</span>
+              <span class="nx">isValidate</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="nx">$invalidateStep</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s2">"error"</span><span class="p">);</span>
+          <span class="p">}</span>
+        <span class="p">});</span>
+        <span class="k">return</span> <span class="nx">isValidate</span><span class="p">;</span>
+      <span class="p">},</span>
+      <span class="na">labels</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">cancel</span><span class="p">:</span> <span class="cm">/*[[#{action.cancel}]]*/</span> <span class="s1">'取消'</span><span class="p">,</span>
+        <span class="na">next</span><span class="p">:</span> <span class="cm">/*[[#{msg.next}]]*/</span> <span class="s1">'下一步'</span><span class="p">,</span>
+        <span class="na">previous</span><span class="p">:</span> <span class="cm">/*[[#{msg.previous}]]*/</span> <span class="s1">'上一步'</span><span class="p">,</span>
+        <span class="na">finish</span><span class="p">:</span> <span class="cm">/*[[#{action.submit}]]*/</span> <span class="s1">'提交'</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s2">"#submit"</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+<span class="c1">//      $form.unbind('submit');</span>
+<span class="c1">//      $form.submit(function(){</span>
+<span class="c1">//        return false;</span>
+<span class="c1">//      });</span>
+      <span class="nx">$form</span><span class="p">.</span><span class="nx">steps</span><span class="p">(</span><span class="s1">'finish'</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">$form</span><span class="p">.</span><span class="nx">valid</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+
+  </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>
+

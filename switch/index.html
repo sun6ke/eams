@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Bootstrap Switch</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Bootstrap Switch</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://www.bootstrap-switch.org/">Bootstrap Switch</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <input class="e-make-switch" type="checkbox" name="switch-primary" data-on-color="primary" data-off-color="info">
+<input class="e-make-switch" type="checkbox" name="switch-info" data-on-color="info" data-off-color="success">
+<input class="e-make-switch" type="checkbox" name="switch-success" data-on-color="success" data-off-color="warning">
+<input class="e-make-switch" type="checkbox" name="switch-warning" data-on-color="warning" data-off-color="danger">
+<input class="e-make-switch" type="checkbox" name="switch-danger" data-on-color="danger" data-off-color="default">
+
+<script>
+  $(function() {
+
+    $('.e-make-switch').bootstrapSwitch();
+
+  });
+</script>
+
+    <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"e-make-switch"</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"switch-primary"</span> <span class="na">data-on-color=</span><span class="s">"primary"</span> <span class="na">data-off-color=</span><span class="s">"info"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"e-make-switch"</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"switch-info"</span> <span class="na">data-on-color=</span><span class="s">"info"</span> <span class="na">data-off-color=</span><span class="s">"success"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"e-make-switch"</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"switch-success"</span> <span class="na">data-on-color=</span><span class="s">"success"</span> <span class="na">data-off-color=</span><span class="s">"warning"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"e-make-switch"</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"switch-warning"</span> <span class="na">data-on-color=</span><span class="s">"warning"</span> <span class="na">data-off-color=</span><span class="s">"danger"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"e-make-switch"</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"switch-danger"</span> <span class="na">data-on-color=</span><span class="s">"danger"</span> <span class="na">data-off-color=</span><span class="s">"default"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'.e-make-switch'</span><span class="p">).</span><span class="nx">bootstrapSwitch</span><span class="p">();</span>
+
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+
+  </div>
+</div>
+
+
+
+
+
+</div>
+
+</body>
+
+</html>
+

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>PNotify</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>PNotify</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://sciactive.github.io/pnotify/">PNotify</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+
+<!-- NOTIFY -->
+
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <button id="btn-notify-default" class="btn btn-default" type="button">Notice</button>
+
+<script>
+  $(function() {
+
+    $('#btn-notify-default').click(function() {
+      new PNotify({
+        title: 'New Thing',
+        text: 'Just to let you know, something happened.',
+        type: 'notice'
+      });
+    });
+
+  });
+</script>
+
+    <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btn-notify-default"</span> <span class="na">class=</span><span class="s">"btn btn-default"</span> <span class="na">type=</span><span class="s">"button"</span><span class="nt">&gt;</span>Notice<span class="nt">&lt;/button&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#btn-notify-default'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">new</span> <span class="nx">PNotify</span><span class="p">({</span>
+        <span class="na">title</span><span class="p">:</span> <span class="s1">'New Thing'</span><span class="p">,</span>
+        <span class="na">text</span><span class="p">:</span> <span class="s1">'Just to let you know, something happened.'</span><span class="p">,</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s1">'notice'</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <button id="btn-notify-info" class="btn btn-info" type="button">Info Notice</button>
+
+<script>
+  $(function() {
+
+    $('#btn-notify-info').click(function() {
+      new PNotify({
+        title: 'New Thing',
+        text: 'Just to let you know, something happened.',
+        type: 'info'
+      });
+    });
+
+  });
+</script>
+
+    <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btn-notify-info"</span> <span class="na">class=</span><span class="s">"btn btn-info"</span> <span class="na">type=</span><span class="s">"button"</span><span class="nt">&gt;</span>Info Notice<span class="nt">&lt;/button&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#btn-notify-info'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">new</span> <span class="nx">PNotify</span><span class="p">({</span>
+        <span class="na">title</span><span class="p">:</span> <span class="s1">'New Thing'</span><span class="p">,</span>
+        <span class="na">text</span><span class="p">:</span> <span class="s1">'Just to let you know, something happened.'</span><span class="p">,</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s1">'info'</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <button id="btn-notify-success" class="btn btn-success" type="button">Success Notice</button>
+
+<script>
+  $(function() {
+
+    $('#btn-notify-success').click(function() {
+      new PNotify({
+        title: 'New Thing',
+        text: 'Just to let you know, something happened.',
+        type: 'success'
+      });
+    });
+
+  });
+</script>
+
+    <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btn-notify-success"</span> <span class="na">class=</span><span class="s">"btn btn-success"</span> <span class="na">type=</span><span class="s">"button"</span><span class="nt">&gt;</span>Success Notice<span class="nt">&lt;/button&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#btn-notify-success'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">new</span> <span class="nx">PNotify</span><span class="p">({</span>
+        <span class="na">title</span><span class="p">:</span> <span class="s1">'New Thing'</span><span class="p">,</span>
+        <span class="na">text</span><span class="p">:</span> <span class="s1">'Just to let you know, something happened.'</span><span class="p">,</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s1">'success'</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <button id="btn-notify-error" class="btn btn-danger" type="button">Error Notice</button>
+
+<script>
+  $(function() {
+
+    $('#btn-notify-error').click(function() {
+      new PNotify({
+        title: 'New Thing',
+        text: 'Just to let you know, something happened.',
+        type: 'error'
+      });
+    });
+
+
+  });
+</script>
+
+    <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btn-notify-error"</span> <span class="na">class=</span><span class="s">"btn btn-danger"</span> <span class="na">type=</span><span class="s">"button"</span><span class="nt">&gt;</span>Error Notice<span class="nt">&lt;/button&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#btn-notify-error'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">new</span> <span class="nx">PNotify</span><span class="p">({</span>
+        <span class="na">title</span><span class="p">:</span> <span class="s1">'New Thing'</span><span class="p">,</span>
+        <span class="na">text</span><span class="p">:</span> <span class="s1">'Just to let you know, something happened.'</span><span class="p">,</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s1">'error'</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+
+
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+
+  </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>
+

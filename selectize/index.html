@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Selectize</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Selectize</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://brianreavis.github.io/selectize.js/">selectize.js</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Single Select</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="form-group">
+  <label for="select-beast-empty">Beast:</label>
+  <select id="select-beast-empty" class="demo-default" data-placeholder="Select a person...">
+    <option value="">None</option>
+    <option value="4">Thomas Edison</option>
+    <option value="1">Nikola</option>
+    <option value="3">Nikola Tesla</option>
+    <option value="5">Arnold Schwarzenegger</option>
+  </select>
+</div>
+<script>
+  $('#select-beast-empty').selectize({
+    allowEmptyOption: true,
+    create: true
+  });
+</script>
+
+    <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"select-beast-empty"</span><span class="nt">&gt;</span>Beast:<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"select-beast-empty"</span> <span class="na">class=</span><span class="s">"demo-default"</span> <span class="na">data-placeholder=</span><span class="s">"Select a person..."</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">""</span><span class="nt">&gt;</span>None<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"4"</span><span class="nt">&gt;</span>Thomas Edison<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;</span>Nikola<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"3"</span><span class="nt">&gt;</span>Nikola Tesla<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"5"</span><span class="nt">&gt;</span>Arnold Schwarzenegger<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;/select&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">'#select-beast-empty'</span><span class="p">).</span><span class="nx">selectize</span><span class="p">({</span>
+    <span class="na">allowEmptyOption</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">create</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3>plugin</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="form-group selectized">
+  <label for="select-plugin">Select:</label>
+  <div>Current Value: <span id="select-value"></span></div>
+  <select id="select-plugin" class="select-plugin" multiple placeholder="Pick a item..."></select>
+</div>
+<script>
+  $(function () {
+    var $wrapper = $('.selectized');
+
+    // show current input values
+    $('select.select-plugin', $wrapper).each(function() {
+      var $input = $(this);
+      var $value = $('#select-value');
+      var update = function(e) { $value.text(JSON.stringify($input.val())); }
+
+      $(this).on('change', update);
+      update();
+    });
+
+    $('#select-plugin').selectize({
+      plugins: ['remove_button','drag_drop'],
+      persist: false,
+      valueField: 'id',
+      labelField: 'name',
+      options: [
+        {id:1, name:'aaa'},
+        {id:2, name:'bbb'},
+        {id:3, name:'ccc'}
+      ],
+      render: {
+        item: function(data, escape) {
+          return '<div>' + escape(data.name) + '</div>';
+        }
+      },
+      create: function(input) {
+        return {
+          id: 0,
+          name: input
+        };
+      },
+      onDelete: function(values) {
+        return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
+      }
+    });
+  })
+</script>
+
+    <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group selectized"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"select-plugin"</span><span class="nt">&gt;</span>Select:<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;div&gt;</span>Current Value: <span class="nt">&lt;span</span> <span class="na">id=</span><span class="s">"select-value"</span><span class="nt">&gt;&lt;/span&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"select-plugin"</span> <span class="na">class=</span><span class="s">"select-plugin"</span> <span class="na">multiple</span> <span class="na">placeholder=</span><span class="s">"Pick a item..."</span><span class="nt">&gt;&lt;/select&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">$wrapper</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.selectized'</span><span class="p">);</span>
+
+    <span class="c1">// show current input values</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'select.select-plugin'</span><span class="p">,</span> <span class="nx">$wrapper</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">$input</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">$value</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#select-value'</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">update</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="nx">$value</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">$input</span><span class="p">.</span><span class="nx">val</span><span class="p">()));</span> <span class="p">}</span>
+
+      <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'change'</span><span class="p">,</span> <span class="nx">update</span><span class="p">);</span>
+      <span class="nx">update</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#select-plugin'</span><span class="p">).</span><span class="nx">selectize</span><span class="p">({</span>
+      <span class="na">plugins</span><span class="p">:</span> <span class="p">[</span><span class="s1">'remove_button'</span><span class="p">,</span><span class="s1">'drag_drop'</span><span class="p">],</span>
+      <span class="na">persist</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="na">valueField</span><span class="p">:</span> <span class="s1">'id'</span><span class="p">,</span>
+      <span class="na">labelField</span><span class="p">:</span> <span class="s1">'name'</span><span class="p">,</span>
+      <span class="na">options</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span><span class="s1">'aaa'</span><span class="p">},</span>
+        <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span><span class="s1">'bbb'</span><span class="p">},</span>
+        <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span><span class="s1">'ccc'</span><span class="p">}</span>
+      <span class="p">],</span>
+      <span class="na">render</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">item</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">escape</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="s1">'&lt;div&gt;'</span> <span class="o">+</span> <span class="nx">escape</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'&lt;/div&gt;'</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="na">create</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span>
+          <span class="na">id</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+          <span class="na">name</span><span class="p">:</span> <span class="nx">input</span>
+        <span class="p">};</span>
+      <span class="p">},</span>
+      <span class="na">onDelete</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">values</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">confirm</span><span class="p">(</span><span class="nx">values</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="p">?</span> <span class="s1">'Are you sure you want to remove these '</span> <span class="o">+</span> <span class="nx">values</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s1">' items?'</span> <span class="p">:</span> <span class="s1">'Are you sure you want to remove "'</span> <span class="o">+</span> <span class="nx">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'"?'</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">})</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+
+  </div>
+</div>
+
+<hr/>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Ajax</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="form-group selectized">
+  <label for="select-remote">Select:</label>
+  <div>Current Value: <span id="ajax-value"></span></div>
+  <select id="select-remote" class="select-ajax" placeholder="Pick a repository..."></select>
+</div>
+<script>
+  $(function () {
+    var $wrapper = $('.selectized');
+
+    // show current input values
+    $('select.select-ajax', $wrapper).each(function() {
+      var $input = $(this);
+      var $value = $('#ajax-value');
+      var update = function(e) { $value.text(JSON.stringify($input.val())); }
+
+      $(this).on('change', update);
+      update();
+    });
+
+    $('#select-remote').selectize({
+      valueField: 'url',
+      labelField: 'name',
+      searchField: 'name',
+      options: [],
+      create: false,
+      render: {
+        option: function(item, escape) {
+          return '<div>' +
+            '<dl>' +
+            '<dt><span><i class="fa fa-paperclip"></i> ' + escape(item.name) + '</span>' +
+            '<span> by ' + escape(item.username) + '</span>' +
+            '</dt>' +
+            '<dd><span>' + escape(item.description) + '</span></dd>' +
+            '</dl>' +
+            '</div>';
+        }
+      },
+      score: function(search) {
+        var score = this.getScoreFunction(search);
+        return function(item) {
+          return score(item) * (1 + Math.min(item.watchers / 100, 1));
+        };
+      },
+      load: function(query, callback) {
+        if (!query.length) return callback();
+        $.ajax({
+          url: 'https://api.github.com/legacy/repos/search/' + encodeURIComponent(query),
+          type: 'GET',
+          error: function() {
+            callback();
+          },
+          success: function(res) {
+            callback(res.repositories.slice(0, 10));
+          }
+        });
+      }
+    });
+  })
+</script>
+
+    <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group selectized"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"select-remote"</span><span class="nt">&gt;</span>Select:<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;div&gt;</span>Current Value: <span class="nt">&lt;span</span> <span class="na">id=</span><span class="s">"ajax-value"</span><span class="nt">&gt;&lt;/span&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"select-remote"</span> <span class="na">class=</span><span class="s">"select-ajax"</span> <span class="na">placeholder=</span><span class="s">"Pick a repository..."</span><span class="nt">&gt;&lt;/select&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">$wrapper</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.selectized'</span><span class="p">);</span>
+
+    <span class="c1">// show current input values</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'select.select-ajax'</span><span class="p">,</span> <span class="nx">$wrapper</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">$input</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">$value</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#ajax-value'</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">update</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="nx">$value</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">$input</span><span class="p">.</span><span class="nx">val</span><span class="p">()));</span> <span class="p">}</span>
+
+      <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'change'</span><span class="p">,</span> <span class="nx">update</span><span class="p">);</span>
+      <span class="nx">update</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#select-remote'</span><span class="p">).</span><span class="nx">selectize</span><span class="p">({</span>
+      <span class="na">valueField</span><span class="p">:</span> <span class="s1">'url'</span><span class="p">,</span>
+      <span class="na">labelField</span><span class="p">:</span> <span class="s1">'name'</span><span class="p">,</span>
+      <span class="na">searchField</span><span class="p">:</span> <span class="s1">'name'</span><span class="p">,</span>
+      <span class="na">options</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="na">create</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="na">render</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">option</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">escape</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="s1">'&lt;div&gt;'</span> <span class="o">+</span>
+            <span class="s1">'&lt;dl&gt;'</span> <span class="o">+</span>
+            <span class="s1">'&lt;dt&gt;&lt;span&gt;&lt;i class="fa fa-paperclip"&gt;&lt;/i&gt; '</span> <span class="o">+</span> <span class="nx">escape</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'&lt;/span&gt;'</span> <span class="o">+</span>
+            <span class="s1">'&lt;span&gt; by '</span> <span class="o">+</span> <span class="nx">escape</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">username</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'&lt;/span&gt;'</span> <span class="o">+</span>
+            <span class="s1">'&lt;/dt&gt;'</span> <span class="o">+</span>
+            <span class="s1">'&lt;dd&gt;&lt;span&gt;'</span> <span class="o">+</span> <span class="nx">escape</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">description</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'&lt;/span&gt;&lt;/dd&gt;'</span> <span class="o">+</span>
+            <span class="s1">'&lt;/dl&gt;'</span> <span class="o">+</span>
+            <span class="s1">'&lt;/div&gt;'</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="na">score</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">search</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">score</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getScoreFunction</span><span class="p">(</span><span class="nx">search</span><span class="p">);</span>
+        <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">score</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">watchers</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+        <span class="p">};</span>
+      <span class="p">},</span>
+      <span class="na">load</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">query</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="k">return</span> <span class="nx">callback</span><span class="p">();</span>
+        <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+          <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.github.com/legacy/repos/search/'</span> <span class="o">+</span> <span class="nb">encodeURIComponent</span><span class="p">(</span><span class="nx">query</span><span class="p">),</span>
+          <span class="na">type</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+          <span class="na">error</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">callback</span><span class="p">();</span>
+          <span class="p">},</span>
+          <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">callback</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">repositories</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
+          <span class="p">}</span>
+        <span class="p">});</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">})</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+
+  </div>
+</div>
+
+</div>
+
+</body>
+
+</html>
+

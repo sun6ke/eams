@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Bootstrap Color Picker</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Bootstrap Color Picker</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://mjolnic.com/bootstrap-colorpicker/">Bootstrap Color Picker</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <form action="bootstrap-selector.html" id="colorpicker-form">
+
+      <div class="form-group">
+        <label class="control-label">Hex Mode</label>
+
+        <input type="text" class="form-control" value="#8fff00" id="cp1">
+
+<script>
+  $(function () {
+
+    $('#cp1').colorpicker({
+      format: 'hex'
+    });
+
+  })
+</script>
+
+        <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">value=</span><span class="s">"#8fff00"</span> <span class="na">id=</span><span class="s">"cp1"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#cp1'</span><span class="p">).</span><span class="nx">colorpicker</span><span class="p">({</span>
+      <span class="na">format</span><span class="p">:</span> <span class="s1">'hex'</span>
+    <span class="p">});</span>
+
+  <span class="p">})</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Rgba Mode</label>
+
+        <input type="text" class="form-control" value="rgb(0,194,255,0.78)" id="cp2">
+
+<script>
+  $(function () {
+
+    $('#cp2').colorpicker({
+      format: 'rgba'
+    });
+
+  })
+</script>
+
+        <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">value=</span><span class="s">"rgb(0,194,255,0.78)"</span> <span class="na">id=</span><span class="s">"cp2"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#cp2'</span><span class="p">).</span><span class="nx">colorpicker</span><span class="p">({</span>
+      <span class="na">format</span><span class="p">:</span> <span class="s1">'rgba'</span>
+    <span class="p">});</span>
+
+  <span class="p">})</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Component Mode</label>
+
+        <div class="input-group" id="cp3">
+  <span class="input-group-addon"><i style="background-color: rgb(255, 146, 180)"></i></span>
+  <input type="text" value="" readonly="" class="form-control" id="cp3-1">
+</div>
+
+<script>
+  $(function () {
+
+    $('#cp3').colorpicker();
+
+  })
+</script>
+
+        <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"input-group"</span> <span class="na">id=</span><span class="s">"cp3"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"input-group-addon"</span><span class="nt">&gt;&lt;i</span> <span class="na">style=</span><span class="s">"background-color: rgb(255, 146, 180)"</span><span class="nt">&gt;&lt;/i&gt;&lt;/span&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">value=</span><span class="s">""</span> <span class="na">readonly=</span><span class="s">""</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">id=</span><span class="s">"cp3-1"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#cp3'</span><span class="p">).</span><span class="nx">colorpicker</span><span class="p">();</span>
+
+  <span class="p">})</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">changeColor Event Example</label>
+        <br/>
+        <a href="#" class="btn btn-info" id="cp4">Change background color</a>
+
+<script>
+  $(function () {
+
+    var bodyStyle = $('body')[0].style;
+    $('#cp4').colorpicker().on('changeColor', function (ev) {
+      bodyStyle.backgroundColor = ev.color.toHex();
+    });
+
+  })
+</script>
+
+        <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-info"</span> <span class="na">id=</span><span class="s">"cp4"</span><span class="nt">&gt;</span>Change background color<span class="nt">&lt;/a&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">bodyStyle</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'body'</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">style</span><span class="p">;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#cp4'</span><span class="p">).</span><span class="nx">colorpicker</span><span class="p">().</span><span class="nx">on</span><span class="p">(</span><span class="s1">'changeColor'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">ev</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">bodyStyle</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="nx">ev</span><span class="p">.</span><span class="nx">color</span><span class="p">.</span><span class="nx">toHex</span><span class="p">();</span>
+    <span class="p">});</span>
+
+  <span class="p">})</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+      </div>
+
+    </form>
+
+
+  </div>
+</div>
+
+
+<script>
+  $(function () {
+
+    //
+    // Bootstrap colorpicker
+    //------------------------------
+    $('#cp1').colorpicker({
+      format: 'hex'
+    });
+    $('#cp2').colorpicker({
+      format: 'rgba'
+    });
+    $('#cp3').colorpicker();
+    var bodyStyle = $('body')[0].style;
+    $('#cp4').colorpicker().on('changeColor', function (ev) {
+      bodyStyle.backgroundColor = ev.color.toHex();
+    });
+
+  })
+</script>
+
+</div>
+
+</body>
+
+</html>
+

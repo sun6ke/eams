@@ -1,0 +1,289 @@
+[
+  {
+    "id": 0,
+    "parentId": null,
+    "title": "Home",
+    "href": "welcome/",
+    "appendDivider": false
+  },
+  {
+    "id": 1,
+    "parentId": null,
+    "title": "Component Menu",
+    "href": "",
+    "appendDivider": false
+  },
+  {
+    "id": 2,
+    "parentId": null,
+    "title": "Design Kit Menu",
+    "href": "",
+    "appendDivider": false
+  },
+  {
+    "id": 3,
+    "parentId": null,
+    "title": "Time table",
+    "href": "time-table/",
+    "appendDivider": false
+  },
+  {
+    "id": 50,
+    "parentId": null,
+    "title": "Data Tables",
+    "href": "data-table/",
+    "appendDivider": false
+  },
+  {
+    "id": 4,
+    "parentId": 1,
+    "title": "UI Element",
+    "href": "#",
+    "appendDivider": false
+  },
+  {
+    "id": 5,
+    "parentId": 1,
+    "title": "Form",
+    "href": "#",
+    "appendDivider": false
+  },
+  {
+    "id": 6,
+    "parentId": 1,
+    "title": "Tables",
+    "href": "#",
+    "appendDivider": false
+  },
+  {
+    "id": 7,
+    "parentId": 4,
+    "title": "Basic Element",
+    "href": "element/",
+    "appendDivider": false
+  },
+  {
+    "id": 8,
+    "parentId": 4,
+    "title": "Typoghrapy",
+    "href": "typography/",
+    "appendDivider": false
+  },
+  {
+    "id": 9,
+    "parentId": 4,
+    "title": "PNotify",
+    "href": "pnotify/",
+    "appendDivider": true
+  },
+  {
+    "id": 10,
+    "parentId": 4,
+    "title": "Bootstrap Switch",
+    "href": "switch/",
+    "appendDivider": false
+  },
+  {
+    "id": 11,
+    "parentId": 4,
+    "title": "jQuery Steps",
+    "href": "steps/",
+    "appendDivider": false
+  },
+  {
+    "id": 12,
+    "parentId": 4,
+    "title": "Tab",
+    "href": "tabs/",
+    "appendDivider": false
+  },
+  {
+    "id": 13,
+    "parentId": 4,
+    "title": "Typeahead",
+    "href": "typeahead-examples/",
+    "appendDivider": false
+  },
+  {
+    "id": 20,
+    "parentId": 5,
+    "title": "Basic",
+    "href": "form/",
+    "appendDivider": false
+  },
+  {
+    "id": 21,
+    "parentId": 5,
+    "title": "Bootstrap Selector",
+    "href": "bootstrap-selector/",
+    "appendDivider": false
+  },
+  {
+    "id": 22,
+    "parentId": 5,
+    "title": "Color Picker",
+    "href": "color-picker/",
+    "appendDivider": false
+  },
+  {
+    "id": 23,
+    "parentId": 5,
+    "title": "Date Picker",
+    "href": "date-picker/",
+    "appendDivider": false
+  },
+  {
+    "id": 24,
+    "parentId": 5,
+    "title": "Masked Input",
+    "href": "maskedinput/",
+    "appendDivider": false
+  },
+  {
+    "id": 25,
+    "parentId": 5,
+    "title": "Tags Input",
+    "href": "tagsinput/",
+    "appendDivider": false
+  },
+  {
+    "id": 26,
+    "parentId": 5,
+    "title": "Typeahead",
+    "href": "typeahead/",
+    "appendDivider": false
+  },
+  {
+    "id": 27,
+    "parentId": 5,
+    "title": "Validation",
+    "href": "validation/",
+    "appendDivider": false
+  },
+  {
+    "id": 28,
+    "parentId": 5,
+    "title": "Validation With Steps",
+    "href": "validation-steps/",
+    "appendDivider": false
+  },
+  {
+    "id": 29,
+    "parentId": 5,
+    "title": "Selectize",
+    "href": "selectize/",
+    "appendDivider": false
+  },
+  {
+    "id": 30,
+    "parentId": 5,
+    "title": "Selectize Form",
+    "href": "selectize-form/",
+    "appendDivider": false
+  },
+  {
+    "id": 31,
+    "parentId": 5,
+    "title": "Form Util",
+    "href": "form-util/",
+    "appendDivider": false
+  },
+  {
+    "id": 32,
+    "parentId": 5,
+    "title": "Form Util Extend",
+    "href": "form-util-extend/",
+    "appendDivider": false
+  },
+  {
+    "id": 33,
+    "parentId": 5,
+    "title": "jQuery Step",
+    "href": "step-validate/",
+    "appendDivider": false
+  },
+  {
+    "id": 35,
+    "parentId": 6,
+    "title": "Static Table",
+    "href": "table-static/",
+    "appendDivider": false
+  },
+  {
+    "id": 36,
+    "parentId": 6,
+    "title": "Dynamic Table",
+    "href": "table-dynamic/",
+    "appendDivider": true
+  },
+  {
+    "id": 37,
+    "parentId": 6,
+    "title": "Tree Table",
+    "href": "treefy/",
+    "appendDivider": false
+  },
+  {
+    "id": 38,
+    "parentId": 6,
+    "title": "Schedule Table",
+    "href": "schedule-table/",
+    "appendDivider": false
+  },
+  {
+    "id": 39,
+    "parentId": 6,
+    "title": "Table Menu Util",
+    "href": "table-menu-util/",
+    "appendDivider": false
+  },
+  {
+    "id": 40,
+    "parentId": 2,
+    "title": "Icons",
+    "href": "icon/",
+    "appendDivider": false
+  },
+  {
+    "id": 41,
+    "parentId": 2,
+    "title": "Time Line",
+    "href": "timeline/",
+    "appendDivider": false
+  },
+  {
+    "id": 42,
+    "parentId": 2,
+    "title": "嵌套iframe",
+    "href": "nested-iframe/",
+    "appendDivider": false
+  },
+  {
+    "id": 43,
+    "parentId": 2,
+    "title": "Error Page",
+    "href": "error.html",
+    "appendDivider": false
+  },
+  {
+    "id": 44,
+    "parentId": 2,
+    "title": "Login",
+    "href": "login.html",
+    "appendDivider": false
+  },
+  {
+    "id": 45,
+    "parentId": 2,
+    "title": "查询",
+    "href": "search/",
+    "appendDivider": false
+  },
+  {
+    "id": 46,
+    "parentId": 2,
+    "title": "ECharts",
+    "href": "echarts/",
+    "appendDivider": false
+  }
+]

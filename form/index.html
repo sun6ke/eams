@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Basic Form Control</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Form</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://getbootstrap.com/css/#forms">Forms</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Basic Form</h2>
+
+    <p>
+      Doc:
+      <a target="_blank" href="http://getbootstrap.com/css/#forms-example">Basic example</a>
+    </p>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <form action="#" id="contact-form">
+
+      <div class="form-group">
+        <label class="control-label">Minimal Controls</label>
+        <div id="upload-demo" class=""></div>
+        <div class="actions text-center">
+          <a class="btn file-btn btn-primary">
+            <span>选择...</span>
+            <input type="file" id="upload" value="Choose a file" accept="image/*">
+          </a>
+          <button class="upload-result btn btn-primary">确定</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="inputFile1">Input File</label>
+
+        <input id="inputFile1" type="file" class=""/>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="name">Input</label>
+        <input type="text" class="form-control" name="name" id="name">
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="message">Textarea</label>
+        <textarea class="form-control" name="message" id="message" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="date">Input group</label>
+
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-calendar"></i>
+          </div>
+          <input type="text" class="form-control" name="date" id="date">
+          <span class="input-group-addon ">99/99/9999</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="select">
+          Select
+        </label>
+        <select class="form-control" name="select" id="select">
+          <option value="">...</option>
+          <option value="1">Option A</option>
+          <option value="2">Option B</option>
+          <option value="3">Option C</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="multiple-select">
+          Multiple Select
+        </label>
+        <select class="form-control" name="multiple-select" id="multiple-select" multiple>
+          <option value="1">Option A</option>
+          <option value="2">Option B</option>
+          <option value="3">Option C</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Checkbox</label>
+
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="" name="cb-option">
+            Option one is this and that&mdash;be sure to include why it's great
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="" name="cb-option">
+            Option two is disabled
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Checkbox inline</label>
+
+        <div class="checkbox">
+          <label class="checkbox-inline">
+            <input type="checkbox" value="" name="cb-option">
+            Option one
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" value="" name="cb-option">
+            Option two
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Radio</label>
+
+        <div class="radio">
+          <label>
+            <input type="radio" value="" name="rd-option">
+            Option one is this and that&mdash;be sure to include why it's great
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" value="" name="rd-option">
+            Option two is disabled
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Radio inline</label>
+
+        <div class="radio">
+          <label class="radio-inline">
+            <input type="radio" value="" name="rd-option">
+            Option one
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="" name="rd-option">
+            Option two
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-default">Cancel</button>
+      </div>
+
+
+    </form>
+
+  </div>
+</div>
+
+
+<hr/>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Horizontal Form</h2>
+
+    <p>
+      Doc:
+      <a target="_blank" href="http://getbootstrap.com/css/#forms-horizontal">Horizontal form</a>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <form action="#" id="contact-form1" class="form-horizontal ">
+      <fieldset>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="inputFile">Input File</label>
+
+          <div class="col-sm-10">
+            <input id="inputFile" type="file" class="file" data-show-preview="false" data-show-upload="false" data-language="zh"/>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="name1">Your Name</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="name" id="name1">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="message1">Your Message</label>
+
+          <div class="col-sm-10">
+            <textarea class="form-control" name="message" id="message1" rows="3"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="select1">
+            Select
+          </label>
+
+          <div class="col-sm-10">
+            <select name="select1" class="form-control" id="select1" data-style="btn-info">
+              <option value="">...</option>
+              <option value="1">Option A</option>
+              <option value="2">Option B</option>
+              <option value="3">Option C</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="multiple-select1">
+            Multiple Select
+          </label>
+
+          <div class="col-sm-10">
+            <select name="multiple-select1" id="multiple-select1" multiple class="form-control" data-max-options="2">
+              <option value="1">Option A</option>
+              <option value="2">Option B</option>
+              <option value="3">Option C</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">Checkbox</label>
+
+          <div class="col-sm-10">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="" name="cb-option">
+                Option one is this and that&mdash;be sure to include why it's great
+              </label>
+            </div>
+            <div class="checkbox disabled">
+              <label>
+                <input type="checkbox" value="" disabled name="cb-option">
+                Option two is disabled
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-default">Cancel</button>
+          </div>
+        </div>
+
+      </fieldset>
+
+    </form>
+
+  </div>
+</div>
+
+
+<hr/>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Inline Form</h2>
+
+    <p>
+      Doc:
+      <a target="_blank" href="http://getbootstrap.com/css/#forms-inline">Inline form</a>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <form id='inline-form' class="form-inline " action="#">
+
+      <div class="form-group">
+        <label for="exampleInputName2">Name</label>
+        <input type="text" class="form-control" id="exampleInputName2" name="name" placeholder="Jane Doe">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail2">Email</label>
+        <input type="email" class="form-control" id="exampleInputEmail2" name="email"
+               placeholder="jane.doe@example.com">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Send invitation</button>
+
+    </form>
+
+  </div>
+</div>
+
+
+<hr/>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Inline Form 2</h2>
+
+    <p>
+      Doc:
+      <a target="_blank" href="http://getbootstrap.com/css/#forms-inline">Inline form</a>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-sm-12">
+
+    <form id='inline-form2' class="form-inline " action="#">
+
+      <div class="form-group">
+        <label for="date2">Date</label>
+
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-calendar"></i>
+          </div>
+          <input type="text" class="form-control" name="date2" id="date2">
+          <span class="input-group-addon ">99/99/9999</span>
+        </div>
+      </div>
+
+      <div class="checkbox">
+        <label class="checkbox-inline">
+          <input type="checkbox" value="" name="cb-option">
+          Option one
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" value="" name="cb-option">
+          Option two
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Send invitation</button>
+
+    </form>
+
+  </div>
+</div>
+
+
+<hr/>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Other Elements</h2>
+
+    <p>
+      Doc:
+      <a target="_blank" href="http://getbootstrap.com/css/#forms-controls">Supported controls</a>,
+      <a target="_blank" href="http://getbootstrap.com/css/#forms-controls-static">Static control</a>,
+      <a target="_blank" href="http://getbootstrap.com/css/#forms-control-focus">Focus state</a>,
+      <a target="_blank" href="http://getbootstrap.com/css/#forms-control-disabled">Disabled state</a>,
+      <a target="_blank" href="http://getbootstrap.com/css/#forms-control-readonly">Readonly state</a>,
+      <a target="_blank" href="http://getbootstrap.com/css/#forms-control-validation">Validation states</a>,
+      <a target="_blank" href="http://getbootstrap.com/css/#forms-control-sizes">Control sizing</a>,
+      <a target="_blank" href="http://getbootstrap.com/css/#forms-help-text">Help text</a>,
+
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <form method="get" class="form-horizontal">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Help text</label>
+
+        <div class="col-sm-6">
+          <input type="text" class="form-control">
+          <span
+            class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Disabled</label>
+
+        <div class="col-sm-6">
+          <input type="text" disabled="" placeholder="Disabled input here..." id="disabledInput" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Placeholder</label>
+
+        <div class="col-sm-6">
+          <input type="text" placeholder="placeholder" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Static control</label>
+
+        <div class="col-sm-6">
+          <p class="form-control-static">email@example.com
+          </p>
+        </div>
+      </div>
+      <div class="form-group has-success">
+        <label for="inputSuccess" class="col-sm-3 control-label">Input with success</label>
+
+        <div class="col-sm-6">
+          <input type="text" id="inputSuccess" class="form-control">
+        </div>
+      </div>
+      <div class="form-group has-warning">
+        <label for="inputWarning" class="col-sm-3 control-label">Input with warning</label>
+
+        <div class="col-sm-6">
+          <input type="text" id="inputWarning" class="form-control">
+        </div>
+      </div>
+      <div class="form-group has-error">
+        <label for="inputError" class="col-sm-3 control-label col-lg-3">Input with error</label>
+
+        <div class="col-sm-6">
+          <input type="text" id="inputError" class="form-control">
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
+<script>
+
+  $(function () {
+    function readFile(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          $uploadCrop.croppie('bind', {
+            url: e.target.result
+          });
+          $('.upload-demo').addClass('ready');
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+      else {
+        swal("Sorry - you're browser doesn't support the FileReader API");
+      }
+    }
+
+    $uploadCrop = $('#upload-demo').croppie({
+      viewport: {
+        width: 200,
+        height: 200,
+        type: 'circle'
+      },
+      boundary: {
+        width: 300,
+        height: 300
+      },
+      exif: true
+    });
+
+    $('#upload').on('change', function () { readFile(this); });
+    $('.upload-result').on('click', function (ev) {
+      $uploadCrop.croppie('result', {
+        type: 'canvas',
+        showZoomer: false,
+        size: {
+          width: 100,
+          height: 100
+        }
+      }).then(function (resp) {
+       console.log(resp);
+      });
+    });
+
+
+    $("#inputFile1").fileinput({'showUpload':false, 'previewFileType':'any'});
+  });
+</script>
+
+
+</div>
+
+</body>
+
+</html>
+

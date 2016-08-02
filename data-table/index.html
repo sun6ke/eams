@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Data Table</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <style>
+  .dataTable > tbody > tr > td {
+    vertical-align: middle;
+  }
+
+  .global_filter {
+    width: 80%;
+    height: 33px;
+    padding: 6px 12px;
+    font-size: 13px;
+    line-height: 1.53846154;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  }
+
+  .filter-column {
+    padding-top: 15px;
+    font-size: 14px;
+  }
+  .filter-column a {
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .filter-column li.filter-condition.selected {
+    background-color: #428bca;
+  }
+  .filter-column li.filter-condition.selected > a {
+    color: #fff;
+  }
+  .addable-lesson {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    height: auto;
+    padding: 10px 10px 0px 10px;
+    font-size: 14px;
+  }
+  .addable-lesson > .row {
+    padding-bottom: 8px;
+  }
+  .progress {
+    margin-bottom: 0px!important;
+  }
+
+  .course-select-status-div {
+    width: 300px;
+    position: absolute;
+    right: 15px;
+    z-index: 1000;
+    border: 1px solid #cecece;
+    background-color: #ddd;
+    display: none;
+  }
+  .course-select-status-div:after {
+    position: absolute;
+    top: -10px;
+    left: 80%;
+    z-index: 1;
+    display: block;
+    width: 0;
+    margin-left: -15px;
+    content: "";
+    border-color: #ddd rgba(0, 0, 0, 0);
+    border-style: solid;
+    border-width: 0 13px 13px;
+  }
+  .turn-title {
+    font-size: 27px;
+  }
+</style>
+<div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>DataTables</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="https://datatables.net/">DataTables</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+
+<div class="row" style="padding-bottom: 15px">
+  <div class="col col-sm-8 text-left">
+    <span class="turn-title">2015-2016学年第1学期预选</span>
+  </div>
+  <div class="col col-sm-4 text-right text-vertical-middle">
+    <button class="btn btn-default">返回选课批次</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col col-sm-9">
+    <ul id="tabs" class="nav nav-pills" data-tabs="tabs">
+      <li class="active"><a href="#all-lesson" data-toggle="tab">全校选课</a></li>
+      <li><a href="#programs" data-toggle="tab">培养方案选课</a></li>
+      <li><a href="#failing-lesson" data-toggle="tab">不及格课程</a></li>
+      <li><a href="#selected-lesson" data-toggle="tab">已选课程</a></li>
+    </ul>
+  </div>
+  <div class="col col-sm-3 text-right"><span style="white-space: pre-wrap;">剩余货币值：65    </span>
+    <button class="btn btn-primary course-select-status">我的选课状态</button>
+  </div>
+  <div class="course-select-status-div" style="padding-top: 15px;padding-bottom: 15px">
+    <div class="col col-sm-12">
+      已选学分/上限：26.5 / 30
+    </div>
+    <div class="col col-sm-12" style="padding-bottom: 15px">
+      <div class="progress">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+        </div>
+      </div>
+    </div>
+    <div class="col col-sm-12">
+      已选门数/上限：6 / 14
+    </div>
+    <div class="col col-sm-12" style="padding-bottom: 15px">
+      <div class="progress">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+        </div>
+      </div>
+    </div>
+    <div class="col col-sm-12">
+      <button class="btn btn-default">我的选课课表</button>
+    </div>
+  </div>
+</div>
+
+<div id="my-tab-content" class="tab-content" style="padding-top: 15px">
+  <div id="all-lesson" class="tab-pane active">
+    <div class="row">
+      <div class="col col-sm-12">
+        <div style="background-color: #ddd; padding: 10px">
+          <div class="row">
+            <div class="col col-sm-12">
+              <i class="fa fa-search text-primary"></i>&nbsp;<input type="text" class="global_filter" id="global_filter"/>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col col-sm-12 filter-column">
+              <ul class="list-inline">
+                <li>课程类别</li>
+                <li class="filter-condition"><a>通修类课程</a></li>
+                <li class="filter-condition"><a>通修类课程</a></li>
+                <li class="filter-condition"><a>公共选修</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <table id="example" class="table dataTable" cellspacing="0" width="100%">
+          <thead class="text-primary">
+            <tr>
+              <th width="8%">课程号</th>
+              <th width="15%">课程名称</th>
+              <th width="9%">教学班代码</th>
+              <th width="8%">学分</th>
+              <th width="15%">时间地点</th>
+              <th width="10%">授课教师</th>
+              <th width="10%">课程类别</th>
+              <th width="20%">当前容量</th>
+              <th class="sorting_disabled" width="5%"></th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td colspan="9">
+              <div class="col col-sm-3">
+                <div class="addable-lesson">
+                  <div class="row">
+                    <div class="col col-sm-5 text-left text-primary" style="padding-right: 0px">61000220.01</div>
+                    <div class="col col-sm-2 text-center" style="padding: 0px">考试</div>
+                    <div class="col col-sm-5 text-right" style="padding-left: 0px">实验环节必修</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col col-sm-12">
+                      <i class="fa fa-calendar text-primary"></i>&nbsp;&nbsp;周二 7-8节 2-15周
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col col-sm-12">
+                      <i class="fa fa-user text-primary"></i>&nbsp;&nbsp;陈静
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col col-sm-6">
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                        </div>
+                      </div>
+                      <div class="progress-text text-center">20/100</div>
+                    </div>
+                    <div class="col col-sm-6 text-right">
+                      <a class="btn btn-primary">选课</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col col-sm-3">
+                <div class="addable-lesson">
+                  <div class="row">
+                    <div class="col col-sm-5 text-left text-primary" style="padding-right: 0px">61000220.01</div>
+                    <div class="col col-sm-2 text-center" style="padding: 0px">考试</div>
+                    <div class="col col-sm-5 text-right" style="padding-left: 0px">实验环节必修</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col col-sm-12">
+                      <i class="fa fa-calendar text-primary"></i>&nbsp;&nbsp;周二 7-8节 2-15周
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col col-sm-12">
+                      <i class="fa fa-user text-primary"></i>&nbsp;&nbsp;陈静
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col col-sm-6">
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                        </div>
+                      </div>
+                      <div class="progress-text text-center">20/100</div>
+                    </div>
+                    <div class="col col-sm-6 text-right">
+                      <a class="btn btn-primary">选课</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col col-sm-3">dsdsds</div>
+              <div class="col col-sm-3">dsdsds</div>
+            </td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          <tr>
+            <td>61000220</td>
+            <td>创业营销</td>
+            <td>00001</td>
+            <td>3.0</td>
+            <td>周二 7-8节 2-15周</td>
+            <td>陈静</td>
+            <td>公共选修</td>
+            <td></td>
+            <td><button class="btn btn-primary">选课</button></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-pane" id="programs">
+    <h1>Orange</h1>
+    <p>orange orange orange orange orange</p>
+  </div>
+</div>
+<script>
+  $(function() {
+
+    function filterColumn ( i, filterVal ) {
+      $('#example').DataTable().column( i ).search(filterVal, false, true).draw();
+    }
+
+    function filterGlobal () {
+      $('#example').DataTable().search($('#global_filter').val(), false, true).draw();
+    }
+
+
+    $(".filter-condition").click(function() {
+      $(".filter-condition").removeClass("selected");
+      $(this).addClass("selected");
+      filterColumn(6, $(this).text());
+    });
+
+    $('input.global_filter').on( 'keyup click', function () {
+      filterGlobal();
+    });
+
+    $('#example').DataTable({
+      "pagingType": "full",
+      "dom": 'rt<"row"<"col-md-5"i><"col-md-7"p>>',
+      "language": {
+        "info": "<a class='btn btn-default disabled'>_START_-_END_ of _TOTAL_</button>",
+        "infoEmpty": "<a class='btn btn-default disabled'>_START_-_END_ of _TOTAL_</button>",
+        "sInfoFiltered": "",
+        "sZeroRecords": "无数据",
+        "search": "<a><i class='fa fa-search'></i></a> _INPUT_ <br/>",
+        "paginate": {
+          "next": '<i class="fa fa-angle-right title-icon"></i>',
+          "previous": '<i class="fa fa-angle-left title-icon"></i>',
+          "first": '<i class="fa fa-angle-double-left title-icon"></i>',
+          "last": '<i class="fa fa-angle-double-right title-icon"></i>'
+        }
+      },
+//      "ordering": false
+    });
+
+    $(".course-select-status").on('click', function(event) {
+      var $courseSelectStatus = $(".course-select-status-div");
+      if ($courseSelectStatus.is(":visible")) {
+        $(".course-select-status-div").hide();
+      } else {
+        $(".course-select-status-div").css('top', $(event.target).offset().top + $(event.target).outerHeight() + 15 + 'px');
+        $(".course-select-status-div").show();
+      }
+    });
+  });
+</script>
+
+</div>
+
+</body>
+
+</html>
+

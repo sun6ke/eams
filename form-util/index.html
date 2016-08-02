@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Form Util</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Form Util</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://getbootstrap.com/css/#forms">Forms</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Basic Form</h2>
+
+    <p>
+      Doc:
+      <a target="_blank" href="http://getbootstrap.com/css/#forms-example">Basic example</a>
+    </p>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <form action="#" id="contact-form">
+
+      <div class="form-group">
+        <label class="control-label" for="name">Input</label>
+        <input type="text" class="form-control" name="name" id="name">
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="message">Textarea</label>
+        <textarea class="form-control" name="message" id="message" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="date">Input group</label>
+
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-calendar"></i>
+          </div>
+          <input type="text" class="form-control" name="date" id="date">
+          <span class="input-group-addon ">99/99/9999</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="select">
+          Select
+        </label>
+        <select class="form-control" name="select" id="select">
+          <option value="">...</option>
+          <option value="1">Option A</option>
+          <option value="2">Option B</option>
+          <option value="3">Option C</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="multiple-select">
+          Multiple Select
+        </label>
+        <select class="form-control" name="multipleSelect" id="multiple-select" multiple>
+          <option value="1">Option A</option>
+          <option value="2">Option B</option>
+          <option value="3">Option C</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Checkbox</label>
+
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="aa" name="cbOption">
+            Option one is this and that&mdash;be sure to include why it's great
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="bb" name="cbOption">
+            Option two is disabled
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Checkbox inline</label>
+
+        <div class="checkbox">
+          <label class="checkbox-inline">
+            <input type="checkbox" value="cc" name="cbOption">
+            Option one
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" value="dd" name="cbOption">
+            Option two
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Radio</label>
+
+        <div class="radio">
+          <label>
+            <input type="radio" value="" name="rd-option">
+            Option one is this and that&mdash;be sure to include why it's great
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" value="" name="rd-option">
+            Option two is disabled
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">Radio inline</label>
+
+        <div class="radio">
+          <label class="radio-inline">
+            <input type="radio" value="" name="rd-option">
+            Option one
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="" name="rd-option">
+            Option two
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button id="submit1" type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-default">Cancel</button>
+      </div>
+
+
+    </form>
+
+  </div>
+</div>
+
+<script>
+  $(function() {
+    $("#submit1").click(function() {
+      FormUtil.addHiddenFields($("#contact-form"), {"courseId": 1, "courseName": "math", "courseName": "english"});
+      var params = FormUtil.getFieldValues($("#contact-form"));
+      var string = "{";
+      for (var key in params) {
+        string = string + key+":"+params[key] + ",";
+      }
+      alert(string.substring(0,string.length-1)+"}");
+    });
+  });
+</script>
+
+<hr/>
+
+<div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Methods</h2>
+    </section>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <h4>
+      <code>FormUtil.addHiddenFields($form, hiddenParams)</code>
+    </h4>
+    <p>给指定form添加隐藏的input field(若该form中有同名input域，则更新input的值为最新的值)</p>
+    <table class="table table-striped table-hover table-condensed">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>$form</td>
+        <td>jquery object</td>
+        <td></td>
+        <td>
+          example:
+          <code>$("#form1")</code>
+        </td>
+      </tr>
+      <tr>
+        <td>hiddenParams</td>
+        <td>array of hash</td>
+        <td>[]</td>
+        <td>
+          example:
+          <br>
+          <code>[{name: "courseId", value: 1}, {name: "courseNme", value: "math"}]</code>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <hr/>
+    <h4>
+      <code>FormUtil.clearFields($form, [fieldNames])</code>
+    </h4>
+    <p>删除指定form下的name为fieldNames的表单域，若fieldNames不填，则删除全部</p>
+    <table class="table table-striped table-hover table-condensed">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>$form</td>
+        <td>jquery object</td>
+        <td></td>
+        <td>
+          example:
+          <code>$("#form1")</code>
+        </td>
+      </tr>
+      <tr>
+        <td>fieldNames</td>
+        <td>array of string</td>
+        <td>可不写</td>
+        <td>
+          example:
+          <code>['courseId','courseNme']</code>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <hr/>
+    <h4>
+      <code>FormUtil.getFieldValues()</code>
+    </h4>
+    <p>返回值: hash数组, example:<code>{"courseId":1, "courseName": "math"}</code> </p>
+    <p>得到表单域的值,有四种传参方式: </p>
+    <code>FormUtil.getFieldValues($form)</code><br/>
+    <code>FormUtil.getFieldValues($form, fieldNames)</code><br/>
+    <code>FormUtil.getFieldValues($form, getEmpty)</code><br/>
+    <code>FormUtil.getFieldValues($form, fieldNames, getEmpty)</code>
+    <table class="table table-striped table-hover table-condensed">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>$form</td>
+        <td>jquery object</td>
+        <td></td>
+        <td>
+          example:
+          <code>$("#form1")</code>
+        </td>
+      </tr>
+      <tr>
+        <td>fieldNames</td>
+        <td>array of string</td>
+        <td>可不写</td>
+        <td>
+          只得到指定name的值的域<br/>
+          example:<code>['courseId','courseNme']</code>
+        </td>
+      </tr>
+      <tr>
+        <td>getEmpty</td>
+        <td>boolean</td>
+        <td>true</td>
+        <td>
+          getEmpty为false将不得到任何表单域的值
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <hr/>
+  </div>
+</div>
+
+</div>
+
+</body>
+
+</html>
+

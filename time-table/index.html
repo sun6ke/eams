@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Time line</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <link type="text/css" rel="stylesheet" href="css/index.css"/>
+<div class="schedule-arrange-index">
+
+  <div class="center-div">
+    <div class="row" style="padding-top: 35px;padding-bottom: 15px">
+      <label class="control-label col-sm-2" for="semester" style="padding-top: 7px">选择学期</label>
+      <div class="col-sm-10">
+        <select class="selectize selectized" name="semesterAssoc" id="semester">
+          <option value="37" selected="selected">2019-2020-春</option>
+          <option value="38">2018-2019-春</option>
+          <option value="39">2018-2019-春</option>
+          <option value="40">2017-2018-春</option>
+          <option value="41">2016-2017-春</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="schedule-state">
+      <div class="content">
+        <h3><i class="fa fa-tachometer" style="color: #22b585"></i>&nbsp;当前排课状态</h3>
+        <div class="state">
+          <div class="row periods">
+            <div class="col col-sm-3 text-center arrange-complete">603</div>
+            <div class="col col-sm-3 text-center arrange-uncomplete">92</div>
+            <div class="col col-sm-3 text-center arrange-uncomplete">92</div>
+            <div class="col col-sm-3 text-center arrange-no">92</div>
+          </div>
+          <div class="row">
+            <div class="col col-sm-3 text-center">已排满课时</div>
+            <div class="col col-sm-3 text-center">未排满课时</div>
+            <div class="col col-sm-3 text-center">任务未安排</div>
+            <div class="col col-sm-3 text-center">任务不安排</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="refresh-collision">
+        <i class="fa fa-refresh fa-spin"></i>
+      </div>
+      <div class="collision">
+        <div class="col col-sm-4"><i class="fa fa-exclamation-circle arrange-uncomplete"></i>&nbsp;&nbsp;<span class="arrange-uncomplete">13</span>&nbsp;教师冲突</div>
+        <div class="col col-sm-4"><i class="fa fa-exclamation-circle arrange-uncomplete"></i>&nbsp;&nbsp;<span class="arrange-uncomplete">13</span>&nbsp;班级冲突</div>
+        <div class="col col-sm-4"><i class="fa fa-exclamation-circle arrange-no"></i>&nbsp;&nbsp;<span>0</span>&nbsp;教室冲突</div>
+      </div>
+      <div class="footer"><a href="/eams/time-table/time-table">进入排课</a></div>
+    </div>
+  </div>
+
+</div>
+<script>
+  $(function() {
+    $(".selectize").selectize({});
+  });
+</script>
+
+</div>
+
+</body>
+
+</html>
+

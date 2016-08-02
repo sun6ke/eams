@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Tabs</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Tabs</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://getbootstrap.com/javascript/#tabs">Tab</a>,
+        <a target="_blank" href="http://getbootstrap.com/components/#nav-tabs">Tabs</a>,
+        <a target="_blank" href="http://getbootstrap.com/components/#tabs-with-dropdowns">Tabs with dropdowns</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <div role="tabpanel">
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
+                                                  data-toggle="tab">Home</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a>
+        </li>
+        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a>
+        </li>
+
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+            Dropdown <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="#dropdown-tab-pane-1" aria-controls="messages" role="tab" data-toggle="tab">@supwisdom</a>
+            </li>
+            <li>
+              <a href="#dropdown-tab-pane-2" aria-controls="messages" role="tab" data-toggle="tab">@ekingstar</a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active fade in" id="home">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut nulla nunc. Maecenas arcu sem, hendrerit a
+          tempor quis, sagittis accumsan tellus. In hac habitasse platea dictumst. Donec a semper dui. Nunc eget quam
+          libero. Nam at felis metus. Nam tellus dolor, tristique ac tempus nec, iaculis quis nisi
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="profile">
+          Donec mi sapien, hendrerit nec egestas a, rutrum vitae dolor. Nullam venenatis diam ac ligula elementum
+          pellentesque. In lobortis sollicitudin felis non eleifend. Morbi tristique tellus est, sed tempor elit.
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="messages">
+          Vestibulum eleifend varius ullamcorper. Aliquam erat volutpat. Donec diam massa, porta vel dictum sit amet,
+          iaculis ac massa. Sed elementum dui commodo lectus sollicitudin in auctor mauris venenatis
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="settings">
+          Quisque at sem turpis, id sagittis diam. Suspendisse malesuada eros posuere mauris vehicula vulputate. Aliquam
+          sed sem tortor. Quisque sed felis ut mauris feugiat iaculis nec ac lectus. Sed consequat vestibulum purus,
+          imperdiet
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="dropdown-tab-pane-1">
+          @supwisdom
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="dropdown-tab-pane-2">
+          @ekingstar
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<hr/>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Pills</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://getbootstrap.com/components/#nav-pills">Pills</a>,
+        <a target="_blank" href="http://getbootstrap.com/components/#pills-with-dropdowns">Pills with dropdowns</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <div role="tabpanel">
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-pills" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#home-1" aria-controls="home" role="tab" data-toggle="tab">Home</a>
+        </li>
+        <li role="presentation">
+          <a href="#profile-1" aria-controls="profile" role="tab" data-toggle="tab">Profile</a>
+        </li>
+        <li role="presentation">
+          <a href="#messages-1" aria-controls="messages" role="tab" data-toggle="tab">Messages</a>
+        </li>
+        <li role="presentation">
+          <a href="#settings-1" aria-controls="settings" role="tab" data-toggle="tab">Settings</a>
+        </li>
+
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+            Dropdown <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="#dropdown-tab-pane-1-1" aria-controls="messages" role="tab" data-toggle="tab">@supwisdom</a>
+            </li>
+            <li>
+              <a href="#dropdown-tab-pane-2-1" aria-controls="messages" role="tab" data-toggle="tab">@ekingstar</a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active fade in" id="home-1">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut nulla nunc. Maecenas arcu sem, hendrerit a
+          tempor quis, sagittis accumsan tellus. In hac habitasse platea dictumst. Donec a semper dui. Nunc eget quam
+          libero. Nam at felis metus. Nam tellus dolor, tristique ac tempus nec, iaculis quis nisi
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="profile-1">
+          Donec mi sapien, hendrerit nec egestas a, rutrum vitae dolor. Nullam venenatis diam ac ligula elementum
+          pellentesque. In lobortis sollicitudin felis non eleifend. Morbi tristique tellus est, sed tempor elit.
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="messages-1">
+          Vestibulum eleifend varius ullamcorper. Aliquam erat volutpat. Donec diam massa, porta vel dictum sit amet,
+          iaculis ac massa. Sed elementum dui commodo lectus sollicitudin in auctor mauris venenatis
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="settings-1">
+          Quisque at sem turpis, id sagittis diam. Suspendisse malesuada eros posuere mauris vehicula vulputate. Aliquam
+          sed sem tortor. Quisque sed felis ut mauris feugiat iaculis nec ac lectus. Sed consequat vestibulum purus,
+          imperdiet
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="dropdown-tab-pane-1-1">
+          @supwisdom
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="dropdown-tab-pane-2-1">
+          @ekingstar
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+</div>
+
+</body>
+
+</html>
+

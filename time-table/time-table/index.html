@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Time line</title>
+
+  <link href="../../assets/css/pygments-manni.css" rel="stylesheet">
+  <link href="../../time-table/css/index.css" rel="stylesheet">
+  <link href="../../time-table/css/time-table.css" rel="stylesheet">
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css">-->
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../../dist/js/html5shiv.min.js"></script>
+  <script src="../../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../../dist/js/eams-ui.zh.js"></script>
+  <script src="../../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="table-div lesson-time-table">
+  <div class="lesson-basket">
+    <div class="container-basket">
+      <div class="basket-title">
+        <i class="text-primary fa fa-shopping-basket"></i><span style="color:#515151; padding-left: 5px">高数排课组</span>
+        <a class="text-primary" href="/time-table">返回</a>
+      </div>
+
+      <div class="container-fluid"><hr class="hr"/></div>
+
+      <div class="cards">
+      </div>
+    </div>
+  </div>
+  <div id="arrange-schedule" class="table-div-content arrange-schedule">
+    <div class="container-fluid">
+
+      <div class="row toolbar" style="padding-top: 10px">
+        <div class="col-sm-4">
+          <button type="button" class="btn btn-primary btn-sm btn-wide">提交</button>
+        </div>
+        <div class="col-sm-8">
+          <button type="button" class="btn btn-primary btn-sm btn-wide">设置课程组</button>
+          <button type="button" class="btn btn-primary btn-sm btn-wide">检测学生时间冲突</button>
+          <div class="btn-group btn-group-sm" role="group">
+            <div class="btn-group btn-group-sm" role="group">
+              <button type="button" class="dropdown-toggle btn btn-default" data-toggle="dropdown" aria-expanded="true">
+                冲突显示&nbsp;<i class="fa fa-caret-down"></i>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#"><label class="checkbox-inline"><input type="checkbox" value="1" checked="checked">行政班冲突</label></a></li>
+                <li><a href="#"><label class="checkbox-inline"><input type="checkbox" value="2" checked="checked">教师冲突</label></a></li>
+                <li><a href="#"><label class="checkbox-inline"><input type="checkbox" value="3" checked="checked">专业冲突</label></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="nav-toolbar"><i class="fa fa-eye-slash"></i><a>隐藏其他已排课程</a></div>
+          <div class="nav-toolbar"><i class="fa fa-eye-slash"></i><a class="hide-weekend">隐藏周末</a></div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<div id="tblStyleControl" style="display: none;z-index: 2000;">
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#">全选</a></li>
+    <li><a href="#">单周</a></li>
+    <li><a href="#">双周</a></li>
+    <li><a href="#">反选</a></li>
+  </ul>
+</div>
+
+<!-- Modal -->
+<div class="modal fade schedule" id="schedule" tabindex="-1" role="dialog" aria-labelledby="scheduleInfo">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body" style="height: 700px;">
+
+        <div style="float: left;width: 45%">
+          <div class="row semi-auto-table-toolbar">
+            <div class="col-sm-12 col-md-8">
+              <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group select-all-btn" role="group" style="position: relative">
+                  <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" class="btn btn-default">选择</button>
+                    <button type="button" class="dropdown-toggle btn btn-default" data-toggle="dropdown" aria-expanded="false">
+                      <i class="fa fa-chevron-down"></i>
+                    </button>
+                  </div>
+
+                </div>
+                <div class="btn-group btn-group-sm" role="group">
+                  <button type="button" class="btn btn-default"><i class="fa fa-eraser"></i>清空设置</button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group">
+                  <button type="button" class="btn btn-default">设置不排课</button>
+                </div>
+                <div class="btn-group btn-group-sm" role="group">
+                  <button type="button" class="btn btn-success">设置教室</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="schedule-table">
+            <div class="spacing-table" style="position: relative">
+              <div class="table-row row-title">
+                <div class="column">周次</div>
+                <div class="column">张老师
+                  <span style="float: right">选择&nbsp;<i class="fa fa-chevron-down"></i></span>
+                </div>
+                <div class="column td-separator"></div>
+                <div class="column">张老师
+                  <div class="btn-group" role="group">
+                    <div class="btn-group btn-group-sm" role="group">
+                      <button type="button" class="btn btn-default">选择</button>
+                      <button type="button" class="ssss btn btn-default">
+                        <i class="fa fa-chevron-down"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="table-row table-content">
+                <div class="column">第1周</div>
+                <div class="column">
+                  <div class="td-selected text-center"><span>选中</span></div>
+                  <i class="fa fa-home arrange-icon"></i>&nbsp;徐汇校区&nbsp;综合教学楼A201</div>
+                <div class="column td-separator"></div>
+                <div class="column"><i class="fa fa-home arrange-icon"></i>&nbsp;徐汇校区&nbsp;综合教学楼A201</div>
+              </div>
+
+              <div class="table-row separator">
+                <div class="column"></div>
+                <div class="column"></div>
+                <div class="column td-separator"></div>
+                <div class="column"></div>
+              </div>
+
+              <div class="table-row table-content">
+                <div class="column">第2周</div>
+                <div class="column"><i class="fa fa-home arrange-icon"></i>&nbsp;徐汇校区&nbsp;综合教学楼A201</div>
+                <div class="column td-separator"></div>
+                <div class="column"><i class="fa fa-home arrange-icon"></i>&nbsp;徐汇校区&nbsp;综合教学楼A201</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div style="float: left; width: 5%; height: 685px;"></div>
+
+        <!-- 教室list -->
+        <div style="float: left; border: 1px solid #ddd; width: 50%; height: 670px"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+        <button type="button" class="btn btn-primary">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/template" id="schedule-template">
+  <% if (schedule.state == 'scheduled') { %>
+    <i class="fa fa-home arrange-icon"></i>&nbsp;<%= campusName %>&nbsp;<%= buildingName %><%= roomName %>
+  <% } %>
+
+  <% if (schedule.state == 'donot_scheduled') { %>
+    <i class="fa fa-minus-circle donot-arrange-icon"></i>&nbsp;此周不排课
+  <% } %>
+</script>
+
+<script type="text/template" id="card-popover-content">
+  <% _.each(teachers, function(teacher) { %>
+    <% if (teacher.id) { %>
+      <h4><a class="fa fa-user"></a>&nbsp;<%= teacher.personName %></h4>
+      <div class="arranges">
+      <% _.each(teacher.arranges, function(arrange, index) { %>
+
+        <p>
+          <%= arrange.campusName %>&nbsp;<%= arrange.buildingName %>&nbsp;
+          <%= arrange.roomName %>(<%= arrange.weekIndex %>)周
+        </p>
+
+      <% }); %>
+      </div>
+    <% } %>
+  <% }); %>
+  <div class="footer">
+    <button type="button" class="btn btn-sm btn-primary adjustment">调整</button>
+    <button type="button" class="btn btn-sm btn-default delete">删除</button>
+  </div>
+</script>
+
+<script type="text/template" id="time-table">
+  <div class="time-table-title">
+    <div class="layout-title"></div>
+  </div>
+
+  <!-- time table -->
+  <div class="time-table-body">
+    <div class="columns time-segment">
+    </div>
+    <div class="columns unit">
+    </div>
+  </div>
+</script>
+<script type="text/template" id="card-template">
+  <div class="card-content">
+    <span style="color: #737373">[<%- code %>]</span>
+    <span><%- course.nameZh %>(<%- startWeek %>~<%- startWeek+requiredPeriodInfo.weeks %>周)</span>
+  </div>
+</script>
+<script type="text/template" id="card-drag-template">
+  <span>[<%- code %>]</span><br/>
+  <span><%- course.nameZh %></span><br/>
+  <i class="fa fa-circle" style="color: #fbb44c"></i>&nbsp;<%- startWeek %>~<%- startWeek+requiredPeriodInfo.weeks %>周</span><br/>
+  <i class="fa fa-calendar-o" style="color: #fbb44c"></i>&nbsp;<span>54课时待安排</span>
+</script>
+<script type="text/template" id="lesson-template">
+  <div class="card-block">
+    <p class="card-text"><span>[<%- code %>]</span>&nbsp;<%- course.nameZh %></p>
+    <div class="row">
+      <div class="col-sm-7 card-text">
+        <i class="fa fa-circle" style="color: #fbb44c"></i>&nbsp;<span><%- courseType.nameZh %></span>
+      </div>
+      <div class="col-sm-5 card-text">
+        <span style="float: right;">
+          <%
+            var teacherStr = "";
+            for (var i=0; i<=teachers.length - 1; i++) {
+              if (i == teachers.length - 1) {
+                teacherStr += teachers[i].person.nameZh;
+              } else {
+                teacherStr += teachers[i].person.nameZh + ' ';
+              }
+            }
+          %>
+          <%- teacherStr %>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <table class="card-footer-table">
+      <tr>
+        <td width="35%"><span>总课时：<%- requiredPeriodInfo.total %></span></td>
+        <td width="35%"><span>未安排：<%= requiredPeriodInfo.total-actualPeriods %></span></td>
+        <td width="30%" <%= requiredPeriodInfo.total==actualPeriods ? 'class="arrange-full"' : 'class="arrange-notfull"' %> ><span><%= requiredPeriodInfo.total==actualPeriods ? '已排满' : '未排满' %></span></td>
+      </tr>
+    </table>
+  </div>
+</script>
+<script type="text/template" id="weekday-column">
+  <div></div>
+</script>
+
+<script src="../../dist/js/require.js"></script>
+<script>
+  $(function () {
+    $('.ssss').click(function (event) {
+
+      $('#hdnCR').val(event.target.id);
+
+      if ($('#tblStyleControl').css('display') == 'none') {
+        $('#tblStyleControl').css({
+          'left': $(event.target).offset().left,
+          'top': $(event.target).offset().top + 30,
+          "position": "absolute"
+        }).show();
+
+//        $('#tblStyleControl').position({
+//          my: "left-10 top+30",
+//          of: $(event.target),
+//          collision: "fit"
+//        }).show();
+        $('#tblStyleControl').find(".dropdown-menu").show();
+      } else {
+        $('#tblStyleControl').hide();
+      }
+    });
+
+    var lessons = [{
+      id: 1,
+      code: '0008020.01',
+      course: {nameZh:"思想道德修养与法律基础实践"},
+      courseType: {nameZh: "学科基础课(必修)"},
+      requiredPeriodInfo: {total: 54, weeks: 9, periodsPerWeek: 2},
+      actualPeriods: 10,
+      startWeek: 1,
+      teachers: [{id: 1, person: {nameZh:'张老师'}}, {id:2, person: {nameZh: '王老师'}}]
+    }, {
+      id: 2,
+      code: '0008020.01',
+      course: {nameZh: "思想道德修养与法律基础实践"},
+      courseType: {nameZh: "学科基础课(必修)"},
+      requiredPeriodInfo: {total: 54, weeks: 9, periodsPerWeek: 6},
+      actualPeriods: 54,
+      startWeek: 1,
+      teachers: [{id: 1, person: {nameZh:'张老师'}}, {id:2, person: {nameZh: '王老师'}}]
+    }, {
+      id: 3,
+      code: '0008020.01',
+      course: {nameZh: "思想道德修养与法律基础实践"},
+      courseType: {nameZh: "学科基础课(必修)"},
+      requiredPeriodInfo: {total: 54, weeks: 9, periodsPerWeek: 6},
+      actualPeriods: 54,
+      startWeek: 1,
+      teachers: [{id: 1, person: {nameZh:'张老师'}}, {id:2, person: {nameZh: '王老师'}}]
+    }, {
+      id: 4,
+      code: '0008020.01',
+      course: {nameZh: "思想道德修养与法律基础实践"},
+      courseType: {nameZh: "学科基础课(必修)"},
+      requiredPeriodInfo: {total: 54, weeks: 9, periodsPerWeek: 6},
+      actualPeriods: 54,
+      startWeek: 1,
+      teachers: [{id: 1, person: {nameZh:'张老师'}}, {id:2, person: {nameZh: '王老师'}}]
+    }, {
+      id: 5,
+      code: '0008020.01',
+      course: {nameZh: "思想道德修养与法律基础实践"},
+      courseType: {nameZh: "学科基础课(必修)"},
+      requiredPeriodInfo: {total: 54, weeks: 9, periodsPerWeek: 6},
+      actualPeriods: 54,
+      startWeek: 1,
+      teachers: [{id: 1, person: {nameZh:'张老师'}}, {id:2, person: {nameZh: '王老师'}}]
+    }, {
+      id: 6,
+      code: '0008020.01',
+      course: {nameZh: "思想道德修养与法律基础实践"},
+      courseType: {nameZh: "学科基础课(必修)"},
+      requiredPeriodInfo: {total: 54, weeks: 9, periodsPerWeek: 6},
+      actualPeriods: 54,
+      startWeek: 1,
+      teachers: [{id: 1, person: {nameZh:'张老师'}}, {id:2, person: {nameZh: '王老师'}}]
+    }, {
+      id: 7,
+      code: '0008020.01',
+      course: {nameZh: "思想道德修养与法律基础实践"},
+      courseType: {nameZh: "学科基础课(必修)"},
+      requiredPeriodInfo: {total: 54, weeks: 9, periodsPerWeek: 6},
+      actualPeriods: 54,
+      startWeek: 1,
+      teachers: [{id: 1, person: {nameZh:'张老师'}}, {id:2, person: {nameZh: '王老师'}}]
+    }];
+
+    var timeSegmentLayout = {
+      timeSegments : [{
+        startTime: 800,
+        endTime: 900
+      }, {
+        startTime: 900,
+        endTime: 1000
+      }, {
+        startTime: 1000,
+        endTime: 1100
+      }, {
+        startTime: 1100,
+        endTime: 1200
+      }, {
+        startTime: 1200,
+        endTime: 1300
+      }, {
+        startTime: 1300,
+        endTime: 1400
+      }, {
+        startTime: 1400,
+        endTime: 1500
+      }, {
+        startTime: 1500,
+        endTime: 1600
+      }, {
+        startTime: 1600,
+        endTime: 1700
+      }, {
+        startTime: 1700,
+        endTime: 1800
+      }],
+
+      units : [{
+        nameZh: "1",
+        indexno: 1,
+        startTime: 800,
+        endTime: 850,
+        color: null,
+        dayPart: ""
+      }, {
+        nameZh: "2",
+        indexno: 2,
+        startTime: 850,
+        endTime: 940,
+        color: null,
+        dayPart: ""
+      }, {
+        nameZh: "3",
+        indexno: 3,
+        startTime: 1000,
+        endTime: 1050,
+        color: null,
+        dayPart: ""
+      }, {
+        nameZh: "4",
+        indexno: 4,
+        startTime: 1050,
+        endTime: 1140,
+        color: null,
+        dayPart: ""
+      }, {
+        nameZh: "5",
+        indexno: 5,
+        startTime: 1300,
+        endTime: 1350,
+        color: null,
+        dayPart: ""
+      }, {
+        nameZh: "6",
+        indexno: 6,
+        startTime: 1350,
+        endTime: 1440,
+        color: null,
+        dayPart: ""
+      }, {
+        nameZh: "7",
+        indexno: 7,
+        startTime: 1500,
+        endTime: 1550,
+        color: null,
+        dayPart: ""
+      }, {
+        nameZh: "8",
+        indexno: 8,
+        startTime: 1550,
+        endTime: 1640,
+        color: null,
+        dayPart: ""
+      }, {
+        nameZh: "9",
+        indexno: 9,
+        startTime: 1700,
+        endTime: 1800,
+        color: null,
+        dayPart: ""
+      }]
+    }
+
+    var weekdayList = [1,2,3,4,5,6,7];
+
+    require.config({
+      baseUrl : '../js'
+    });
+
+    require([
+      'models/timeTable',
+      'views/windowView',
+    ], function (TimeTableModel, WindowView) {
+
+      var timeTable = new TimeTableModel(timeSegmentLayout);
+
+      new WindowView({
+        el: $(".lesson-time-table"),
+        lessons: lessons,
+        timeTable: timeTable,
+        weekdayList: weekdayList,
+        initCards: []
+      });
+    });
+
+
+    $('.schedule').modal('show');
+//    var $table = $('.spacing-table');
+//    var $fixedColumn = $table.clone().insertBefore($table).addClass('fixed-column');
+//    $fixedColumn.find('.table-row .column:not(:first-child)').remove();
+//
+//    $fixedColumn.find('.table-row').each(function (i, elem) {
+//      $(this).height($table.find('.table-row:eq(' + i + ')').height());
+//    });
+  });
+</script>
+<script>
+
+</script>
+
+
+</body>
+
+</html>
+

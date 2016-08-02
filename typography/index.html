@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Typography</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Typography</h2>
+      <p>
+        Doc:
+        <a target="_blank" href="http://getbootstrap.com/css/#type">Typography</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Headings</h2>
+    <p>
+      Doc: <a target="_blank" href="http://getbootstrap.com/css/#type-headings">Headings</a>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <h1>Heading 1
+      <small>Sub-heading</small>
+    </h1>
+    <h2>Heading 2
+      <small>Sub-heading</small>
+    </h2>
+    <h2>Heading 3
+      <small>Sub-heading</small>
+    </h2>
+    <h4>Heading 4
+      <small>Sub-heading</small>
+    </h4>
+    <h5>Heading 5
+      <small>Sub-heading</small>
+    </h5>
+    <h6>Heading 6
+      <small>Sub-heading</small>
+    </h6>
+
+  </div>
+</div>
+
+
+<hr/>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Paragraphs</h2>
+    Doc:
+    <a target="_blank" href="http://getbootstrap.com/css/#type-body-copy">Body copy</a>,
+    <a target="_blank" href="http://getbootstrap.com/css/#lead-body-copy">Lead body copy</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus.
+      Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit</p>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <p class="lead">Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida
+      at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit</p>
+  </div>
+</div>
+
+
+<hr/>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Blockquotes</h2>
+
+    <p>
+      Doc: <a target="_blank" href="http://getbootstrap.com/css/#type-blockquotes">Blockquotes</a>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <blockquote>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+      <small>Someone famous in
+        <cite title="Source Title">Source Title</cite>
+      </small>
+    </blockquote>
+
+  </div>
+</div>
+
+
+<hr/>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Alignment Classes</h2>
+
+    <p>
+      Doc: <a target="_blank" href="http://getbootstrap.com/css/#type-alignment">Alignment Classes</a>
+    </p>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <p class="text-left">Left aligned text.</p>
+
+    <p class="text-center">Center aligned text.</p>
+
+    <p class="text-right">Right aligned text.</p>
+
+  </div>
+</div>
+
+
+<hr/>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Contextual colors</h2>
+
+    <p>
+      Doc: <a target="_blank" href="http://getbootstrap.com/css/#helper-classes-colors">Contextual colors</a>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <p class="text-muted">This is an example of muted text.</p>
+
+    <p class="text-primary">This is an example of primary text.</p>
+
+    <p class="text-success">This is an example of success text.</p>
+
+    <p class="text-info">This is an example of info text.</p>
+
+    <p class="text-warning">This is an example of warning text.</p>
+
+    <p class="text-danger">This is an example of danger text.</p>
+
+  </div>
+</div>
+
+
+<hr/>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Description</h2>
+
+    <p>
+      Doc: <a target="_blank" href="http://getbootstrap.com/css/#description">Description</a>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <dl>
+      <dt>Standard Description List</dt>
+      <dd>Description Text</dd>
+      <dt>Description List Title</dt>
+      <dd>Description List Text</dd>
+    </dl>
+
+    <dl class="dl-horizontal">
+      <dt>Horizontal Description List</dt>
+      <dd>A description list is perfect for defining terms.</dd>
+      <dt>Description List Title</dt>
+      <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+    </dl>
+
+  </div>
+</div>
+
+
+<hr/>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Addresses</h2>
+
+    <p>
+      Doc: <a target="_blank" href="http://getbootstrap.com/css/#type-addresses">Addresses</a>
+    </p>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <address>
+      <strong>Twitter, Inc.</strong>
+      <br>795 Folsom Ave, Suite 600
+      <br>San Francisco, CA 94107
+      <br>
+      <abbr title="Phone">P:</abbr>(123) 456-7890
+    </address>
+
+    <address>
+      <strong>Full Name</strong>
+      <br>
+      <a href="mailto:#">first.last@example.com</a>
+    </address>
+
+  </div>
+</div>
+
+
+<hr/>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Lists</h2>
+
+    <p>
+      Doc: <a target="_blank" href="http://getbootstrap.com/css/#type-lists">Lists</a>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-offset-2 col-sm-4">
+
+    <h4>Unordered List</h4>
+    <ul>
+      <li>Vegetables</li>
+      <li>Fruits
+        <ul>
+          <li>Apple</li>
+          <li>Banana</li>
+          <li>Coconut</li>
+        </ul>
+        Flower
+      </li>
+    </ul>
+
+
+    <h4>Ordered List</h4>
+    <ol>
+      <li>Vegetables</li>
+      <li>Fruits</li>
+      <li>Flower</li>
+    </ol>
+
+  </div>
+
+  <div class="col-sm-4">
+
+    <h4>Unstyled List</h4>
+    <ul class="list-unstyled">
+      <li>Apple</li>
+      <li>Banana</li>
+      <li>Coconut</li>
+    </ul>
+    <h4>Inline List</h4>
+    <ul class="list-inline">
+      <li>Apple</li>
+      <li>Banana</li>
+      <li>Coconut</li>
+    </ul>
+
+  </div>
+
+</div>
+
+
+<hr/>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>Code</h2>
+
+    <p>
+      Doc: <a target="_blank" href="http://getbootstrap.com/css/#code">Code</a>
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <p>This is an example of an inline code element within body copy. Wrap inline code within a
+      <code>&lt;code&gt;...&lt;/code&gt;</code>tag.</p>
+    <pre>This is an example of preformatted text.</pre>
+
+  </div>
+</div>
+
+
+
+</div>
+
+</body>
+
+</html>
+

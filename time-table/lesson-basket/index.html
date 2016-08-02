@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Time line</title>
+
+  <link href="../../assets/css/pygments-manni.css" rel="stylesheet">
+  <link href="../../time-table/css/index.css" rel="stylesheet">
+  <link href="../../time-table/css/time-table.css" rel="stylesheet">
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css">-->
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../../dist/js/html5shiv.min.js"></script>
+  <script src="../../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../../dist/js/eams-ui.zh.js"></script>
+  <script src="../../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="table-div">
+  <div class="lesson-basket">
+    <div class="container-fluid">
+      <div class="basket-title">
+        <i class="text-primary fa fa-shopping-basket"></i><span style="color:#515151; padding-left: 5px">高数排课组</span>
+        <a class="text-primary">清空全部</a>
+      </div>
+
+      <hr class="hr">
+
+      <div class="baskets" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingOne">
+              <a role="button" data-toggle="collapse" data-parent="#accordion"
+                 href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="text-decoration: none;">
+                公共必修课
+              </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="lessons panel-body">
+              <div class="lesson">
+                <span style="color: #737373">[0008020.01]</span>&nbsp;<span class="text-primary">思想道德修养与法律基础实践</span>
+                <div class="lesson-delete"><a>删除</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Collapsible Group Item #2
+              </a>
+            </h4>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-div-content">
+    <!-- lesson list -->
+
+  </div>
+</div>
+
+
+</body>
+
+</html>
+

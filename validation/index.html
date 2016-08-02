@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Form Validation</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>jQuery-validation</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://jqueryvalidation.org/documentation/">jQuery-validation</a>
+      </p>
+
+      <p>
+        本页面测试原生和第三方控件在校验时是否行为正确
+      </p>
+    </section>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Basic Form</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <form action="form.html" id="contact-form">
+
+      <fieldset title="Native Controls">
+
+        <legend>原生控件</legend>
+
+        <div class="form-group">
+          <label class="control-label" for="inputFile1">Input File</label>
+          <input id="inputFile1" type="file" class="file" data-show-preview="false" data-show-upload="false" data-lang="zh"
+            required="required"/>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="name">Text <i class="fa fa-asterisk"></i></label>
+          <input type="text" class="form-control" name="name" id="name">
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="message">Textarea</label>
+          <textarea class="form-control" name="message" id="message" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="select-bs">Select</label>
+          <select class="form-control" name="select-bs" id="select-bs">
+            <option value="">...</option>
+            <option value="1">Option A</option>
+            <option value="2">Option B</option>
+            <option value="3">Option C</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="multiple-select-bs">Multiple Select</label>
+          <select class="form-control" name="multiple-select-bs" id="multiple-select-bs" multiple>
+            <option value="1">Option A</option>
+            <option value="2">Option B</option>
+            <option value="3">Option C</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Checkbox</label>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="" name="cb-option">
+              Option one is this and that&mdash;be sure to include why it's great
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="" name="cb-option">
+              Option two is disabled
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Checkbox inline</label>
+
+          <div class="checkbox">
+            <label class="checkbox-inline">
+              <input type="checkbox" value="" name="cb-option-inline">
+              Option one
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" value="" name="cb-option-inline">
+              Option two
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Radio</label>
+
+          <div class="radio">
+            <label>
+              <input type="radio" value="" name="rd-option">
+              Option one is this and that&mdash;be sure to include why it's great
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" value="" name="rd-option">
+              Option two is disabled
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Radio inline</label>
+
+          <div class="radio">
+            <label class="radio-inline">
+              <input type="radio" value="" name="rd-option-inline">
+              Option one
+            </label>
+            <label class="radio-inline">
+              <input type="radio" value="" name="rd-option-inline">
+              Option two
+            </label>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset title="Typeahead">
+        <legend>Twitter Typeahead</legend>
+        <div class="form-group">
+          <label for="states" class="control-label">Typeahead</label>
+          <input type="text" class="form-control" name="states" id="states" placeholder="States of USA"/>
+        </div>
+      </fieldset>
+
+      <fieldset title="Tags Input">
+        <legend>Tags Input</legend>
+        <div class="form-group">
+          <label class="control-label">Simple</label>
+          <input type="text" data-role="tagsinput" class="form-control" name="cities1" placeholder="Countries"/>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Multiple Select</label>
+          <select multiple data-role="tagsinput" name="cities2" placeholder="Countries">
+            <option value="Amsterdam">Amsterdam</option>
+            <option value="Washington">Washington</option>
+            <option value="Sydney">Sydney</option>
+            <option value="Beijing">Beijing</option>
+            <option value="Cairo">Cairo</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">With typeahead</label>
+          <select name="cities3" id="tagsinput-typehead-1" data-role="tagsinput" placeholder="Countries"></select>
+        </div>
+
+      </fieldset>
+      <fieldset title="Datetime Picker">
+
+        <legend>Bootstrap Datetimepicker</legend>
+
+        <div class="form-group">
+          <label class="control-label" for="date">Datetimepicker</label>
+
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-calendar"></i>
+            </div>
+            <input type="text" class="form-control" name="date" id="date">
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset title="Masked Input">
+
+        <legend>JQuery Masked Input</legend>
+
+        <div class="form-group">
+          <label class="control-label">Masked Input</label>
+
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-phone-square"></i>
+            </div>
+            <input type="text" class="form-control" name="phone" id="phone">
+            <span class="input-group-addon ">eg.(021) 751-2789</span>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset title="Bootstrap Select">
+
+        <legend>Bootstrap Select</legend>
+
+        <div class="form-group">
+          <label class="control-label" for="select">Bootstrap-Select</label>
+          <select class="form-control selectpicker" name="select" id="select">
+            <option value="">...</option>
+            <option value="1">Option A</option>
+            <option value="2">Option B</option>
+            <option value="3">Option C</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="multiple-select">Bootstrap-Select(multiple)</label>
+          <select class="form-control selectpicker" name="multiple-select" id="multiple-select" multiple>
+            <option value="1">Option A</option>
+            <option value="2">Option B</option>
+            <option value="3">Option C</option>
+          </select>
+        </div>
+
+        <div class="form-group pull-right">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="reset" class="btn btn-default">Cancel</button>
+        </div>
+
+      </fieldset>
+
+
+    </form>
+
+  </div>
+</div>
+
+
+<hr/>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Horizontal Form</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <form action="form.html" id="contact-form1" class="form-horizontal ">
+
+      <fieldset title="Native Controls">
+
+        <legend>原生控件</legend>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="name1">Text</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="name" id="name1">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="message1">Textarea</label>
+
+          <div class="col-sm-10">
+            <textarea class="form-control" name="message" id="message1" rows="3"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">Checkbox</label>
+
+          <div class="col-sm-10">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="" name="cb-option">
+                Option one is this and that&mdash;be sure to include why it's great
+              </label>
+            </div>
+            <div class="checkbox disabled">
+              <label>
+                <input type="checkbox" value="" disabled name="cb-option">
+                Option two is disabled
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">Checkbox inline</label>
+
+          <div class="col-sm-10">
+            <div>
+              <label class="checkbox-inline">
+                <input type="checkbox" value="" name="cb-option-inline">
+                Option one
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" value="" name="cb-option-inline">
+                Option two
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">Radio</label>
+
+          <div class="col-sm-10">
+            <div class="radio">
+              <label>
+                <input type="radio" value="" name="rd-option">
+                Option one is this and that&mdash;be sure to include why it's great
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" value="" name="rd-option">
+                Option two is disabled
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">Radio inline</label>
+
+          <div class="col-sm-10">
+            <div>
+              <label class="radio-inline">
+                <input type="radio" value="" name="rd-option-inline">
+                Option one
+              </label>
+              <label class="radio-inline">
+                <input type="radio" value="" name="rd-option-inline">
+                Option two
+              </label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset title="Typeahead">
+
+        <legend>Twitter Typeahead</legend>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Typeahead</label>
+
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="states" id="states1" placeholder="States of USA"/>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset title="Tags Input">
+        <legend>Tags Input</legend>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Simple</label>
+          <div class="col-sm-10">
+            <input type="text" data-role="tagsinput" class="form-control" name="cities1" placeholder="Countries"/>
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Multiple Select</label>
+          <div class="col-sm-10">
+            <select multiple data-role="tagsinput" name="cities2" placeholder="Countries">
+              <option value="Amsterdam">Amsterdam</option>
+              <option value="Washington">Washington</option>
+              <option value="Sydney">Sydney</option>
+              <option value="Beijing">Beijing</option>
+              <option value="Cairo">Cairo</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">With typeahead</label>
+          <div class="col-sm-10">
+            <select id="tagsinput-typehead-2" name="cities3" data-role="tagsinput" placeholder="Countries"></select>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset title="Datetime Picker">
+
+        <legend>Bootstrap Datetimepicker</legend>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="date">Datetimepicker</label>
+
+          <div class="col-sm-10">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+              </div>
+              <input type="text" class="form-control" name="date" id="date1">
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset title="Masked Input">
+
+        <legend>JQuery Masked Input</legend>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">Masked Input</label>
+
+          <div class="col-sm-10">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-phone-square"></i>
+              </div>
+              <input type="text" class="form-control" name="phone" id="phone1">
+              <span class="input-group-addon ">eg.(021) 751-2789</span>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset title="Bootstrap Select">
+
+        <legend>Bootstrap Select</legend>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="select1">Bootstrap-Select</label>
+
+          <div class="col-sm-10">
+            <select name="select" class="form-control selectpicker" id="select1" data-style="btn-info">
+              <option value="">...</option>
+              <option value="1">Option A</option>
+              <option value="2">Option B</option>
+              <option value="3">Option C</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="multiple-select1">Bootstrap-Select(multiple)</label>
+
+          <div class="col-sm-10">
+            <select name="multiple-select" id="multiple-select1" multiple class="form-control selectpicker"
+                    data-max-options="2">
+              <option value="1">Option A</option>
+              <option value="2">Option B</option>
+              <option value="3">Option C</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group pull-right">
+          <div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-default">Cancel</button>
+          </div>
+        </div>
+
+      </fieldset>
+
+    </form>
+
+  </div>
+</div>
+
+<script>
+  $(function () {
+
+    $('.selectpicker').selectpicker();
+
+    $.validator.setDefaults({
+      debug: true
+    });
+
+    $('#date').datetimepicker();
+    $("#phone").mask("(999) 999-9999");
+
+    $('#date1').datetimepicker();
+    $("#phone1").mask("(999) 999-9999");
+
+    $('#contact-form').validate({
+      debug: true,
+      rules: {
+        file: 'required',
+        name: {
+          minlength: 2,
+          required: true
+        },
+        subject: {
+          minlength: 2,
+          required: true
+        },
+        message: {
+          minlength: 2,
+          required: true
+        },
+        'cb-option': 'required',
+        'cb-option-inline': 'required',
+        'rd-option': 'required',
+        'rd-option-inline': 'required',
+        'select': 'required',
+        'multiple-select': 'required',
+        'date': 'required',
+        'phone': 'required',
+        'select-bs': 'required',
+        'multiple-select-bs': 'required',
+        'states': 'required',
+        'cities1': 'required',
+        'cities2': 'required',
+        'cities3': 'required'
+      }
+
+    });
+
+    $('#contact-form1').validate({
+      debug: true,
+      rules: {
+        name: {
+          remote: {
+            url: "/save",
+            type: "get",
+            data: 1,
+            success: function(data) {
+              return true;
+            },
+            error: function(error) {
+              debugger
+              return false;
+            }
+          }
+        },
+        subject: {
+          minlength: 2,
+          required: true
+        },
+        message: {
+          minlength: 2,
+          required: true
+        },
+        'cb-option': 'required',
+        'cb-option-inline': 'required',
+        'rd-option': 'required',
+        'rd-option-inline': 'required',
+        'select': 'required',
+        'multiple-select': 'required',
+        'date': 'required',
+        'phone': 'required',
+        'select-bs': 'required',
+        'multiple-select-bs': 'required',
+        'states': 'required',
+        'cities1': 'required',
+        'cities2': 'required',
+        'cities3': 'required'
+      }
+    });
+
+
+  });
+
+  $(function () {
+
+    var substringMatcher = function (strs) {
+      return function findMatches(q, cb) {
+        var matches, substringRegex;
+
+        // an array that will be populated with substring matches
+        matches = [];
+
+        // regex used to determine if a string contains the substring `q`
+        substrRegex = new RegExp(q, 'i');
+
+        // iterate through the pool of strings and for any string that
+        // contains the substring `q`, add it to the `matches` array
+        $.each(strs, function (i, str) {
+          if (substrRegex.test(str)) {
+            matches.push(str);
+          }
+        });
+
+        cb(matches);
+      };
+    };
+
+    var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+      'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+      'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+      'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+      'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+      'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+      'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+      'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+      'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+    ];
+
+    $('#states').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1,
+        description: false,
+        legend: false
+      },
+      {
+        name: 'states',
+        source: substringMatcher(states)
+      });
+
+    $('#states1').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1,
+        description: false,
+        legend: false
+      },
+      {
+        name: 'states',
+        source: substringMatcher(states)
+      });
+
+    var cities = new Bloodhound({
+      // 因为city是json对象，不是一个字符串，所以取它的name属性作为被搜索项
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+      // 将查询条件根据空格分开
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      // 给被查询数据(datum)city设置唯一的id
+      identify: function(datum) {
+        return datum.id;
+      },
+      remote: {
+        // 查询条件会追加在请求url上，比如 cities.json?q=California
+        url: '../typeahead-examples/cities.json?q=%QUERY%',
+        wildcard: '%QUERY%'
+      }
+    });
+    cities.initialize();
+
+    $('#tagsinput-typehead-1').tagsinput({
+      // option 使用 city.id
+      itemValue: 'id',
+      // 显示在tag上的文字 使用 city.name，也可以是个function
+      itemText: 'name',
+
+      // typeahead.js的参数
+      typeaheadjs: {
+        name: 'cities',
+        source: cities,
+        // 因为返回的是json object，所以使用name属性typeahead下拉框的内容
+        display: 'name'
+      },
+      // 只能从typeahead返回的结果里选，不能随便输入
+      freeInput: false
+    });
+
+    $('#tagsinput-typehead-2').tagsinput({
+      // option 使用 city.id
+      itemValue: 'id',
+      // 显示在tag上的文字 使用 city.name，也可以是个function
+      itemText: 'name',
+
+      // typeahead.js的参数
+      typeaheadjs: {
+        name: 'cities',
+        source: cities,
+        // 因为返回的是json object，所以使用name属性typeahead下拉框的内容
+        display: 'name'
+      },
+      // 只能从typeahead返回的结果里选，不能随便输入
+      freeInput: false
+    });
+
+  })
+
+</script>
+
+</div>
+
+</body>
+
+</html>
+

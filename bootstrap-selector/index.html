@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Bootstrap Select</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Bootstrap Select</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://silviomoreto.github.io/bootstrap-select/">Bootstrap Select</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <div>
+
+      <div class="form-group">
+        <label class="control-label">
+          Select
+        </label>
+
+        <select class="form-control selectpicker">
+  <option value="">...</option>
+  <option value="1">Option A</option>
+  <option value="2">Option B</option>
+  <option value="3">Option C</option>
+</select>
+
+
+        <div class="help-block">
+          给selector添加<code>.selectpicker</code>启用bootstrap-select
+        </div>
+
+        <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;select</span> <span class="na">class=</span><span class="s">"form-control selectpicker"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">""</span><span class="nt">&gt;</span>...<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;</span>Option A<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"2"</span><span class="nt">&gt;</span>Option B<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"3"</span><span class="nt">&gt;</span>Option C<span class="nt">&lt;/option&gt;</span>
+<span class="nt">&lt;/select&gt;</span></code></pre></div>
+
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">
+          Multiple Select
+        </label>
+        <select class="form-control selectpicker" name="multiple-select" id="multiple-select" multiple>
+  <option value="1">Option A</option>
+  <option value="2">Option B</option>
+  <option value="3">Option C</option>
+</select>
+
+
+        <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;select</span> <span class="na">class=</span><span class="s">"form-control selectpicker"</span> <span class="na">name=</span><span class="s">"multiple-select"</span> <span class="na">id=</span><span class="s">"multiple-select"</span> <span class="na">multiple</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;</span>Option A<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"2"</span><span class="nt">&gt;</span>Option B<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"3"</span><span class="nt">&gt;</span>Option C<span class="nt">&lt;/option&gt;</span>
+<span class="nt">&lt;/select&gt;</span></code></pre></div>
+
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">
+          Select With Style
+        </label>
+
+        <select class="form-control selectpicker" data-style="btn-primary">
+  <option value="">...</option>
+  <option value="1">Option A</option>
+  <option value="2">Option B</option>
+  <option value="3">Option C</option>
+</select>
+
+
+        <div class="help-block">
+          添加<code>data-style="btn-primary"</code>
+        </div>
+
+        <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;select</span> <span class="na">class=</span><span class="s">"form-control selectpicker"</span> <span class="na">data-style=</span><span class="s">"btn-primary"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">""</span><span class="nt">&gt;</span>...<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;</span>Option A<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"2"</span><span class="nt">&gt;</span>Option B<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"3"</span><span class="nt">&gt;</span>Option C<span class="nt">&lt;/option&gt;</span>
+<span class="nt">&lt;/select&gt;</span></code></pre></div>
+
+      </div>
+
+      <div class="form-group">
+        <label class="control-label">
+          Multiple Select With Limit
+        </label>
+
+        <select class="form-control selectpicker" data-max-options="2" multiple>
+  <option value="1">Option A</option>
+  <option value="2">Option B</option>
+  <option value="3">Option C</option>
+</select>
+
+
+        <div class="help-block">
+          添加<code>data-max-options="2"</code>
+        </div>
+
+        <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;select</span> <span class="na">class=</span><span class="s">"form-control selectpicker"</span> <span class="na">data-max-options=</span><span class="s">"2"</span> <span class="na">multiple</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;</span>Option A<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"2"</span><span class="nt">&gt;</span>Option B<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"3"</span><span class="nt">&gt;</span>Option C<span class="nt">&lt;/option&gt;</span>
+<span class="nt">&lt;/select&gt;</span></code></pre></div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+</div>
+
+</body>
+
+</html>
+

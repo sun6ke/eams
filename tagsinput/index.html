@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Tags Input</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Tabs</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://timschlechter.github.io/bootstrap-tagsinput/examples/index.html">Bootstrap Tags
+          Input</a>
+      </p>
+    </section>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Simple Input</h3>
+
+    <input type="text" data-role="tagsinput" placeholder="请输入美国各州的名字" value="Amsterdam,Washington,Sydney,Beijing,Cairo" />
+
+    <br/>
+    <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">data-role=</span><span class="s">"tagsinput"</span> <span class="na">placeholder=</span><span class="s">"请输入美国各州的名字"</span> <span class="na">value=</span><span class="s">"Amsterdam,Washington,Sydney,Beijing,Cairo"</span> <span class="nt">/&gt;</span></code></pre></div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Multiple Select</h3>
+
+    <select multiple data-role="tagsinput" placeholder="请输入美国各州的名字">
+  <option value="Amsterdam">Amsterdam</option>
+  <option value="Washington">Washington</option>
+  <option value="Sydney">Sydney</option>
+  <option value="Beijing">Beijing</option>
+  <option value="Cairo">Cairo</option>
+</select>
+
+    <br/>
+    <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;select</span> <span class="na">multiple</span> <span class="na">data-role=</span><span class="s">"tagsinput"</span> <span class="na">placeholder=</span><span class="s">"请输入美国各州的名字"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"Amsterdam"</span><span class="nt">&gt;</span>Amsterdam<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"Washington"</span><span class="nt">&gt;</span>Washington<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"Sydney"</span><span class="nt">&gt;</span>Sydney<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"Beijing"</span><span class="nt">&gt;</span>Beijing<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"Cairo"</span><span class="nt">&gt;</span>Cairo<span class="nt">&lt;/option&gt;</span>
+<span class="nt">&lt;/select&gt;</span></code></pre></div>
+
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3>With typeahead.js <small>typeahead.js的文档在 <a href="../typehead-examples">这里</a></small></h3>
+
+    <p>
+      这里的typeaheadjs的就是 <a target="_blank" href="https://github.com/twitter/typeahead.js/blob/master/doc/jquery_typeahead.md#datasets">typeahead dataset参数</a>
+    </p>
+    <p>
+      这个例子使用typeahead来做查询，这里的select不是多选的因此只能选一个，如果要多选只需添加 <code>multiple</code>就行了
+    </p>
+
+    <p>
+      这里使用的是typeahead remote查询，返回的数据总是一样的，在实际开发过程中需要后端自己实现查询逻辑
+    </p>
+
+    <select id="typeahead" data-role="tagsinput" placeholder="请输入美国各州的名字"></select>
+<script>
+  var cities = new Bloodhound({
+    // 因为city是json对象，不是一个字符串，所以取它的name属性作为被搜索项
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+    // 将查询条件根据空格分开
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    // 给被查询数据(datum)city设置唯一的id
+    identify: function(datum) {
+      return datum.id;
+    },
+    remote: {
+      // 查询条件会追加在请求url上，比如 cities.json?q=California
+      url: '../typeahead-examples/cities.json?q=%QUERY%',
+      wildcard: '%QUERY%'
+    }
+  });
+  cities.initialize();
+
+  $('#typeahead').tagsinput({
+    // option 使用 city.id
+    itemValue: 'id',
+    // 显示在tag上的文字 使用 city.name，也可以是个function
+    itemText: 'name',
+
+    // typeahead.js的参数
+    typeaheadjs: {
+      name: 'cities',
+      source: cities,
+      // 因为返回的是json object，所以使用name属性typeahead下拉框的内容
+      display: 'name'
+    },
+    // 只能从typeahead返回的结果里选，不能随便输入
+    freeInput: false
+  });
+</script>
+
+    <br/>
+    <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"typeahead"</span> <span class="na">data-role=</span><span class="s">"tagsinput"</span> <span class="na">placeholder=</span><span class="s">"请输入美国各州的名字"</span><span class="nt">&gt;&lt;/select&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="kd">var</span> <span class="nx">cities</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Bloodhound</span><span class="p">({</span>
+    <span class="c1">// 因为city是json对象，不是一个字符串，所以取它的name属性作为被搜索项</span>
+    <span class="na">datumTokenizer</span><span class="p">:</span> <span class="nx">Bloodhound</span><span class="p">.</span><span class="nx">tokenizers</span><span class="p">.</span><span class="nx">obj</span><span class="p">.</span><span class="nx">whitespace</span><span class="p">(</span><span class="s1">'name'</span><span class="p">),</span>
+    <span class="c1">// 将查询条件根据空格分开</span>
+    <span class="na">queryTokenizer</span><span class="p">:</span> <span class="nx">Bloodhound</span><span class="p">.</span><span class="nx">tokenizers</span><span class="p">.</span><span class="nx">whitespace</span><span class="p">,</span>
+    <span class="c1">// 给被查询数据(datum)city设置唯一的id</span>
+    <span class="na">identify</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">datum</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">datum</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="na">remote</span><span class="p">:</span> <span class="p">{</span>
+      <span class="c1">// 查询条件会追加在请求url上，比如 cities.json?q=California</span>
+      <span class="na">url</span><span class="p">:</span> <span class="s1">'../typeahead-examples/cities.json?q=%QUERY%'</span><span class="p">,</span>
+      <span class="na">wildcard</span><span class="p">:</span> <span class="s1">'%QUERY%'</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="nx">cities</span><span class="p">.</span><span class="nx">initialize</span><span class="p">();</span>
+
+  <span class="nx">$</span><span class="p">(</span><span class="s1">'#typeahead'</span><span class="p">).</span><span class="nx">tagsinput</span><span class="p">({</span>
+    <span class="c1">// option 使用 city.id</span>
+    <span class="na">itemValue</span><span class="p">:</span> <span class="s1">'id'</span><span class="p">,</span>
+    <span class="c1">// 显示在tag上的文字 使用 city.name，也可以是个function</span>
+    <span class="na">itemText</span><span class="p">:</span> <span class="s1">'name'</span><span class="p">,</span>
+
+    <span class="c1">// typeahead.js的参数</span>
+    <span class="na">typeaheadjs</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">name</span><span class="p">:</span> <span class="s1">'cities'</span><span class="p">,</span>
+      <span class="na">source</span><span class="p">:</span> <span class="nx">cities</span><span class="p">,</span>
+      <span class="c1">// 因为返回的是json object，所以使用name属性typeahead下拉框的内容</span>
+      <span class="na">display</span><span class="p">:</span> <span class="s1">'name'</span>
+    <span class="p">},</span>
+    <span class="c1">// 只能从typeahead返回的结果里选，不能随便输入</span>
+    <span class="na">freeInput</span><span class="p">:</span> <span class="kc">false</span>
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+
+  </div>
+</div>
+
+</div>
+
+</body>
+
+</html>
+

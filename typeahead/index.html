@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Twitter Typeahead</title>
+
+  <link href="../assets/css/pygments-manni.css" rel="stylesheet">
+
+  <!-- 因为IE9会截断大于250K的CSS，所以将CSS拆分成两个 -->
+  <link href="../dist/css/eams-ui.css" rel="stylesheet">
+  <link href="../dist/css/eams-ui-plugin.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="../dist/js/html5shiv.min.js"></script>
+  <script src="../dist/js/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="../dist/js/eams-ui.js"></script>
+  <!--
+  JS前端组件国际化
+  可以使用 eams-ui.en.js 或者 eams-ui.zh.js
+  -->
+  <script src="../dist/js/eams-ui.zh.js"></script>
+  <script src="../dist/js/echarts-all.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+  <div class="col-sm-12">
+    <section>
+      <h2>Twitter Typeahead</h2>
+
+      <p>
+        Doc:
+        <a target="_blank" href="http://twitter.github.io/typeahead.js/">Twitter Typeahead</a>
+      </p>
+
+      <p>
+        本页面测试Typeahead在各种Form表单下显示是否正常
+      </p>
+    </section>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>In Basic Form</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <form action="#">
+
+      <div class="form-group">
+        <label for="states1" class="control-label">USA State</label>
+        <input type="text" class="form-control" id="states1" placeholder="States of USA"/>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+
+<hr/>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>In Horizontal Form</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label class="col-sm-2 control-label">USA State</label>
+
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="states2" placeholder="States of USA"/>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+
+<hr/>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h2>In Inline Form</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <form class="form-inline">
+      <div class="form-group">
+        <label for="states3" class="control-label">USA State</label>
+        <input type="text" class="form-control" id="states3" placeholder="States of USA"/>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+
+<script>
+  $(function () {
+
+    var substringMatcher = function (strs) {
+      return function findMatches(q, cb) {
+        var matches, substringRegex;
+
+        // an array that will be populated with substring matches
+        matches = [];
+
+        // regex used to determine if a string contains the substring `q`
+        substrRegex = new RegExp(q, 'i');
+
+        // iterate through the pool of strings and for any string that
+        // contains the substring `q`, add it to the `matches` array
+        $.each(strs, function (i, str) {
+          if (substrRegex.test(str)) {
+            matches.push(str);
+          }
+        });
+
+        cb(matches);
+      };
+    };
+
+    var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+      'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+      'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+      'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+      'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+      'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+      'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+      'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+      'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+    ];
+
+    $('#states1').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+      },
+      {
+        name: 'states',
+        source: substringMatcher(states)
+      });
+
+    $('#states2').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+      },
+      {
+        name: 'states',
+        source: substringMatcher(states)
+      });
+
+    $('#states3').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+      },
+      {
+        name: 'states',
+        source: substringMatcher(states)
+      });
+  })
+</script>
+
+</div>
+
+</body>
+
+</html>
+
